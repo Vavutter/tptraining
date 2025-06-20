@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impressum · TP-Training</title>
+
+<!-- Fonts + Tailwind (wie auf der Hauptseite) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{--accent:#ED2939;--accent-dark:#c51f2e;}
+body{font-family:'Inter',sans-serif;}
+h1,h2{font-family:'Poppins',sans-serif;letter-spacing:-.01em;}
+</style>
+</head>
+<body class="antialiased text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+
+<div class="min-h-screen flex items-center justify-center px-6">
+  <main class="max-w-3xl w-full space-y-10 py-24">
+
+    <header class="text-center space-y-4">
+      <h1 class="text-4xl font-bold">Impressum</h1>
+      <p class="text-sm text-gray-600 dark:text-gray-400">
+        Informations­pflichten laut § 5 ECG, § 14 UGB, § 63 GewO und Offenlegung § 25 MedienG
+      </p>
+    </header>
+
+    <!-- Firmenangaben ------------------------------------------------------------- -->
+    <section class="space-y-3">
+      <h2 class="text-2xl font-semibold">Unternehmens­daten</h2>
+      <p><strong>Firma:</strong> TP-Training&nbsp;GesbR</p>
+      <p><strong>Sitz:</strong> Salamanderweg&nbsp;12, 9535 Kärnten, Österreich</p>
+      <p><strong>Geschäftsführer:</strong> Marco Tiefenbacher, Benjamin Pletzer</p>
+      <p><strong>Unternehmens­gegenstand:</strong> Sport- & Freizeit­dienstleistungen (Triathlon / Mountainbike Coaching & Camps)</p>
+    </section>
+
+
+    <!-- Kontakt -------------------------------------------------------------------- -->
+    <section class="space-y-3">
+      <h2 class="text-2xl font-semibold">Kontakt</h2>
+      <p><strong>E-Mail:</strong> <a href="mailto:hello@tptraining.at" class="underline">hello@tptraining.at</a></p>
+      <p><strong>Website:</strong> <a href="https://www.tptraining.at" class="underline">www.tptraining.at</a></p>
+    </section>
+
+    <!-- Online-Streitbeilegung ------------------------------------------------------ -->
+    <section class="space-y-3">
+      <h2 class="text-2xl font-semibold">Online-Streit­beilegung</h2>
+      <p>
+        Verbraucher haben die Möglichkeit, Beschwerden an die Plattform der EU-Kommission zur
+        Online-Streitbeilegung zu richten:
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" class="underline">
+          https://ec.europa.eu/consumers/odr/
+        </a>.
+        Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungs­verfahren vor einer
+        Verbraucher­schlichtungsstelle teilzunehmen.
+      </p>
+    </section>
+
+    <!-- Copyright & Haftung -------------------------------------------------------- -->
+    <section class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+      <p><strong>Urheberrecht:</strong> Sämtliche Inhalte dieser Website (Texte, Fotos, Grafiken)
+        sind urheberrechtlich geschützt. Jede Verwendung ohne ausdrückliche Zustimmung ist untersagt.</p>
+      <p><strong>Haftung für Links:</strong> Trotz sorgfältiger inhaltlicher Kontrolle übernehmen
+        wir keine Haftung für externe Links. Für den Inhalt verlinkter Seiten sind ausschließlich
+        deren Betreiber verantwortlich.</p>
+    </section>
+
+    <footer class="text-center pt-10 text-xs text-gray-500 dark:text-gray-500">
+      © <span id="year"></span> TP-Training GesbR
+    </footer>
+
+  </main>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
