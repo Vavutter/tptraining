@@ -9,12 +9,9 @@
 <meta property="og:title" content="TPTraining – Train. Perform. Thrive.">
 <meta property="og:description" content="Intro-Kurse, Sport-Camps und maßgeschneiderte Trainingspläne für Triathlon & Mountainbike.">
 <meta property="og:type" content="website">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -33,89 +30,32 @@ tailwind.config = {
   }
 }
 </script>
-
-<!-- ----------------------------------------------------------------
-     ORIGINAL BASE STYLES (unchanged unless noted)
------------------------------------------------------------------ -->
 <style>
 :root{--accent:#ED2939;--accent-dark:#c51f2e;--bg-grad:radial-gradient(at 30% 30%,#ffecec 0%,transparent 70%);}
 .dark:root{--bg-grad:radial-gradient(at 60% 20%,#330e12 0%,transparent 70%);}
 body{font-family:'Inter',sans-serif;}
 h1,h2,h3,h4{font-family:'Poppins',sans-serif;letter-spacing:-.01em;}
-
 .nav-link{position:relative;overflow:hidden;}
 .nav-link::after{content:'';position:absolute;inset:auto 0 0 0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.22,1,.36,1);}
 .nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1);}
-
-.rotator{display:inline-grid;position:relative}                 /* gets overridden below */
-.rotator>span{grid-area:1/1;opacity:0;}                         /* gets overridden below */
-@keyframes fade{0%,15%{opacity:1;}20%,100%{opacity:0;}}         /* not used any more */
-
+.rotator{display:inline-grid;position:relative}
+.rotator>span{grid-area:1/1;opacity:0;animation:fade 12s infinite var(--delay);}
+@keyframes fade{0%,15%{opacity:1;}20%,100%{opacity:0;}}
 .reveal{opacity:0;transform:translateY(42px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform;}
 .reveal.visible{opacity:1;transform:none;}
-
 #progress{transform:scaleX(0);transform-origin:left;height:1px;background:var(--accent);position:fixed;top:0;left:0;right:0;z-index:50;}
 @keyframes progress-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @supports (animation-timeline:scroll()){#progress{animation:progress-grow linear;animation-timeline:scroll();animation-range:0 100%;}}
-
 .card-overlay{background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.75) 100%);}
-
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;}}
-
 .hero-bg{position:fixed;inset:0;z-index:-1;background:url('background.png') center/cover no-repeat;will-change:opacity,transform;transition:opacity .6s ease-out,transform .6s ease-out}
 html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
 </style>
-
-<!-- ----------------------------------------------------------------
-     NEW / OVERRIDING MOTION & SCROLL-HEADLINE STYLES
------------------------------------------------------------------ -->
-<style>
-/* 1. Global timing & easing tokens */
-:root{
-  --ease-out: cubic-bezier(.22,1,.36,1);
-  --ease-in-out: cubic-bezier(.4,0,.2,1);
-  --dur-fast:.35s; --dur-med:.55s; --dur-slow:.9s;
-}
-
-/* 2. Navigation underline – smoother & shorter */
-.nav-link::after{transition:transform var(--dur-fast) var(--ease-out);}
-
-/* 3. Mobile nav – scaleY instead of max-height */
-#mobile-nav{transform-origin:top;transform:scaleY(0);transition:transform var(--dur-med) var(--ease-in-out);}
-#mobile-nav.open{transform:scaleY(1);}
-
-/* 4. Card overlay – glide up, not fade only */
-.card-overlay{opacity:0;transform:translateY(8%);transition:transform var(--dur-slow) var(--ease-out),opacity var(--dur-slow) var(--ease-out);}
-.group:hover .card-overlay{opacity:1;transform:none;}
-
-/* 5. Reveal utility with auto-stagger */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out);}
-.reveal.visible{opacity:1;transform:none;}
-.reveal:nth-of-type(2){transition-delay:.08s}
-.reveal:nth-of-type(3){transition-delay:.16s}
-.reveal:nth-of-type(4){transition-delay:.24s}
-.reveal:nth-of-type(5){transition-delay:.32s}
-
-/* 6. Scroll-controlled headline
-      (disable keyframes, fade via class .active) */
-.rotator{display:inline-block;position:relative;}
-.rotator>span{
-  position:absolute;inset:0;
-  opacity:0;animation:none!important;
-  transition:opacity var(--dur-fast) var(--ease-out);
-}
-.rotator>span.active{opacity:1;}
-
-/* 7. Reduce always-on will-change */
-.hero-bg{will-change:auto;}
-.group:hover img{will-change:auto;}
-</style>
 </head>
-
 <body class="antialiased text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 <div id="progress"></div>
 
-<!-- HEADER ------------------------------------------------------------ -->
+<!-- HEADER ------------------------------------------------------------------------- -->
 <header class="fixed inset-x-0 top-0 z-40 bg-white/75 dark:bg-gray-800/70 backdrop-blur">
   <div class="max-w-7xl mx-auto flex items-center justify-between h-16 px-6">
     <a href="#" class="text-2xl font-bold">TPTraining</a>
@@ -136,7 +76,7 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
       </button>
     </div>
   </div>
-  <nav id="mobile-nav" class="md:hidden max-h-none overflow-hidden">
+  <nav id="mobile-nav" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300">
     <div class="flex flex-col py-4 gap-4">
       <a href="#programme" class="nav-link px-4">Programme</a>
       <a href="#about" class="nav-link px-4">Über&nbsp;Uns</a>
@@ -147,8 +87,8 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   </nav>
 </header>
 
-<!-- HERO -------------------------------------------------------------- -->
-<section id="hero" class="min-h-screen flex items-center justify-center px-6 relative" style="background:var(--bg-grad)">
+<!-- HERO --------------------------------------------------------------------------- -->
+<section class="min-h-screen flex items-center justify-center px-6 relative" style="background:var(--bg-grad)">
   <div class="hero-bg"></div>
   <div class="absolute inset-0 pointer-events-none overflow-hidden">
     <div class="absolute w-[28rem] h-[28rem] bg-[var(--accent)] rounded-full opacity-20 blur-3xl animate-pulseBg left-1/5 top-1/4"></div>
@@ -157,10 +97,10 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   <div class="text-center space-y-8 pt-16 relative z-10">
     <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold">
       <span class="rotator">
-        <span>Ride&nbsp;Smart</span>
-        <span>Run&nbsp;Fast</span>
-        <span>Swim&nbsp;Strong</span>
-        <span>Thrive&nbsp;Everyday</span>
+        <span style="--delay:0s">Ride&nbsp;Smart</span>
+        <span style="--delay:3s">Run&nbsp;Fast</span>
+        <span style="--delay:6s">Swim&nbsp;Strong</span>
+        <span style="--delay:9s">Thrive&nbsp;Everyday</span>
       </span>
     </h1>
     <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300">Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – alles für deinen Multisport-Erfolg.</p>
@@ -168,16 +108,18 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   </div>
 </section>
 
-<!-- PROGRAMME --------------------------------------------------------- -->
+<!-- PROGRAMME ---------------------------------------------------------------------- -->
 <section id="programme" class="py-28">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">Unsere Programme</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+      Unsere Programme
+    </h2>
 
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
       <!-- Trainingspläne Card -->
       <article class="reveal group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition">
         <img src="https://placehold.co/600x400?text=COACHING" alt="Individuelle Trainingsbetreuung" loading="lazy" class="w-full h-72 object-cover transition group-hover:scale-105 duration-700">
-        <div class="card-overlay absolute inset-0 flex items-end">
+        <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
           <div class="p-6 text-white">
             <h3 class="text-2xl font-semibold mb-1">Individuelle&nbsp;Trainingspläne</h3>
             <p class="text-sm mb-4">Starterpaket · ab €89/Monat</p>
@@ -189,7 +131,7 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
       <!-- Camps Card -->
       <article class="reveal group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition">
         <img src="https://placehold.co/600x400?text=CAMPS" alt="Sport-Camps" loading="lazy" class="w-full h-72 object-cover transition group-hover:scale-105 duration-700">
-        <div class="card-overlay absolute inset-0 flex items-end">
+        <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
           <div class="p-6 text-white">
             <h3 class="text-2xl font-semibold mb-1">Sport-Camps</h3>
             <p class="text-sm mb-4">3-Tage Camp · nach Anfrage</p>
@@ -201,35 +143,85 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   </div>
 </section>
 
-<!-- ABOUT ------------------------------------------------------------- -->
+<!-- ABOUT -------------------------------------------------------------------------- -->
 <section id="about" class="py-28 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">TP-Training in Kürze</h2>
 
+    <!-- Grid of 7 items now (new Lauftraining block inserted) -->
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 text-center">
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">🗓️</div><p class="font-semibold">Gegründet 2025</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">👥</div><p class="font-semibold">Marco &amp; Benjamin</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">🚴‍♂️</div><p class="font-semibold">Radtechnik</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">🏃‍♂️</div><p class="font-semibold">Lauftraining</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">🏊‍♂️</div><p class="font-semibold">Schwimmkurse</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">🏕️</div><p class="font-semibold">Sportcamps</p></div>
-      <div class="reveal transform transition hover:-translate-y-2"><div class="text-6xl mb-3">📈</div><p class="font-semibold">Trainingspläne</p></div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">🗓️</div>
+        <p class="font-semibold">Gegründet 2025</p>
+      </div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">👥</div>
+        <p class="font-semibold">Marco &amp; Benjamin</p>
+      </div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">🚴‍♂️</div>
+        <p class="font-semibold">Radtechnik</p>
+      </div>
+
+      <!-- NEW: Lauftraining -->
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">🏃‍♂️</div>
+        <p class="font-semibold">Lauftraining</p>
+      </div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">🏊‍♂️</div>
+        <p class="font-semibold">Schwimmkurse</p>
+      </div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">🏕️</div>
+        <p class="font-semibold">Sportcamps</p>
+      </div>
+
+      <div class="reveal transform transition hover:-translate-y-2">
+        <div class="text-6xl mb-3">📈</div>
+        <p class="font-semibold">Trainingspläne</p>
+      </div>
     </div>
 
+    <!-- Info-Toggle Button + Text -->
     <div class="text-center mt-12">
-      <button id="info-toggle" class="inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Mehr Informationen</button>
-      <div id="info-text" class="mt-6 max-w-3xl mx-auto text-gray-700 dark:text-gray-300 hidden">
+      <button
+        id="info-toggle"
+        class="inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)]
+               text-white px-6 py-3 rounded-full shadow-lg
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">
+        Mehr Informationen
+      </button>
+
+      <div id="info-text"
+           class="mt-6 max-w-3xl mx-auto text-gray-700 dark:text-gray-300 hidden">
         <p>
           TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco
           Tiefenbacher und Benjamin Pletzer, mit dem Ziel, junge Menschen
-          für die Welt des Triathlons und Mountainbikens zu begeistern …
+          für die Welt des Triathlons und Mountainbikens zu begeistern.
+          Als staatlich geprüfte Übungsleiter und selbst aktive
+          Leistungssportler bieten wir ein umfassendes Angebot. Dieses
+          reicht von Radfahrtechnik-Kursen über Schwimmkurse bis hin zu
+          erlebnisreichen Sportcamps. Darüber hinaus erstellen wir
+          individuelle Trainingspläne und bieten kompetente
+          Trainingsberatung für ambitionierte Hobbysportler und
+          Fortgeschrittene. Unser Fokus liegt auf der Vermittlung von
+          Freude am Sport und der Förderung eines aktiven Lebensstils. Mit
+          TP-Training möchten wir Kindern und Jugendlichen die Möglichkeit
+          geben, ihre Fähigkeiten zu entdecken, ihre Grenzen zu erweitern
+          und unvergessliche sportliche Erfahrungen zu sammeln.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SCHULEN ----------------------------------------------------------- -->
+<!-- SCHULEN ------------------------------------------------------------------------ -->
 <section id="schulen" class="py-28 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
     <img src="schul.png" alt="Schulprogramme" loading="lazy" class="w-full rounded-3xl shadow-lg reveal">
@@ -241,7 +233,7 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   </div>
 </section>
 
-<!-- PREISE ------------------------------------------------------------ -->
+<!-- PREISE ------------------------------------------------------------------------- -->
 <section id="preise" class="py-28">
   <div class="max-w-4xl mx-auto px-6 reveal">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Pakete & Preise</h2>
@@ -252,7 +244,9 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
         <p class="text-4xl font-bold mb-2">€89</p>
         <p class="text-sm mb-6">pro Monat</p>
         <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse & Tests</li>
+          <li>Starterpaket</li>
+          <li>Trainingsplan</li>
+          <li>Analyse & Tests</li>
         </ul>
         <a href="#kontakt" class="mt-auto bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full">Buchen</a>
       </div>
@@ -262,8 +256,11 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
         <p class="text-4xl font-bold mb-2">€129</p>
         <p class="text-sm mb-6">pro Monat</p>
         <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse & Tests</li>
-          <li>Unlimitierter Kontakt</li><li>Tägliche Anpassungen</li>
+          <li>Starterpaket</li>
+          <li>Trainingsplan</li>
+          <li>Analyse & Tests</li>
+          <li>Unlimitierter Kontakt</li>
+          <li>Tägliche Anpassungen</li>
         </ul>
         <a href="#kontakt" class="mt-auto bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full">Buchen</a>
       </div>
@@ -273,9 +270,14 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
         <p class="text-4xl font-bold mb-2">€169</p>
         <p class="text-sm mb-6">Individualisiert</p>
         <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse & Tests</li>
-          <li>Unlimitierter Kontakt</li><li>Tägliche Anpassungen</li>
-          <li>Tipps & Tricks</li><li>Wettkampfsupport</li><li>Regelmäßige Telefonate</li>
+          <li>Starterpaket</li>
+          <li>Trainingsplan</li>
+          <li>Analyse & Tests</li>
+          <li>Unlimitierter Kontakt</li>
+          <li>Tägliche Anpassungen</li>
+          <li>Tipps & Tricks</li>
+          <li>Wettkampfsupport</li>
+          <li>Regelmäßige Telefonate</li>
         </ul>
         <a href="#kontakt" class="mt-auto bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full">Buchen</a>
       </div>
@@ -283,20 +285,27 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   </div>
 </section>
 
-<!-- KONTAKT ----------------------------------------------------------- -->
+<!-- KONTAKT ------------------------------------------------------------------------ -->
 <section id="kontakt" class="py-28 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-3xl mx-auto px-6 text-center space-y-6 reveal">
     <h2 class="text-3xl md:text-4xl font-bold">Kontakt</h2>
     <p>Du hast Fragen oder möchtest ein Programm buchen? Schreib uns doch einfach!</p>
-    <p class="text-lg"><a href="mailto:tp.training@gmx.net" class="underline nav-link">tp.training@gmx.net</a></p>
+    <p class="text-lg">
+      <a href="mailto:tp.training@gmx.net" class="underline nav-link">tp.training@gmx.net</a> ·
+    <!--  <a href="tel:+436504014732" class="underline nav-link">+43 660 1234567</a> -->
+    </p>
   </div>
 </section>
 
-<!-- FOOTER ------------------------------------------------------------ -->
+<!-- FOOTER ------------------------------------------------------------------------- -->
 <footer class="bg-gray-100 dark:bg-gray-900 py-12">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-    <div><a href="#" class="text-2xl font-bold">TPTraining</a><p class="mt-4 text-gray-600 dark:text-gray-400">Train. Perform. Thrive.</p></div>
-    <div class="reveal"><h3 class="font-semibold mb-4">Links</h3>
+    <div>
+      <a href="#" class="text-2xl font-bold">TPTraining</a>
+      <p class="mt-4 text-gray-600 dark:text-gray-400">Train. Perform. Thrive.</p>
+    </div>
+    <div class="reveal">
+      <h3 class="font-semibold mb-4">Links</h3>
       <ul class="space-y-2">
         <li><a class="nav-link" href="#programme">Programme</a></li>
         <li><a class="nav-link" href="#about">Über Uns</a></li>
@@ -305,99 +314,101 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
         <li><a class="nav-link" href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
-    <div class="reveal"><h3 class="font-semibold mb-4">Rechtliches</h3>
-      <ul class="space-y-2"><li><a href="Impressum.html" class="nav-link">Impressum</a></li></ul>
+    <div class="reveal">
+      <h3 class="font-semibold mb-4">Rechtliches</h3>
+      <ul class="space-y-2">
+        <li><a href="Impressum.html" class="nav-link">Impressum</a></li>
+      </ul>
     </div>
   </div>
   <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">© <span id="year"></span> TPTraining</div>
 </footer>
 
-<!-- SCRIPTS ----------------------------------------------------------- -->
+
+<!-- SCRIPTS ------------------------------------------------------------------------ -->
 <script>
-/* ---------------- Theme toggle ---------------- */
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon   = document.getElementById('theme-icon');
-function setIcon(){
+function setIcon() {
   document.documentElement.classList.contains('dark')
-    ? themeIcon.innerHTML='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"></path>'
-    : themeIcon.innerHTML='<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+    ? themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"></path>'
+    : themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
 }
-if(localStorage.getItem('theme')==='dark'||(!localStorage.getItem('theme')&&window.matchMedia('(prefers-color-scheme: dark)').matches)){
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
   document.documentElement.classList.add('dark');
 }
 setIcon();
-themeToggle.addEventListener('click',()=>{
+themeToggle.addEventListener('click', () => {
   document.documentElement.classList.toggle('dark');
-  localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');
+  localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
   setIcon();
 });
 
-/* ---------------- Mobile nav (scaleY) --------- */
-const navToggle=document.getElementById('nav-toggle');
-const mobileNav=document.getElementById('mobile-nav');
-navToggle.addEventListener('click',()=>{
-  const expanded=navToggle.getAttribute('aria-expanded')==='true';
-  navToggle.setAttribute('aria-expanded',!expanded);
-  mobileNav.classList.toggle('open',!expanded);
+const navToggle  = document.getElementById('nav-toggle');
+const mobileNav  = document.getElementById('mobile-nav');
+navToggle.addEventListener('click', () => {
+  const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+  navToggle.setAttribute('aria-expanded', !expanded);
+  mobileNav.style.maxHeight = expanded ? '0' : mobileNav.scrollHeight + 'px';
 });
-mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-  mobileNav.classList.remove('open');
-  navToggle.setAttribute('aria-expanded',false);
-}));
+mobileNav.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    mobileNav.style.maxHeight = '0';
+    navToggle.setAttribute('aria-expanded', false);
+  })
+);
 
-/* ---------------- Reveal on-scroll ------------- */
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
-}),{threshold:.18});
-document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  }),
+  { threshold: .18 }
+);
+document.querySelectorAll('.reveal').forEach(e => observer.observe(e));
 
-/* ---------------- Scroll progress bar --------- */
-const progress=document.getElementById('progress');
-function updateProgress(){
-  const d=document.documentElement;
-  progress.style.transform='scaleX('+(d.scrollTop/(d.scrollHeight-d.clientHeight))+')';
+const progress = document.getElementById('progress');
+function updateProgress() {
+  const d = document.documentElement;
+  progress.style.transform = 'scaleX(' + (d.scrollTop / (d.scrollHeight - d.clientHeight)) + ')';
 }
-window.addEventListener('scroll',()=>requestAnimationFrame(updateProgress));
+window.addEventListener('scroll', () => requestAnimationFrame(updateProgress));
 
-/* ---------------- Hero parallax --------------- */
-(function(){
-  const root=document.documentElement;
-  const bg=document.querySelector('.hero-bg');
-  let heroHeight=window.innerHeight*0.8;
-  function resize(){heroHeight=window.innerHeight*0.8;}
-  window.addEventListener('resize',resize,{passive:true});
-  function onScroll(){
-    const t=Math.min(1,window.scrollY/heroHeight);
-    bg.style.opacity=1-t;
-    bg.style.transform='scale('+(1+t*0.1)+')';
-    root.classList.toggle('scrolled',t===1);
+document.getElementById('year').textContent = (new Date).getFullYear();
+
+
+
+(function () {
+  const root = document.documentElement;
+  const bg   = document.querySelector('.hero-bg');
+  let heroHeight = window.innerHeight * 0.8;
+
+  function resize() { heroHeight = window.innerHeight * 0.8; }
+  window.addEventListener('resize', resize, { passive: true });
+
+  function onScroll() {
+    const t = Math.min(1, window.scrollY / heroHeight);
+    bg.style.opacity   = 1 - t;
+    bg.style.transform = 'scale(' + (1 + t * 0.1) + ')';
+    root.classList.toggle('scrolled', t === 1);
   }
-  window.addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});
+  window.addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
   onScroll();
 })();
 
-/* ---------------- Info-toggle ----------------- */
-const infoToggle=document.getElementById('info-toggle');
-const infoText=document.getElementById('info-text');
-infoToggle.addEventListener('click',()=>{
+/* --------------------------------------------------------------------
+   NEW: Info-Toggle Button
+-------------------------------------------------------------------- */
+const infoToggle = document.getElementById('info-toggle');
+const infoText   = document.getElementById('info-text');
+infoToggle.addEventListener('click', () => {
   infoText.classList.toggle('hidden');
-  infoToggle.textContent=infoText.classList.contains('hidden')?'Mehr Informationen':'Weniger Informationen';
+  infoToggle.textContent = infoText.classList.contains('hidden')
+    ? 'Mehr Informationen'
+    : 'Weniger Informationen';
 });
-
-/* ---------------- Scroll-controlled headline -- */
-const phrases=[...document.querySelectorAll('.rotator>span')];
-const hero=document.getElementById('hero');
-const count=phrases.length;
-function updateHeadline(){
-  const progress=Math.min(1,window.scrollY/hero.offsetHeight);
-  const index=Math.min(count-1,Math.floor(progress*count));
-  phrases.forEach((s,i)=>s.classList.toggle('active',i===index));
-}
-window.addEventListener('scroll',()=>requestAnimationFrame(updateHeadline),{passive:true});
-updateHeadline();
-
-/* ---------------- Year in footer -------------- */
-document.getElementById('year').textContent=(new Date).getFullYear();
 </script>
 </body>
 </html>
