@@ -131,6 +131,100 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   line-height: 1.6;
   hyphens: auto;                   /* saubere Silbentrennung, wenn erlaubt */
 }
+/*-----------------------------------------------------------*
+ |  TP-Training · Schulen-Bereich                            |
+ *-----------------------------------------------------------*/
+
+/* Accent variables (already in your :root block) */
+:root{
+  --accent:      #ED2939; /* hellrot */
+  --accent-dark: #c51f2e; /* dunkleres Rot */
+}
+
+/* ---------- Section wrapper ---------- */
+#schulen{
+  padding-block: 7rem;          /* py-28  (112 px oben/unten) */
+  background:    #f9fafb;       /* bg-gray-50 */
+}
+.dark #schulen{
+  background:    #1f2937;       /* bg-gray-800 im Dark-Mode */
+}
+
+/* ---------- Grid layout ---------- */
+#schulen .container,
+#schulen .grid{                 /* falls du .container weglässt */
+  max-width:   72rem;           /* max-w-6xl */
+  margin:      0 auto;
+  padding:     0 1.5rem;        /* px-6 */
+  display:     grid;
+  gap:         3rem;            /* gap-12 */
+  align-items: center;          /* items-center */
+}
+@media (min-width: 768px){      /* md: */
+  #schulen .container,
+  #schulen .grid{
+    grid-template-columns: repeat(2,1fr);  /* md:grid-cols-2 */
+  }
+}
+
+/* ---------- Bild ---------- */
+#schulen img{
+  width:        100%;
+  border-radius:1.5rem;         /* rounded-3xl */
+  box-shadow:   0 10px 15px -3px rgba(0,0,0,.1),
+                0  4px  6px -4px rgba(0,0,0,.1);  /* shadow-lg */
+}
+
+/* ---------- Überschrift ---------- */
+#schulen h2{
+  font-size: 2.25rem;           /* text-3xl */
+  line-height: 1.2;
+  font-weight: 700;             /* font-bold */
+}
+@media (min-width: 768px){
+  #schulen h2{ font-size: 2.5rem; }  /* md:text-4xl */
+}
+
+/* ---------- Fließtext ---------- */
+#schulen p{
+  color: #374151;               /* text-gray-700 */
+}
+.dark #schulen p{
+  color: #d1d5db;               /* text-gray-300 */
+}
+
+/* ---------- CTA-Button ---------- */
+#schulen a{
+  display:       inline-block;
+  margin-top:    1.5rem;        /* mt-6 */
+  background:    var(--accent);
+  color:         #fff;
+  padding:       0.75rem 1.5rem;/* py-3  px-6 */
+  border-radius: 9999px;        /* rounded-full */
+  box-shadow:    0 10px 15px -3px rgba(0,0,0,.1),
+                 0  4px  6px -4px rgba(0,0,0,.1);  /* shadow-lg */
+  transition:    background-color .2s ease,
+                 transform        .2s ease;
+}
+#schulen a:hover{
+  background: var(--accent-dark);      /* hover:bg-accent-dark */
+}
+#schulen a:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent); /* focus-visible:ring-2 */
+}
+
+/* ---------- Scroll-Reveal Effekt ---------- */
+#schulen .reveal{
+  opacity: 0;
+  transform: translateY(42px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+#schulen .reveal.visible{
+  opacity: 1;
+  transform: none;
+}
+
 </style>
 </head>
 
@@ -233,7 +327,17 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
     </div>
   </div>
 </section>
-
+<!-- SCHULEN ------------------------------------------------------------------------ -->
+<section id="schulen" class="py-28 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <img src="schul.png" alt="Schulprogramme" loading="lazy" class="w-full rounded-3xl shadow-lg reveal">
+    <div class="space-y-6 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold">Programme für Schulen</h2>
+      <p class="text-gray-700 dark:text-gray-300">Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht – ideal für Sportwochen oder Projekttage.</p>
+      <a href="#kontakt" class="inline-block mt-6 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Anfrage senden</a>
+    </div>
+  </div>
+</section>
 <!-- ABOUT -------------------------------------------------------------------------- -->
 <!-- ABOUT -------------------------------------------------------------------------- -->
 <section id="about" class="py-28 bg-gray-50 dark:bg-gray-800">
@@ -630,7 +734,19 @@ document.querySelectorAll('.bio-toggle').forEach(btn=>{
   }, 4500);
 })();
 </script>
+<script>
+  const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  }),
+  { threshold: .18 }
+);
+document.querySelectorAll('.reveal').forEach(e => observer.observe(e));
 
+</script>
 
 </body>
 </html>
