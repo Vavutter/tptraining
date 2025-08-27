@@ -6,15 +6,28 @@
 <title>TPTraining – individuelle Trainingspläne · Sport-Camps</title>
 <meta name="description" content="Triathlon- & Mountainbike-Trainings, Kurse und Camps für Kinder & Jugendliche in Österreich.">
 <link rel="canonical" href="https://www.tptraining.at/">
+
+<!-- Social -->
 <meta property="og:title" content="TPTraining – Train. Perform. Thrive.">
 <meta property="og:description" content="Intro-Kurse, Sport-Camps und maßgeschneiderte Trainingspläne für Triathlon & Mountainbike.">
 <meta property="og:type" content="website">
+
+<!-- Theme color for light/dark -->
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0e14">
+
+<!-- Preconnect & Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- Preload likely LCP images -->
+<link rel="preload" as="image" href="background.png" imagesrcset="background.png" imagesizes="100vw">
+<link rel="preload" as="image" href="cen.jpg" imagesrcset="cen.jpg 1200w, cen.jpg 1920w" imagesizes="(max-width: 1024px) 100vw, 1200px">
+
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-/* Tailwind config */
 tailwind.config = {
   darkMode: 'class',
   theme: {
@@ -76,7 +89,7 @@ html{scroll-padding-top:84px}
 .nav-link{position:relative;overflow:hidden}
 .nav-link::after{content:'';position:absolute;inset:auto 0 0 0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1)}
-.nav-active{color:var(--accent)}
+.nav-active{color:var(--accent);}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(42px) scale(.98);will-change:opacity,transform;filter:saturate(.9);
@@ -98,7 +111,7 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
   -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 18px rgba(237,41,57,.15))}
 @keyframes fade{0%,15%{opacity:1}20%,100%{opacity:0}}
 
-/* buttons: glossy with shimmer + magnetic */
+/* glossy buttons + shimmer */
 .btn-cta, #info-toggle, #kontakt a[href^="mailto"], #preise .btn{
   position:relative;isolation:isolate;overflow:hidden
 }
@@ -175,10 +188,14 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
 /* light / dark for price cards fallback */
 .dark #preise .price-card{background:rgba(17,24,39,.82)}
 .dark #preise .price-card.featured{border-color:var(--accent);box-shadow:0 10px 34px rgba(237,41,57,.28)}
+
+/* sticky mobile CTA */
+.sticky-cta{position:sticky;bottom:0;z-index:30}
 </style>
 </head>
 
 <body class="antialiased text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+<a href="#programme" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-white/90 focus:dark:bg-gray-800/90 focus:px-3 focus:py-2 focus:rounded-md">Zum Inhalt springen</a>
 <div id="progress"></div>
 <div class="spotlight" aria-hidden="true"><i id="spot"></i></div>
 
@@ -186,285 +203,297 @@ html.scrolled .hero-bg{opacity:0;transform:scale(1.1)}
 <header class="fixed inset-x-0 top-0 z-40 header-glass">
   <div class="max-w-7xl mx-auto flex items-center justify-between h-16 px-6">
     <a href="#" class="flex items-center gap-2 text-2xl font-bold" aria-label="TPTraining – Startseite">
-      <img src="tptraining.png" alt="" class="h-14 w-auto animate-float" loading="lazy"><span class="sr-only">TPTraining</span>
+      <img src="tptraining.png" alt="TPTraining Logo" class="h-14 w-auto animate-float" loading="eager" fetchpriority="high">
+      <span class="sr-only">TPTraining</span>
     </a>
-    <nav class="hidden md:flex gap-8">
+
+    <nav class="hidden md:flex items-center gap-6">
       <a href="#programme" class="nav-link">Programme</a>
       <a href="#about" class="nav-link">Über&nbsp;Uns</a>
       <a href="#schulen" class="nav-link">Schulen</a>
       <a href="#preise" class="nav-link">Preise</a>
       <a href="#kontakt" class="nav-link">Kontakt</a>
+      <a href="#kontakt" class="ml-2 inline-flex items-center justify-center rounded-full bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-4 py-2 btn-cta text-sm">Anfrage</a>
     </nav>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors">
+
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors" aria-label="Theme wechseln">
         <svg id="theme-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
       </button>
-      <button id="nav-toggle" class="md:hidden p-2" aria-controls="mobile-nav" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+      <button id="nav-toggle" class="md:hidden p-2" aria-controls="mobile-nav" aria-expanded="false" aria-label="Navigation öffnen">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
   </div>
+
   <nav id="mobile-nav" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300">
-    <div class="flex flex-col py-4 gap-4">
-      <a href="#programme" class="nav-link px-4">Programme</a>
-      <a href="#about" class="nav-link px-4">Über&nbsp;Uns</a>
-      <a href="#schulen" class="nav-link px-4">Schulen</a>
-      <a href="#preise" class="nav-link px-4">Preise</a>
-      <a href="#kontakt" class="nav-link px-4">Kontakt</a>
+    <div class="flex flex-col py-4 gap-2 px-4">
+      <a href="#programme" class="nav-link py-2">Programme</a>
+      <a href="#about" class="nav-link py-2">Über&nbsp;Uns</a>
+      <a href="#schulen" class="nav-link py-2">Schulen</a>
+      <a href="#preise" class="nav-link py-2">Preise</a>
+      <a href="#kontakt" class="nav-link py-2">Kontakt</a>
+      <a href="#kontakt" class="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-4 py-2 btn-cta text-sm">Anfrage</a>
     </div>
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="min-h-screen flex items-center justify-center px-6 relative" style="background:transparent">
-  <div class="hero-bg"></div>
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="absolute w-[28rem] h-[28rem] bg-[var(--accent)] rounded-full opacity-20 blur-3xl animate-pulseBg left-1/5 top-1/4"></div>
-    <div class="absolute w-[32rem] h-[32rem] bg-blue-500 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulseBg right-1/4 -top-12"></div>
-  </div>
-  <div class="text-center space-y-8 pt-16 relative z-10">
-    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold">
-      <span class="rotator">
-        <span style="--delay:0s">Ride&nbsp;Smart</span>
-        <span style="--delay:3s">Run&nbsp;Fast</span>
-        <span style="--delay:6s">Swim&nbsp;Strong</span>
-        <span style="--delay:9s">Thrive&nbsp;Everyday</span>
-      </span>
-    </h1>
-    <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300">Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – alles für deinen Multisport-Erfolg.</p>
-    <a href="#programme" class="btn-cta inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-10 py-4 rounded-full shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Jetzt starten</a>
-  </div>
-</section>
-
-<!-- PROGRAMME -->
-<section id="programme" class="py-28">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white reveal">Unsere Programme</h2>
-
-    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
-      <!-- Trainingspläne / Coaching -->
-      <article class="reveal group relative rounded-3xl shadow-xl hover:shadow-2xl transition overflow-hidden tilt">
-        <figure class="art-frame art-glow">
-          <canvas id="art-coaching" class="art-canvas" aria-label="Abstrakte Triathlon-Energiebahnen"></canvas>
-          <figcaption class="sr-only">Neonartige Bänder für Schwimmen, Radfahren und Laufen.</figcaption>
-        </figure>
-        <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
-          <div class="p-6 text-white">
-            <h3 class="text-2xl font-semibold mb-1">Individuelle&nbsp;Trainingspläne</h3>
-            <p class="text-sm mb-4">Starterpaket · ab €89/Monat</p>
-            <a href="#preise" class="underline nav-link">Mehr Infos</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Camps -->
-      <article class="reveal group relative rounded-3xl shadow-xl hover:shadow-2xl transition overflow-hidden tilt">
-        <figure class="art-frame">
-          <canvas id="art-camps" class="art-canvas" aria-label="Parallaxe-Berglandschaft mit Sternen und Polarlicht"></canvas>
-          <figcaption class="sr-only">Mehrlagige Berge, Sterne und dynamische Lichtbänder.</figcaption>
-        </figure>
-        <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
-          <div class="p-6 text-white">
-            <h3 class="text-2xl font-semibold mb-1">Sport-Camps</h3>
-            <p class="text-sm mb-4">3-Tage Camp · nach Anfrage</p>
-            <a href="#preise" class="underline nav-link">Mehr Infos</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SCHULEN -->
-<section id="schulen" class="py-28 bg-gray-50 dark:bg-gray-800">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-    <figure class="reveal art-frame shadow-lg tilt">
-      <canvas id="art-schools" class="art-canvas md:h-[24rem]" aria-label="Vernetztes Lernraster mit pulsierenden Pfaden"></canvas>
-      <figcaption class="sr-only">Strukturiertes Netzwerk mit Bewegung für Sicherheit & Lernen.</figcaption>
-    </figure>
-    <div class="space-y-6 reveal">
-      <h2 class="text-3xl md:text-4xl font-bold">Programme für Schulen</h2>
-      <p class="text-gray-700 dark:text-gray-300">Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht – ideal für Sportwochen oder Projekttage.</p>
-      <a href="#kontakt" class="btn-cta inline-block mt-6 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Anfrage senden</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="py-28 bg-gray-50 dark:bg-gray-800">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 reveal">TP-Training in&nbsp;Kürze</h2>
-
-    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 text-center">
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🗓️</div><p class="font-semibold">Gegründet&nbsp;2025</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">👥</div><p class="font-semibold">Marco&nbsp;&amp;&nbsp;Benjamin</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🚴‍♂️</div><p class="font-semibold">Radtechnik</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏃‍♂️</div><p class="font-semibold">Lauftraining</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏊‍♂️</div><p class="font-semibold">Schwimmkurse</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏕️</div><p class="font-semibold">Sportcamps</p></div>
-      <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">📈</div><p class="font-semibold">Trainingspläne</p></div>
+<main id="main">
+  <!-- HERO -->
+  <section class="min-h-[80svh] flex items-center justify-center px-6 pt-16 relative" style="background:transparent">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <!-- replaced invalid left-1/5 with arbitrary value -->
+      <div class="absolute w-[28rem] h-[28rem] bg-[var(--accent)] rounded-full opacity-20 blur-3xl animate-pulseBg left-[20%] top-1/4"></div>
+      <div class="absolute w-[32rem] h-[32rem] bg-blue-500 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulseBg right-1/4 -top-12"></div>
     </div>
 
-    <div class="text-center mt-12">
-      <button id="info-toggle" class="btn-cta inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Mehr&nbsp;Informationen</button>
-      <div id="info-text" class="mt-6 max-w-3xl mx-auto text-gray-700 dark:text-gray-300 hidden">
-        <p>TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco Tiefenbacher und Benjamin Pletzer, mit dem Ziel, junge Menschen für die Welt des Triathlons und Mountainbikens zu begeistern. Als staatlich geprüfte Übungsleiter und selbst aktive Leistungssportler bieten wir ein umfassendes Angebot. Dieses reicht von Radfahrtechnik-Kursen über Schwimmkurse bis hin zu erlebnisreichen Sportcamps. Darüber hinaus erstellen wir individuelle Trainingspläne und bieten kompetente Trainingsberatung für ambitionierte Hobbysportler und Fortgeschrittene. Unser Fokus liegt auf der Vermittlung von Freude am Sport und der Förderung eines aktiven Lebensstils. Mit TP-Training möchten wir Kindern und Jugendlichen die Möglichkeit geben, ihre Fähigkeiten zu entdecken, ihre Grenzen zu erweitern und unvergessliche sportliche Erfahrungen zu sammeln.</p>
+    <div class="text-center space-y-7 relative z-10 max-w-3xl">
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight">
+        <span class="rotator">
+          <span style="--delay:0s">Ride&nbsp;Smart</span>
+          <span style="--delay:3s">Run&nbsp;Fast</span>
+          <span style="--delay:6s">Swim&nbsp;Strong</span>
+          <span style="--delay:9s">Thrive&nbsp;Everyday</span>
+        </span>
+      </h1>
+      <p class="mx-auto text-lg md:text-xl text-gray-700 dark:text-gray-300">Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – alles für deinen Multisport-Erfolg.</p>
+      <div class="flex items-center justify-center gap-3">
+        <a href="#programme" class="btn-cta inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Jetzt starten</a>
+        <a href="#preise" class="inline-block rounded-full border border-white/40 dark:border-white/20 bg-white/60 dark:bg-gray-800/60 backdrop-blur px-6 py-4 hover:bg-white/80 dark:hover:bg-gray-800/80 transition">Pakete ansehen</a>
       </div>
     </div>
+  </section>
 
-    <!-- TEAM -->
-    <h3 class="text-2xl md:text-3xl font-bold text-center mt-24 mb-12 reveal">Unser Team – persönlich vorgestellt</h3>
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta md:hidden">
+    <div class="mx-auto max-w-7xl px-4 pb-4">
+      <a href="#kontakt" class="btn-cta block text-center bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white py-3 rounded-full shadow-lg">Unverbindlich anfragen</a>
+    </div>
+  </div>
 
-    <div class="grid gap-14 lg:grid-cols-2">
-      <!-- Marco ------------------------------------------------------------------- -->
-      <article class="reveal bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-3xl p-8 flex flex-col lg:flex-row items-center gap-8 hover:-translate-y-1 transition shadow-lg tilt">
-        <img src="tf.png" alt="Porträt von Marco Tiefenbacher" class="w-48 h-48 rounded-full object-cover shadow-lg shrink-0" loading="lazy">
+  <!-- PROGRAMME -->
+  <section id="programme" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- removed accidental white text for contrast on light bg -->
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 reveal">Unsere Programme</h2>
 
-        <div class="space-y-4 text-center lg:text-left bio-wrapper">
-          <h4 class="text-xl font-semibold">Marco&nbsp;Tiefenbacher</h4>
-
-          <div id="marcoBio" class="bio clamp-7 text-gray-700 dark:text-gray-300">
-            <p><strong>Hallo zusammen</strong>, mein Name ist Marco Tiefenbacher,
-               ich bin 18 Jahre alt und stamme aus dem wunderschönen
-               <em>Grafenstein</em>. Mein sportlicher Werdegang ist zugegebenermaßen
-               etwas verschlungen: Er begann mit einem Kinderschnuppertraining
-               und führte mich in die Leichtathletik-Ausbildung beim
-               LAC&nbsp;Klagenfurt.</p>
-
-            <p>Dort spezialisierte ich mich nach einigen Saisonen als
-               Mehrkämpfer auf die <strong>1000&nbsp;m</strong>- und
-               <strong>3000&nbsp;m</strong>-Bahnrennen. Weil mir das monotone
-               Kreislaufen irgendwann zu eintönig wurde, wechselte ich in den
-               <strong>Berglauf</strong>, wo ich zwei Jahre lang unbezahlbare
-               Erfahrungen und große Erfolge sammeln konnte.</p>
-
-            <p>2022 brachte mich ein Freund zum <strong>Rennradsport</strong> –
-               Liebe auf den ersten Tritt. Seitdem bin ich dem Radsport treu
-               und wechselte im Sommer&nbsp;2024 ganz auf zwei Räder.</p>
-
-            <p>Im selben Jahr schloss ich erfolgreich meine Ausbildung zum
-               <strong>Triathlon-Übungsleiter</strong> ab. Mein Herzensanliegen:
-               jungen Menschen – vor allem Kindern – die Freude an Schwimmen,
-               Radfahren und Laufen zu vermitteln und ihnen zu zeigen, wie viel
-               Spaß diese Sportarten machen und welche Werte sie fürs Leben
-               schenken.</p>
+      <div class="grid gap-12 sm:grid-cols-2">
+        <!-- Trainingspläne / Coaching -->
+        <article class="reveal group relative rounded-3xl shadow-xl hover:shadow-2xl transition overflow-hidden tilt bg-white/70 dark:bg-gray-800/60 backdrop-blur">
+          <figure class="art-frame art-glow">
+            <canvas id="art-coaching" class="art-canvas" aria-label="Abstrakte Triathlon-Energiebahnen"></canvas>
+            <figcaption class="sr-only">Neonartige Bänder für Schwimmen, Radfahren und Laufen.</figcaption>
+          </figure>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
+            <div class="p-6 text-white">
+              <h3 class="text-2xl font-semibold mb-1">Individuelle&nbsp;Trainingspläne</h3>
+              <p class="text-sm mb-4">Starterpaket · ab €89/Monat</p>
+              <a href="#preise" class="underline nav-link">Mehr Infos</a>
+            </div>
           </div>
+        </article>
 
-          <button class="bio-toggle" data-target="#marcoBio">Mehr lesen</button>
-
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Spezialgebiete:&nbsp;Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
-          </p>
-        </div>
-      </article>
-
-      <!-- Benjamin ----------------------------------------------------------------- -->
-      <article class="reveal bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-3xl p-8 flex flex-col lg:flex-row items-center gap-8 hover:-translate-y-1 transition shadow-lg tilt">
-        <img src="benj2.jpg" alt="Porträt von Benjamin Pletzer" class="w-48 h-48 rounded-full object-cover shadow-lg shrink-0" loading="lazy">
-
-        <div class="space-y-4 text-center lg:text-left bio-wrapper">
-          <h4 class="text-xl font-semibold">Benjamin&nbsp;Pletzer</h4>
-
-          <div id="benjaminBio" class="bio clamp-7 text-gray-700 dark:text-gray-300">
-            <p><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre
-               alt und seit vielen Jahren <strong>Leistungs­sportler im
-               Mountainbike</strong>.</p>
-
-            <p>Seit zwei Jahren arbeite ich in meiner Freizeit als Trainer –
-               nicht nur mit Kindern, die Spaß auf dem Bike haben, sondern auch
-               mit Erwachsenen, die ihre Freude am Rad erst später entdeckt
-               haben. Ich darf meine Erfahrungen also an alle Altersgruppen
-               weitergeben.</p>
-
-            <p>Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft,
-               Disziplin und der ständige Wille, das Beste aus sich
-               herauszuholen. Als aktiver Racer weiß ich genau, was es braucht,
-               um Ziele nicht nur zu setzen, sondern auch zu erreichen – und
-               dieses Wissen gebe ich eins-zu-eins weiter.</p>
-
-            <p><strong>Mein Ziel:</strong> der Jugend den Spaß am Fahrrad,
-               insbesondere Mountainbike, näherzubringen und meine eigenen
-               Erfahrungen bestmöglich weiterzugeben. Ich begleite dich auf
-               deiner Reise zum erfahrenen Mountainbiker und zeige dir, wozu du
-               wirklich fähig bist.</p>
+        <!-- Camps -->
+        <article class="reveal group relative rounded-3xl shadow-xl hover:shadow-2xl transition overflow-hidden tilt bg-white/70 dark:bg-gray-800/60 backdrop-blur">
+          <figure class="art-frame">
+            <canvas id="art-camps" class="art-canvas" aria-label="Parallaxe-Berglandschaft mit Sternen und Polarlicht"></canvas>
+            <figcaption class="sr-only">Mehrlagige Berge, Sterne und dynamische Lichtbänder.</figcaption>
+          </figure>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div class="card-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 flex items-end">
+            <div class="p-6 text-white">
+              <h3 class="text-2xl font-semibold mb-1">Sport-Camps</h3>
+              <p class="text-sm mb-4">3-Tage Camp · nach Anfrage</p>
+              <a href="#preise" class="underline nav-link">Mehr Infos</a>
+            </div>
           </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-          <button class="bio-toggle" data-target="#benjaminBio">Mehr lesen</button>
+  <!-- SCHULEN -->
+  <section id="schulen" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <figure class="reveal art-frame shadow-lg tilt">
+        <canvas id="art-schools" class="art-canvas md:h-[24rem]" aria-label="Vernetztes Lernraster mit pulsierenden Pfaden"></canvas>
+        <figcaption class="sr-only">Strukturiertes Netzwerk mit Bewegung für Sicherheit & Lernen.</figcaption>
+      </figure>
+      <div class="space-y-6 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold">Programme für Schulen</h2>
+        <p class="text-gray-700 dark:text-gray-300">Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht – ideal für Sportwochen oder Projekttage.</p>
+        <a href="#kontakt" class="btn-cta inline-block mt-2 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Anfrage senden</a>
+      </div>
+    </div>
+  </section>
 
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Spezialgebiete:&nbsp;Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
-          </p>
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-14 reveal">TP-Training in&nbsp;Kürze</h2>
+
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 text-center">
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🗓️</div><p class="font-semibold">Gegründet&nbsp;2025</p></div>
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">👥</div><p class="font-semibold">Marco&nbsp;&amp;&nbsp;Benjamin</p></div>
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🚴‍♂️</div><p class="font-semibold">Radtechnik</p></div>
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏃‍♂️</div><p class="font-semibold">Lauftraining</p></div>
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏊‍♂️</div><p class="font-semibold">Schwimmkurse</p></div>
+        <div class="reveal hover:-translate-y-2 transition"><div class="text-6xl mb-3">🏕️</div><p class="font-semibold">Sportcamps</p></div>
+        <div class="reveal hover:-translate-y-2 transition sm:col-span-2 lg:col-span-1"><div class="text-6xl mb-3">📈</div><p class="font-semibold">Trainingspläne</p></div>
+      </div>
+
+      <div class="text-center mt-10">
+        <button id="info-toggle" class="btn-cta inline-block bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-6 py-3 rounded-full shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">Mehr&nbsp;Informationen</button>
+        <div id="info-text" class="mt-6 max-w-3xl mx-auto text-gray-700 dark:text-gray-300 hidden">
+          <p>TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco Tiefenbacher und Benjamin Pletzer, mit dem Ziel, junge Menschen für die Welt des Triathlons und Mountainbikens zu begeistern. Als staatlich geprüfte Übungsleiter und selbst aktive Leistungssportler bieten wir ein umfassendes Angebot. Dieses reicht von Radfahrtechnik-Kursen über Schwimmkurse bis hin zu erlebnisreichen Sportcamps. Darüber hinaus erstellen wir individuelle Trainingspläne und bieten kompetente Trainingsberatung für ambitionierte Hobbysportler und Fortgeschrittene. Unser Fokus liegt auf der Vermittlung von Freude am Sport und der Förderung eines aktiven Lebensstils. Mit TP-Training möchten wir Kindern und Jugendlichen die Möglichkeit geben, ihre Fähigkeiten zu entdecken, ihre Grenzen zu erweitern und unvergessliche sportliche Erfahrungen zu sammeln.</p>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- PREISE -->
-<section id="preise" class="py-28">
-  <div class="max-w-4xl mx-auto px-6 reveal">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Pakete&nbsp;&amp;&nbsp;Preise</h2>
-    <div class="price-grid">
-      <div class="price-card tilt">
-        <h3>Einsteiger</h3>
-        <p class="text-4xl font-bold mb-2">€89</p><p class="text-sm mb-6">pro Monat</p>
-        <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
-        </ul>
-        <a href="#kontakt" class="btn">Buchen</a>
       </div>
 
-      <div class="price-card featured tilt">
-        <h3>Fortgeschritten</h3>
-        <p class="text-4xl font-bold mb-2">€129</p><p class="text-sm mb-6">pro Monat</p>
-        <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
-          <li>Unlimitierter&nbsp;Kontakt</li><li>Tägliche&nbsp;Anpassungen</li>
-        </ul>
-        <a href="#kontakt" class="btn">Buchen</a>
-      </div>
+      <!-- TEAM -->
+      <h3 class="text-2xl md:text-3xl font-bold text-center mt-20 mb-10 reveal">Unser Team – persönlich vorgestellt</h3>
 
-      <div class="price-card tilt">
-        <h3>Pro</h3>
-        <p class="text-4xl font-bold mb-2">€169</p><p class="text-sm mb-6">Individualisiert</p>
-        <ul class="text-sm mb-6 space-y-1">
-          <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
-          <li>Unlimitierter&nbsp;Kontakt</li><li>Tägliche&nbsp;Anpassungen</li>
-          <li>Tipps&nbsp;&amp;&nbsp;Tricks</li><li>Wettkampfsupport</li><li>Regelmäßige&nbsp;Telefonate</li>
-        </ul>
-        <a href="#kontakt" class="btn">Buchen</a>
+      <div class="grid gap-12 lg:grid-cols-2">
+        <!-- Marco -->
+        <article class="reveal bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-3xl p-8 flex flex-col lg:flex-row items-center gap-8 hover:-translate-y-1 transition shadow-lg tilt">
+          <img src="tf.png" alt="Porträt von Marco Tiefenbacher" class="w-48 h-48 rounded-full object-cover shadow-lg shrink-0" loading="lazy">
+          <div class="space-y-4 text-center lg:text-left bio-wrapper">
+            <h4 class="text-xl font-semibold">Marco&nbsp;Tiefenbacher</h4>
+            <div id="marcoBio" class="bio clamp-7 text-gray-700 dark:text-gray-300">
+              <p><strong>Hallo zusammen</strong>, mein Name ist Marco Tiefenbacher,
+                ich bin 18 Jahre alt und stamme aus dem wunderschönen
+                <em>Grafenstein</em>. Mein sportlicher Werdegang ist zugegebenermaßen
+                etwas verschlungen: Er begann mit einem Kinderschnuppertraining
+                und führte mich in die Leichtathletik-Ausbildung beim
+                LAC&nbsp;Klagenfurt.</p>
+              <p>Dort spezialisierte ich mich nach einigen Saisonen als
+                Mehrkämpfer auf die <strong>1000&nbsp;m</strong>- und
+                <strong>3000&nbsp;m</strong>-Bahnrennen. Weil mir das monotone
+                Kreislaufen irgendwann zu eintönig wurde, wechselte ich in den
+                <strong>Berglauf</strong>, wo ich zwei Jahre lang unbezahlbare
+                Erfahrungen und große Erfolge sammeln konnte.</p>
+              <p>2022 brachte mich ein Freund zum <strong>Rennradsport</strong> –
+                Liebe auf den ersten Tritt. Seitdem bin ich dem Radsport treu
+                und wechselte im Sommer&nbsp;2024 ganz auf zwei Räder.</p>
+              <p>Im selben Jahr schloss ich erfolgreich meine Ausbildung zum
+                <strong>Triathlon-Übungsleiter</strong> ab. Mein Herzensanliegen:
+                jungen Menschen – vor allem Kindern – die Freude an Schwimmen,
+                Radfahren und Laufen zu vermitteln und ihnen zu zeigen, wie viel
+                Spaß diese Sportarten machen und welche Werte sie fürs Leben
+                schenken.</p>
+            </div>
+            <button class="bio-toggle" data-target="#marcoBio" aria-expanded="false">Mehr lesen</button>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Spezialgebiete:&nbsp;Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
+            </p>
+          </div>
+        </article>
+
+        <!-- Benjamin -->
+        <article class="reveal bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-3xl p-8 flex flex-col lg:flex-row items-center gap-8 hover:-translate-y-1 transition shadow-lg tilt">
+          <img src="benj2.jpg" alt="Porträt von Benjamin Pletzer" class="w-48 h-48 rounded-full object-cover shadow-lg shrink-0" loading="lazy">
+          <div class="space-y-4 text-center lg:text-left bio-wrapper">
+            <h4 class="text-xl font-semibold">Benjamin&nbsp;Pletzer</h4>
+            <div id="benjaminBio" class="bio clamp-7 text-gray-700 dark:text-gray-300">
+              <p><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre
+                alt und seit vielen Jahren <strong>Leistungs­sportler im
+                Mountainbike</strong>.</p>
+              <p>Seit zwei Jahren arbeite ich in meiner Freizeit als Trainer –
+                nicht nur mit Kindern, die Spaß auf dem Bike haben, sondern auch
+                mit Erwachsenen, die ihre Freude am Rad erst später entdeckt
+                haben. Ich darf meine Erfahrungen also an alle Altersgruppen
+                weitergeben.</p>
+              <p>Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft,
+                Disziplin und der ständige Wille, das Beste aus sich
+                herauszuholen. Als aktiver Racer weiß ich genau, was es braucht,
+                um Ziele nicht nur zu setzen, sondern auch zu erreichen – und
+                dieses Wissen gebe ich eins-zu-eins weiter.</p>
+              <p><strong>Mein Ziel:</strong> der Jugend den Spaß am Fahrrad,
+                insbesondere Mountainbike, näherzubringen und meine eigenen
+                Erfahrungen bestmöglich weiterzugeben. Ich begleite dich auf
+                deiner Reise zum erfahrenen Mountainbiker und zeige dir, wozu du
+                wirklich fähig bist.</p>
+            </div>
+            <button class="bio-toggle" data-target="#benjaminBio" aria-expanded="false">Mehr lesen</button>
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+              Spezialgebiete:&nbsp;Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
+            </p>
+          </div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SLIDESHOW -->
-<section id="slideshow" class="py-28 bg-gray-900">
-  <div class="max-w-5xl mx-auto px-6">
-    <div id="slides" class="relative aspect-video overflow-hidden rounded-3xl shadow-2xl">
-      <img src="cen.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 is-active" alt="Training Impression 1">
-      <img src="crop.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Training Impression 2">
-      <img src="cropped.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Training Impression 3">
+  <!-- PREISE -->
+  <section id="preise" class="py-24">
+    <div class="max-w-4xl mx-auto px-6 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Pakete&nbsp;&amp;&nbsp;Preise</h2>
+      <div class="price-grid">
+        <div class="price-card tilt">
+          <h3>Einsteiger</h3>
+          <p class="text-4xl font-bold mb-1">€89</p><p class="text-sm mb-6 text-gray-600 dark:text-gray-300">pro Monat</p>
+          <ul class="text-sm mb-6 space-y-1 text-center">
+            <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
+          </ul>
+          <a href="#kontakt" class="btn">Buchen</a>
+        </div>
+
+        <div class="price-card featured tilt">
+          <span class="absolute -top-3 right-4 text-xs font-semibold bg-[var(--accent)] text-white px-2 py-1 rounded-full shadow">Beliebt</span>
+          <h3>Fortgeschritten</h3>
+          <p class="text-4xl font-bold mb-1">€129</p><p class="text-sm mb-6 text-gray-200/90">pro Monat</p>
+          <ul class="text-sm mb-6 space-y-1 text-center">
+            <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
+            <li>Unlimitierter&nbsp;Kontakt</li><li>Tägliche&nbsp;Anpassungen</li>
+          </ul>
+          <a href="#kontakt" class="btn">Buchen</a>
+        </div>
+
+        <div class="price-card tilt">
+          <h3>Pro</h3>
+          <p class="text-4xl font-bold mb-1">€169</p><p class="text-sm mb-6 text-gray-600 dark:text-gray-300">pro Monat</p>
+          <ul class="text-sm mb-6 space-y-1 text-center">
+            <li>Starterpaket</li><li>Trainingsplan</li><li>Analyse&nbsp;&amp;&nbsp;Tests</li>
+            <li>Unlimitierter&nbsp;Kontakt</li><li>Tägliche&nbsp;Anpassungen</li>
+            <li>Tipps&nbsp;&amp;&nbsp;Tricks</li><li>Wettkampfsupport</li><li>Regelmäßige&nbsp;Telefonate</li>
+          </ul>
+          <a href="#kontakt" class="btn">Buchen</a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- KONTAKT -->
-<section id="kontakt" class="py-28 bg-gray-50 dark:bg-gray-800">
-  <div class="max-w-3xl mx-auto px-6 text-center space-y-6 reveal">
-    <h2 class="text-3xl md:text-4xl font-bold">Kontakt</h2>
-    <p>Du hast Fragen oder möchtest ein Programm buchen? Schreib uns doch einfach!</p>
-    <p class="text-lg">
-      <a href="mailto:tp.training@gmx.net" class="underline nav-link">tp.training@gmx.net</a>
-    </p>
-  </div>
-</section>
+  <!-- SLIDESHOW -->
+  <section id="slideshow" class="py-24 bg-gray-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <div id="slides" class="relative aspect-video overflow-hidden rounded-3xl shadow-2xl">
+        <img src="cen.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 is-active" alt="Training Impression 1" loading="eager" fetchpriority="high">
+        <img src="crop.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Training Impression 2" loading="lazy">
+        <img src="cropped.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Training Impression 3" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-3xl mx-auto px-6 text-center space-y-6 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold">Kontakt</h2>
+      <p>Du hast Fragen oder möchtest ein Programm buchen? Schreib uns doch einfach!</p>
+      <p class="text-lg">
+        <a href="mailto:tp.training@gmx.net?subject=Anfrage%20TPTraining&body=Hallo%20TPTraining%2C%0Aich%20interessiere%20mich%20für%20..." class="underline nav-link">tp.training@gmx.net</a>
+      </p>
+    </div>
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="bg-gray-100 dark:bg-gray-900 py-12">
   <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-    <div><a href="#" class="text-2xl font-bold">TPTraining</a><p class="mt-4 text-gray-600 dark:text-gray-400">Train. Perform. Thrive.</p></div>
+    <div>
+      <a href="#" class="text-2xl font-bold">TPTraining</a>
+      <p class="mt-4 text-gray-600 dark:text-gray-400">Train. Perform. Thrive.</p>
+    </div>
     <div class="reveal">
       <h3 class="font-semibold mb-4">Links</h3>
       <ul class="space-y-2">
@@ -551,11 +580,11 @@ window.addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:tr
 
 /* Info toggle */
 const infoToggle=document.getElementById('info-toggle');const infoText=document.getElementById('info-text');
-infoToggle.addEventListener('click',()=>{infoText.classList.toggle('hidden');infoToggle.textContent=infoText.classList.contains('hidden')?'Mehr Informationen':'Weniger Informationen'});
+infoToggle.addEventListener('click',()=>{infoText.classList.toggle('hidden');const open=!infoText.classList.contains('hidden');infoToggle.textContent=open?'Weniger Informationen':'Mehr Informationen'});
 
 /* Bio accordion */
 document.querySelectorAll('.bio-toggle').forEach(btn=>{
-  btn.addEventListener('click',()=>{const bio=document.querySelector(btn.dataset.target);const open=bio.classList.toggle('open');bio.classList.toggle('clamp-7',!open);btn.textContent=open?'Weniger lesen':'Mehr lesen'})
+  btn.addEventListener('click',()=>{const bio=document.querySelector(btn.dataset.target);const open=bio.classList.toggle('open');bio.classList.toggle('clamp-7',!open);btn.textContent=open?'Weniger lesen':'Mehr lesen';btn.setAttribute('aria-expanded', open)});
 });
 
 /* Slideshow with Ken-Burns + crossfade */
@@ -580,8 +609,8 @@ document.querySelectorAll('.bio-toggle').forEach(btn=>{
   const spy=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
-        links.forEach(a=>a.classList.remove('nav-active'));
-        const a=map.get(e.target.id); a?.classList.add('nav-active');
+        links.forEach(a=>{a.classList.remove('nav-active'); a.removeAttribute('aria-current');});
+        const a=map.get(e.target.id); if(a){a.classList.add('nav-active'); a.setAttribute('aria-current','page');}
       }
     });
   },{rootMargin:'-40% 0px -55% 0px',threshold:0});
@@ -683,7 +712,7 @@ function pickTheme(){const dark=document.documentElement.classList.contains('dar
     ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
     const cols=14, rows=8, gx=w/(cols+1), gy=h/(rows+1); ctx.lineWidth=1;
     for(let i=1;i<=cols;i++){ctx.strokeStyle=hsl(220,20, th.bg1==='#0b0e14'?35:70,0.35); ctx.beginPath(); ctx.moveTo(i*gx, gy); ctx.lineTo(i*gx,h-gy); ctx.stroke()}
-    for(let j=1;j<=rows;j++){ctx.strokeStyle=hsl(220,18, th.bg1==='#0b0e14'?35:72,0.35); ctx.beginPath(); ctx.moveTo(gx, j*gy); ctx.lineTo(w-gx, j*gy); ctx.stroke()}
+    for(let j=1;j<=rows;j'){ctx.strokeStyle=hsl(220,18, th.bg1==='#0b0e14'?35:72,0.35); ctx.beginPath(); ctx.moveTo(gx, j*gy); ctx.lineTo(w-gx, j*gy); ctx.stroke()}
     for(let i=1;i<=cols;i++){for(let j=1;j<=rows;j++){const x=i*gx,y=j*gy; ctx.fillStyle=hsl(220,30, th.bg1==='#0b0e14'?85:25,0.9); ctx.beginPath(); ctx.arc(x,y,2.2,0,Math.PI*2); ctx.fill()}}
     const pts=[[gx*2, gy*2],[gx*5, gy*3],[gx*8, gy*5],[gx*11,gy*4],[gx*12,gy*6]];
     ctx.strokeStyle=hsl(0,85,60,0.9); ctx.lineWidth=3; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]); for(let k=1;k<pts.length;k++){ctx.lineTo(pts[k][0],pts[k][1])} ctx.stroke();
