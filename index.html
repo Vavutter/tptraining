@@ -202,9 +202,9 @@ html.lenis { height: auto; }
             </div>
         </div>
         
-        <!-- NEW IMMERSIVE MOBILE MENU - FIXED: Added pt-24 to push content below header -->
-        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center pt-24 overflow-y-auto">
-            <nav class="flex flex-col items-center space-y-6 text-center w-full pb-8">
+        <!-- NEW IMMERSIVE MOBILE MENU -->
+        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center">
+            <nav class="flex flex-col items-center space-y-6 text-center">
                 <a href="#programme" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300" onclick="toggleNav()">PROGRAMME</a>
                 <a href="#about" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-75" onclick="toggleNav()">ÜBER UNS</a>
                 <a href="#schulen" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-100" onclick="toggleNav()">SCHULEN</a>
@@ -253,7 +253,7 @@ html.lenis { height: auto; }
 
     <!-- PROGRAMME SECTION -->
     <!-- KEINE Stock-Bilder mehr hier. Ersetzt durch abstrakte Grafik-Cards -->
-    <section id="programme" class="py-24 relative">
+    <section id="programme" class="py-24 relative scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-4 font-heading uppercase">UNSERE <span class="text-brand-red">PROGRAMME</span></h2>
@@ -322,7 +322,7 @@ html.lenis { height: auto; }
 
     <!-- SCHOOLS SECTION -->
     <!-- KEINE Stock-Bilder. Grafische Lösung. -->
-    <section id="schulen" class="py-24 bg-gray-100 dark:bg-[#111111] relative overflow-hidden">
+    <section id="schulen" class="py-24 bg-gray-100 dark:bg-[#111111] relative overflow-hidden scroll-mt-24">
         <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
             <i class="ph-fill ph-bicycle text-[500px] absolute -left-20 top-20 rotate-12 text-gray-900 dark:text-white"></i>
         </div>
@@ -351,7 +351,7 @@ html.lenis { height: auto; }
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 relative">
+    <section id="about" class="py-24 relative scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-6 font-heading uppercase">DAS TEAM <span class="text-brand-red">HINTER TPTRAINING</span></h2>
@@ -375,7 +375,7 @@ html.lenis { height: auto; }
                             <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & Triathlon Coach</p>
                              <p class="text-sm text-gray-500 dark:text-gray-400">
                                 Spezialgebiete: Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
-                              </p>
+                             </p>
                         </div>
                     </div>
                     <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
@@ -397,7 +397,7 @@ html.lenis { height: auto; }
                             <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & MTB Specialist</p>
                             <p class="text-sm text-gray-500 dark:text-gray-400">
                                 Spezialgebiete: Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
-                              </p>
+                             </p>
                         </div>
                     </div>
                     <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
@@ -415,7 +415,7 @@ html.lenis { height: auto; }
     </section>
 
     <!-- PRICES SECTION -->
-    <section id="preise" class="py-24 bg-white dark:bg-[#0a0a0a] relative">
+    <section id="preise" class="py-24 bg-white dark:bg-[#0a0a0a] relative scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16 font-heading uppercase">PAKETE & <span class="text-brand-red">PREISE</span></h2>
             
@@ -481,7 +481,7 @@ html.lenis { height: auto; }
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="kontakt" class="py-24 bg-gray-50 dark:bg-[#111111]">
+    <section id="kontakt" class="py-24 bg-gray-50 dark:bg-[#111111] scroll-mt-24">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-extrabold mb-8 font-heading uppercase">BEREIT ZU <span class="text-brand-red">STARTEN?</span></h2>
             <p class="text-xl text-gray-600 dark:text-gray-400 mb-10 font-medium">Schreib uns deine Ziele. Wir kümmern uns um den Weg dorthin.</p>
