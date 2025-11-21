@@ -156,11 +156,12 @@ html.lenis { height: auto; }
 
     <!-- HEADER -->
     <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800" id="navbar">
+        <!-- Top Bar -->
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <!-- LOGO -->
             <a href="#" class="flex items-center gap-3 group z-50 relative">
                 <div class="relative w-10 h-10">
-                        <img src="tptraining.png" onerror="this.src='https://placehold.co/100x100?text=TP'" alt="TP Logo" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105">
+                    <img src="tptraining.png" onerror="this.src='https://placehold.co/100x100?text=TP'" alt="TP Logo" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <span class="font-heading font-bold text-xl tracking-tighter">TP<span class="text-brand-red">TRAINING</span></span>
             </a>
@@ -191,7 +192,7 @@ html.lenis { height: auto; }
                     KONTAKT
                 </a>
 
-                <!-- NEW MOBILE BURGER -->
+                <!-- MOBILE BURGER -->
                 <button id="nav-toggle" class="md:hidden p-1 hover:text-brand-red transition-colors hamburger" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
                     <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <line class="line top" x1="4" y1="6" x2="20" y2="6" />
@@ -201,18 +202,15 @@ html.lenis { height: auto; }
                 </button>
             </div>
         </div>
-        
-        <!-- NEW IMMERSIVE MOBILE MENU -->
-        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center">
-            <nav class="flex flex-col items-center space-y-6 text-center">
-                <a href="#programme" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300" onclick="toggleNav()">PROGRAMME</a>
-                <a href="#about" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-75" onclick="toggleNav()">ÜBER UNS</a>
-                <a href="#schulen" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-100" onclick="toggleNav()">SCHULEN</a>
-                <a href="#preise" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-150" onclick="toggleNav()">PREISE</a>
-                <div class="w-12 h-1 bg-brand-red rounded-full my-4 mobile-link translate-y-4 opacity-0 delay-200"></div>
-                <a href="#kontakt" class="mobile-link translate-y-4 opacity-0 text-2xl font-heading font-bold text-brand-red uppercase transition-all duration-300 delay-300" onclick="toggleNav()">KONTAKT</a>
-            </nav>
-        </div>
+
+        <!-- SIMPLE MOBILE DROPDOWN NAV -->
+        <nav id="mobile-nav" class="md:hidden bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-gray-800 px-6 py-4 space-y-3 hidden">
+            <a href="#programme" class="block font-heading font-bold uppercase text-sm tracking-wide py-1 hover:text-brand-red">Programme</a>
+            <a href="#about" class="block font-heading font-bold uppercase text-sm tracking-wide py-1 hover:text-brand-red">Über uns</a>
+            <a href="#schulen" class="block font-heading font-bold uppercase text-sm tracking-wide py-1 hover:text-brand-red">Schulen</a>
+            <a href="#preise" class="block font-heading font-bold uppercase text-sm tracking-wide py-1 hover:text-brand-red">Preise</a>
+            <a href="#kontakt" class="block font-heading font-bold uppercase text-sm tracking-wide py-2 text-brand-red">Kontakt</a>
+        </nav>
     </header>
 
     <!-- HERO SECTION (Stock Images Allowed Here) -->
@@ -252,7 +250,6 @@ html.lenis { height: auto; }
     </section>
 
     <!-- PROGRAMME SECTION -->
-    <!-- KEINE Stock-Bilder mehr hier. Ersetzt durch abstrakte Grafik-Cards -->
     <section id="programme" class="py-24 relative scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -263,26 +260,22 @@ html.lenis { height: auto; }
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Card 1: Performance Coaching (ehemals Trainingspläne) -->
+                <!-- Card 1 -->
                 <div class="group sport-panel rounded-2xl overflow-hidden hover:-translate-y-2 h-full flex flex-col">
-                    <!-- Abstract Header Area instead of Stock Image -->
                     <div class="relative h-64 overflow-hidden bg-gradient-to-br from-gray-900 to-brand-black flex items-center justify-center p-6">
-                         <div class="absolute inset-0 bg-pattern-grid opacity-20"></div>
-                         <!-- Animated Icon -->
-                         <div class="w-24 h-24 bg-brand-red/20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-500 border border-brand-red/50">
-                             <i class="ph ph-trend-up text-5xl text-brand-red"></i>
-                         </div>
-                         <div class="absolute bottom-0 left-0 w-full h-1 bg-brand-red"></div>
+                        <div class="absolute inset-0 bg-pattern-grid opacity-20"></div>
+                        <div class="w-24 h-24 bg-brand-red/20 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-500 border border-brand-red/50">
+                            <i class="ph ph-trend-up text-5xl text-brand-red"></i>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-brand-red"></div>
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow">
-                         <h3 class="text-2xl font-bold mb-2 font-heading uppercase">Performance Coaching</h3>
-                         <p class="font-medium text-brand-red mb-4 text-sm tracking-wider uppercase">Individuell & Datenbasiert</p>
-                        
+                        <h3 class="text-2xl font-bold mb-2 font-heading uppercase">Performance Coaching</h3>
+                        <p class="font-medium text-brand-red mb-4 text-sm tracking-wider uppercase">Individuell & Datenbasiert</p>
                         <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
                             Strukturierte Pläne, die sich deinem Leben anpassen. Wir analysieren deine Ziele und erstellen den optimalen Weg dorthin.
                         </p>
-                        
                         <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
                             <span class="font-heading font-bold text-sm uppercase">AB €89/MONAT</span>
                             <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1 text-sm uppercase">Details <i class="ph-bold ph-arrow-right"></i></a>
@@ -290,26 +283,22 @@ html.lenis { height: auto; }
                     </div>
                 </div>
 
-                <!-- Card 2: Adventure Camps (ehemals Sport-Camps) -->
+                <!-- Card 2 -->
                 <div class="group sport-panel rounded-2xl overflow-hidden hover:-translate-y-2 h-full flex flex-col">
-                    <!-- Abstract Header Area instead of Stock Image -->
                     <div class="relative h-64 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center p-6">
-                         <div class="absolute inset-0 bg-pattern-grid opacity-20"></div>
-                         <!-- Animated Icon -->
-                         <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-500 border border-white/20">
-                             <i class="ph ph-mountains text-5xl text-white"></i>
-                         </div>
-                         <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div>
+                        <div class="absolute inset-0 bg-pattern-grid opacity-20"></div>
+                        <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-500 border border-white/20">
+                            <i class="ph ph-mountains text-5xl text-white"></i>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-white"></div>
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold mb-2 font-heading uppercase">Adventure Camps</h3>
                         <p class="font-medium text-brand-red mb-4 text-sm tracking-wider uppercase">Erlebnis & Technik</p>
-
                         <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
                             Intensive Tage in den österreichischen Bergen. Verbessere deine Technik, Ausdauer und erlebe den Teamgeist.
                         </p>
-                        
                         <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-4 mt-auto">
                             <span class="font-heading font-bold text-sm uppercase">AUF ANFRAGE</span>
                             <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1 text-sm uppercase">Details <i class="ph-bold ph-arrow-right"></i></a>
@@ -321,7 +310,6 @@ html.lenis { height: auto; }
     </section>
 
     <!-- SCHOOLS SECTION -->
-    <!-- KEINE Stock-Bilder. Grafische Lösung. -->
     <section id="schulen" class="py-24 bg-gray-100 dark:bg-[#111111] relative overflow-hidden scroll-mt-24">
         <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
             <i class="ph-fill ph-bicycle text-[500px] absolute -left-20 top-20 rotate-12 text-gray-900 dark:text-white"></i>
@@ -329,10 +317,8 @@ html.lenis { height: auto; }
 
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
             <div class="order-2 lg:order-1">
-                <!-- Abstract Graphic Container -->
                 <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-brand-red to-brand-darkRed flex flex-col items-center justify-center p-10 text-white">
                     <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9IkQwIDQwTDQwIDBIMjBMMCAyMHptNDAgMEw0MCAyMEwyMCA0MHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9nPjwvc3ZnPg==')]"></div>
-                    
                     <i class="ph-duotone ph-student text-9xl mb-4 animate-pulse"></i>
                     <h3 class="text-2xl font-heading font-bold uppercase tracking-widest border-b-2 border-white pb-2">School Athletics</h3>
                 </div>
@@ -357,7 +343,7 @@ html.lenis { height: auto; }
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-6 font-heading uppercase">DAS TEAM <span class="text-brand-red">HINTER TPTRAINING</span></h2>
             </div>
 
-             <div class="mb-24 text-center max-w-4xl mx-auto">
+            <div class="mb-24 text-center max-w-4xl mx-auto">
                 <button id="info-toggle" class="btn-sport btn-sport-outline border-brand-red text-brand-red hover:bg-brand-red hover:text-white mb-8">
                     Mehr über TP-Training erfahren
                 </button>
@@ -373,9 +359,9 @@ html.lenis { height: auto; }
                         <div class="text-center md:text-left">
                             <h3 class="text-2xl font-bold font-heading uppercase mb-2">Marco Tiefenbacher</h3>
                             <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & Triathlon Coach</p>
-                             <p class="text-sm text-gray-500 dark:text-gray-400">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
                                 Spezialgebiete: Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
-                             </p>
+                            </p>
                         </div>
                     </div>
                     <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
@@ -397,17 +383,17 @@ html.lenis { height: auto; }
                             <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & MTB Specialist</p>
                             <p class="text-sm text-gray-500 dark:text-gray-400">
                                 Spezialgebiete: Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
-                             </p>
+                            </p>
                         </div>
                     </div>
                     <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
-                         <div id="benjaminBio" class="clamp-7 transition-all duration-500">
+                        <div id="benjaminBio" class="clamp-7 transition-all duration-500">
                             <p><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre alt und seit vielen Jahren <strong>Leistungs­sportler im Mountainbike</strong>.</p>
                             <p class="mt-4">Seit zwei Jahren arbeite ich in meiner Freizeit als Trainer – nicht nur mit Kindern, die Spaß auf dem Bike haben, sondern auch mit Erwachsenen, die ihre Freude am Rad erst später entdeckt haben. Ich darf meine Erfahrungen also an alle Altersgruppen weitergeben.</p>
                             <p class="mt-4">Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft, Disziplin und der ständige Wille, das Beste aus sich herauszuholen. Als aktiver Racer weiß ich genau, was es braucht, um Ziele nicht nur zu setzen, sondern auch zu erreichen – und dieses Wissen gebe ich eins-zu-eins weiter.</p>
                             <p class="mt-4"><strong>Mein Ziel:</strong> der Jugend den Spaß am Fahrrad, insbesondere Mountainbike, näherzubringen und meine eigenen Erfahrungen bestmöglich weiterzugeben. Ich begleite dich auf deiner Reise zum erfahrenen Mountainbiker und zeige dir, wozu du wirklich fähig bist.</p>
                         </div>
-                         <button class="bio-toggle text-brand-red font-bold uppercase text-sm mt-4 hover:underline" data-target="#benjaminBio">Mehr lesen</button>
+                        <button class="bio-toggle text-brand-red font-bold uppercase text-sm mt-4 hover:underline" data-target="#benjaminBio">Mehr lesen</button>
                     </div>
                 </div>
             </div>
@@ -466,7 +452,7 @@ html.lenis { height: auto; }
         </div>
     </section>
 
-    <!-- SLIDESHOW SECTION (Stock Images Allowed Here - using placeholders if file not found) -->
+    <!-- SLIDESHOW SECTION -->
     <section class="bg-black relative h-[60vh] md:h-[80vh] overflow-hidden">
         <div id="slides-container" class="absolute inset-0">
             <img src="cen.jpg" onerror="this.src='https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=2070'" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 scale-105" alt="Training Impression 1">
@@ -501,7 +487,7 @@ html.lenis { height: auto; }
                 <p class="text-sm text-gray-500 mt-2 font-medium">Train. Perform. Thrive.</p>
                 <div class="text-sm text-gray-400 mt-1">© <span id="year"></span> All Rights Reserved.</div>
             </div>
-             <div class="opacity-70 hover:opacity-100 transition-opacity">
+            <div class="opacity-70 hover:opacity-100 transition-opacity">
                 <img src="KärntenSport.jpeg" onerror="this.src='https://placehold.co/100x50?text=Sport'" alt="Kärnten Sport" class="h-12 w-auto grayscale">
             </div>
             <div class="flex gap-8 text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
@@ -543,41 +529,25 @@ themeToggle.addEventListener('click', () => {
     updateTheme();
 });
 
-// --- 2. NEW MOBILE NAV (IMMERSIVE) ---
+// --- 2. SIMPLE MOBILE NAV TOGGLE ---
 const navToggle = document.getElementById('nav-toggle');
 const mobileNav = document.getElementById('mobile-nav');
-const mobileLinks = document.querySelectorAll('.mobile-link');
 
 function toggleNav() {
     const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', !isExpanded);
-    
-    if (!isExpanded) {
-        // Open
-        document.body.style.overflow = 'hidden';
-        mobileNav.style.pointerEvents = 'auto';
-        mobileNav.classList.remove('opacity-0');
-        
-        // Staggered animation
-        mobileLinks.forEach((link, index) => {
-            setTimeout(() => {
-                link.classList.remove('translate-y-4', 'opacity-0');
-            }, 100 + (index * 50));
-        });
-    } else {
-        // Close
-        document.body.style.overflow = '';
-        mobileNav.style.pointerEvents = 'none';
-        mobileNav.classList.add('opacity-0');
-        
-        // Reset positions
-        mobileLinks.forEach(link => {
-            link.classList.add('translate-y-4', 'opacity-0');
-        });
-    }
+    navToggle.setAttribute('aria-expanded', String(!isExpanded));
+    mobileNav.classList.toggle('hidden');
 }
 
 navToggle.addEventListener('click', toggleNav);
+
+// Close mobile nav after clicking a link
+document.querySelectorAll('#mobile-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+        navToggle.setAttribute('aria-expanded', 'false');
+    });
+});
 
 // --- 3. BIO & INFO TOGGLES ---
 document.querySelectorAll('.bio-toggle').forEach(btn => {
@@ -601,22 +571,15 @@ const slides = document.querySelectorAll('#slides-container img');
 let currentSlide = 0;
 
 function nextSlide() {
-    if(slides.length === 0) return;
-    
-    // Reset previous slide
+    if (slides.length === 0) return;
     slides[currentSlide].style.opacity = 0;
     slides[currentSlide].style.transform = 'scale(1.05)'; 
-    
-    // Move to next
     currentSlide = (currentSlide + 1) % slides.length;
-    
-    // Activate next slide
     slides[currentSlide].style.opacity = 1;
     slides[currentSlide].style.transform = 'scale(1)'; 
 }
 
-// Init first slide
-if(slides.length > 0) {
+if (slides.length > 0) {
     slides[0].style.opacity = 1;
     slides[0].style.transform = 'scale(1)';
     setInterval(nextSlide, 5000);
