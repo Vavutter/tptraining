@@ -202,9 +202,9 @@ html.lenis { height: auto; }
             </div>
         </div>
         
-        <!-- NEW IMMERSIVE MOBILE MENU -->
-        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center">
-            <nav class="flex flex-col items-center space-y-6 text-center">
+        <!-- NEW IMMERSIVE MOBILE MENU - FIXED: Added pt-24 to push content below header -->
+        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center pt-24 overflow-y-auto">
+            <nav class="flex flex-col items-center space-y-6 text-center w-full pb-8">
                 <a href="#programme" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300" onclick="toggleNav()">PROGRAMME</a>
                 <a href="#about" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-75" onclick="toggleNav()">ÜBER UNS</a>
                 <a href="#schulen" class="mobile-link translate-y-4 opacity-0 text-3xl font-heading font-bold hover:text-brand-red uppercase transition-all duration-300 delay-100" onclick="toggleNav()">SCHULEN</a>
@@ -247,7 +247,7 @@ html.lenis { height: auto; }
     <section class="py-8 bg-white dark:bg-black border-y border-gray-100 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
             <span class="text-sm font-bold text-gray-500 uppercase tracking-wider">Unterstützt von</span>
-            <img src="KärntenSport.jpeg" onerror="this.src='https://placehold.co/200x80?text=KaerntenSport'" alt="Kärnten Sport Logo" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+            <img src="KärntenSport.jpeg" onerror="this.src='https://placehold.co/200x80?text=KaerntenSport'" alt="Kärnten Sport Logo" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
         </div>
     </section>
 
