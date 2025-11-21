@@ -12,7 +12,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -22,24 +22,16 @@ tailwind.config = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Chakra Petch', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
       },
       colors: {
         brand: {
           red: '#ED2939',
           darkRed: '#c51f2e',
-          cyan: '#06b6d4', // Added for tech accent
         }
       },
-      animation: {
-        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        }
+      boxShadow: {
+        'sport': '0 10px 30px -10px rgba(0, 0, 0, 0.2)',
       }
     }
   }
@@ -50,15 +42,6 @@ tailwind.config = {
 /* --- CORE STYLES --- */
 :root {
     --primary: #ED2939;
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-}
-
-.dark:root {
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --glass-bg: rgba(10, 10, 15, 0.7);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -66,92 +49,62 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, .btn-tech {
-    font-family: 'Chakra Petch', sans-serif;
-    text-transform: uppercase;
+h1, h2, h3, h4, .btn-sport {
+    font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.02em;
 }
 
-/* --- DYNAMIC BACKGROUND --- */
-#bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.4;
+/* --- GLASS/CLEAN CARDS --- */
+.sport-panel {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--sport);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- GLASSMORPHISM CARDS --- */
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-}
-
-/* --- TECH ACCENTS --- */
-.tech-border {
-    position: relative;
-}
-.tech-border::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    width: 20px;
-    height: 20px;
-    border-bottom: 2px solid var(--primary);
-    border-right: 2px solid var(--primary);
-}
-.tech-border::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 20px;
-    height: 20px;
-    border-top: 2px solid var(--primary);
-    border-left: 2px solid var(--primary);
+.dark .sport-panel {
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* --- BUTTONS --- */
-.btn-tech {
-    position: relative;
-    overflow: hidden;
+.btn-sport {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    border-radius: 9999px; /* Full rounded for sporty look */
     transition: all 0.3s ease;
-    z-index: 1;
-}
-.btn-tech::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.5s ease;
-    z-index: -1;
-    transform: skewX(-25deg);
-}
-.btn-tech:hover::before {
-    left: 100%;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
 }
 
-/* --- TYPING EFFECT --- */
-.typing-cursor::after {
-    content: '|';
-    animation: blink 1s step-start infinite;
-    color: var(--primary);
+.btn-sport-primary {
+    background-color: var(--primary);
+    color: white;
 }
-@keyframes blink { 50% { opacity: 0; } }
+.btn-sport-primary:hover {
+    background-color: #c51f2e;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(237, 41, 57, 0.5);
+}
+
+.btn-sport-outline {
+    border: 2px solid currentColor;
+}
+.btn-sport-outline:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
 
 /* --- UTILITIES --- */
-.text-shadow-glow {
-    text-shadow: 0 0 20px rgba(237, 41, 57, 0.5);
-}
+.clamp-7{-webkit-line-clamp:7;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Smooth Scroll Fixes */
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -159,141 +112,135 @@ html.lenis { height: auto; }
 </style>
 </head>
 
-<body class="antialiased bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-gray-100 selection:bg-brand-red selection:text-white transition-colors duration-500">
+<body class="antialiased bg-gray-50 text-gray-900 dark:bg-[#0a0a0a] dark:text-gray-100 selection:bg-brand-red selection:text-white transition-colors duration-300">
 
-    <canvas id="bg-canvas"></canvas>
-
-    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
-        <div class="glass-panel border-b border-white/10">
-            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="relative w-10 h-10 overflow-hidden">
-                         <img src="tptraining.png" alt="TP Logo" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <span class="font-display font-bold text-xl tracking-tighter">TP<span class="text-brand-red">TRAINING</span></span>
-                </a>
-
-                <nav class="hidden md:flex items-center gap-8 font-display text-sm font-semibold tracking-wide">
-                    <a href="#programme" class="hover:text-brand-red transition-colors relative group">PROGRAMME
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#about" class="hover:text-brand-red transition-colors relative group">ABOUT
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#schulen" class="hover:text-brand-red transition-colors relative group">SCHULEN
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#preise" class="hover:text-brand-red transition-colors relative group">PREISE
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                    </a>
-                </nav>
-
-                <div class="flex items-center gap-4">
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Dark Mode">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                    </button>
-                    <a href="#kontakt" class="hidden md:inline-flex btn-tech bg-brand-red hover:bg-brand-darkRed text-white px-6 py-2 rounded-sm font-bold skew-x-[-10deg]">
-                        <span class="skew-x-[10deg]">KONTAKT</span>
-                    </a>
-                    <button id="nav-toggle" class="md:hidden p-2 text-brand-red">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10">
+                        <img src="tptraining.png" alt="TP Logo" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105">
                 </div>
+                <span class="font-heading font-bold text-xl tracking-tighter">TP<span class="text-brand-red">TRAINING</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-heading text-sm font-bold tracking-wide uppercase">
+                <a href="#programme" class="hover:text-brand-red transition-colors relative group py-2">PROGRAMME
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="hover:text-brand-red transition-colors relative group py-2">ÜBER UNS
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#schulen" class="hover:text-brand-red transition-colors relative group py-2">SCHULEN
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#preise" class="hover:text-brand-red transition-colors relative group py-2">PREISE
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Dark Mode">
+                    <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="#kontakt" class="hidden md:inline-flex btn-sport btn-sport-primary">
+                    KONTAKT
+                </a>
+                <button id="nav-toggle" class="md:hidden p-2 hover:text-brand-red transition-colors" aria-label="Menu">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
         
-        <div id="mobile-nav" class="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 md:hidden">
-            <button id="nav-close" class="absolute top-6 right-6 text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-            <a href="#programme" class="text-3xl font-display font-bold hover:text-brand-red">PROGRAMME</a>
-            <a href="#about" class="text-3xl font-display font-bold hover:text-brand-red">ABOUT</a>
-            <a href="#schulen" class="text-3xl font-display font-bold hover:text-brand-red">SCHULEN</a>
-            <a href="#preise" class="text-3xl font-display font-bold hover:text-brand-red">PREISE</a>
-            <a href="#kontakt" class="text-3xl font-display font-bold text-brand-red">KONTAKT</a>
+        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white dark:bg-[#0a0a0a] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 md:hidden">
+            <button id="nav-close" class="absolute top-6 right-6 hover:text-brand-red transition-colors"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <a href="#programme" class="text-2xl font-heading font-bold hover:text-brand-red uppercase">PROGRAMME</a>
+            <a href="#about" class="text-2xl font-heading font-bold hover:text-brand-red uppercase">ÜBER UNS</a>
+            <a href="#schulen" class="text-2xl font-heading font-bold hover:text-brand-red uppercase">SCHULEN</a>
+            <a href="#preise" class="text-2xl font-heading font-bold hover:text-brand-red uppercase">PREISE</a>
+            <a href="#kontakt" class="text-2xl font-heading font-bold text-brand-red uppercase">KONTAKT</a>
         </div>
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute top-1/4 -left-64 w-96 h-96 bg-brand-cyan/20 rounded-full blur-[128px] mix-blend-screen animate-pulse-fast"></div>
-        <div class="absolute bottom-1/4 -right-64 w-96 h-96 bg-brand-red/20 rounded-full blur-[128px] mix-blend-screen animate-pulse-fast" style="animation-delay: 1s;"></div>
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover opacity-20 dark:opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-50/80 dark:to-[#0a0a0a]/90"></div>
+        </div>
 
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <div class="inline-block mb-4 px-4 py-1 border border-brand-red/30 rounded-full bg-brand-red/5 backdrop-blur-sm">
-                <span class="text-brand-red text-xs font-bold tracking-widest uppercase">Season 2025 Ready</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
-                <span class="block text-gray-900 dark:text-white">TRAIN. PERFORM.</span>
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-500 text-shadow-glow" id="typewriter">THRIVE.</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 font-heading uppercase">
+                <span class="block">Train. Perform.</span>
+                <span class="block text-brand-red">Thrive.</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – wissenschaftlich fundiert für deinen Multisport-Erfolg.
+            <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+                Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – alles für deinen Multisport-Erfolg.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#programme" class="btn-tech bg-brand-red text-white px-8 py-4 rounded-sm font-bold shadow-[0_0_20px_rgba(237,41,57,0.4)] hover:shadow-[0_0_30px_rgba(237,41,57,0.6)] transform hover:-translate-y-1 w-full sm:w-auto">
+                <a href="#programme" class="btn-sport btn-sport-primary w-full sm:w-auto px-8 py-4 text-lg">
                     JETZT STARTEN
                 </a>
-                <a href="#about" class="btn-tech border border-gray-300 dark:border-gray-700 hover:border-brand-red text-gray-900 dark:text-white px-8 py-4 rounded-sm font-bold hover:bg-gray-100 dark:hover:bg-white/5 w-full sm:w-auto">
-                    MEHR INFOS
+                <a href="#about" class="btn-sport btn-sport-outline w-full sm:w-auto px-8 py-4 text-lg border-gray-900 dark:border-white text-gray-900 dark:text-white">
+                    MEHR ERFAHREN
                 </a>
             </div>
         </div>
+    </section>
 
-        <div class="absolute bottom-10 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none">
-            <div class="whitespace-nowrap animate-[float_20s_linear_infinite]" style="font-size: 10rem; font-family: 'Chakra Petch'; font-weight: 900;">
-                TRIATHLON MTB RUNNING SWIMMING CYCLING TRIATHLON MTB
-            </div>
+    <section class="py-8 bg-white dark:bg-black border-y border-gray-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
+            <span class="text-sm font-bold text-gray-500 uppercase tracking-wider">Unterstützt von</span>
+            <img src="image_1.png" alt="Kärnten Sport Logo" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
         </div>
     </section>
 
     <section id="programme" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div>
-                    <h2 class="text-4xl font-bold mb-2">UNSERE <span class="text-brand-red">PROGRAMME</span></h2>
-                    <div class="h-1 w-24 bg-brand-red"></div>
-                </div>
-                <p class="text-gray-500 dark:text-gray-400 mt-4 md:mt-0 max-w-md text-right">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 font-heading uppercase">UNSERE <span class="text-brand-red">PROGRAMME</span></h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
                     Maßgeschneidert für jedes Level. Von der ersten Trainingseinheit bis zum Wettkampf.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="group glass-panel rounded-xl overflow-hidden tech-border hover:-translate-y-2 transition-transform duration-500">
-                    <div class="relative h-64 bg-black/50 overflow-hidden">
-                        <canvas id="canvas-coaching" class="w-full h-full"></canvas>
-                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded text-xs font-mono text-brand-cyan border border-brand-cyan/30">
-                            LIVE DATA ANALYSIS
+                <div class="group sport-panel rounded-2xl overflow-hidden hover:-translate-y-2">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" alt="Triathlon Training Analysis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                             <h3 class="text-2xl font-bold mb-1 font-heading uppercase">Trainingspläne</h3>
+                             <p class="font-medium text-brand-red">Individuell & Datenbasiert</p>
                         </div>
                     </div>
-                    <div class="p-8 relative">
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-red transition-colors">Individuelle Trainingspläne</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-6">
-                            Datenbasierte Planung für maximale Performance. Wir analysieren deine Werte und passen den Plan dynamisch an.
+                    <div class="p-8">
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                            Strukturierte Pläne, die sich deinem Leben anpassen. Wir analysieren deine Ziele und erstellen den optimalen Weg dorthin.
                         </p>
                         <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-4">
-                            <span class="font-mono text-sm">AB <span class="text-xl font-bold">€89</span>/MONAT</span>
-                            <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1">DETAILS <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                            <span class="font-heading font-bold text-sm uppercase">AB €89/MONAT</span>
+                            <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1 text-sm uppercase">Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
                         </div>
                     </div>
                 </div>
 
-                <div class="group glass-panel rounded-xl overflow-hidden tech-border hover:-translate-y-2 transition-transform duration-500">
-                    <div class="relative h-64 bg-black/50 overflow-hidden">
-                        <canvas id="canvas-camps" class="w-full h-full"></canvas>
-                        <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded text-xs font-mono text-yellow-400 border border-yellow-400/30">
-                            TERRAIN MAPPING
+                <div class="group sport-panel rounded-2xl overflow-hidden hover:-translate-y-2">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516911616672-f17803c050c7?q=80&w=2071&auto=format&fit=crop" alt="Mountainbike Camp in den Bergen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                             <h3 class="text-2xl font-bold mb-1 font-heading uppercase">Sport-Camps</h3>
+                             <p class="font-medium text-brand-red">Erlebnis & Technik</p>
                         </div>
                     </div>
-                    <div class="p-8 relative">
-                        <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-red transition-colors">Sport-Camps</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-6">
-                            Intensive 3-Tage Camps in den österreichischen Bergen. Technik, Ausdauer und Teamgeist in perfekter Umgebung.
+                    <div class="p-8">
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                            Intensive Tage in den österreichischen Bergen. Verbessere deine Technik, Ausdauer und erlebe den Teamgeist.
                         </p>
                         <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-4">
-                            <span class="font-mono text-sm">AUF ANFRAGE</span>
-                            <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1">DETAILS <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                            <span class="font-heading font-bold text-sm uppercase">AUF ANFRAGE</span>
+                            <a href="#preise" class="text-brand-red font-bold hover:underline flex items-center gap-1 text-sm uppercase">Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
                         </div>
                     </div>
                 </div>
@@ -301,38 +248,21 @@ html.lenis { height: auto; }
         </div>
     </section>
 
-    <section id="schulen" class="py-24 bg-gray-100 dark:bg-[#0a0a0f] border-y border-gray-200 dark:border-gray-800 relative overflow-hidden">
+    <section id="schulen" class="py-24 bg-gray-100 dark:bg-[#111111] relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
             <div class="order-2 lg:order-1">
-                <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-black">
-                     <canvas id="canvas-schools" class="w-full h-full"></canvas>
-                    <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
-                        <div class="font-mono text-xs text-brand-cyan">SYSTEM: CONNECTED // LEARNING MODULES ACTIVE</div>
-                    </div>
+                <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1557687790-902ede7ab58c?q=80&w=2074&auto=format&fit=crop" alt="Kinder beim Radfahrtraining" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-red/20 to-transparent mix-blend-overlay"></div>
                 </div>
             </div>
             
             <div class="order-1 lg:order-2">
-                <div class="inline-block mb-4 px-3 py-1 rounded bg-brand-red/10 text-brand-red font-bold text-xs tracking-wider">EDUCATION</div>
-                <h2 class="text-4xl font-bold mb-6">PROGRAMME FÜR <span class="text-brand-red">SCHULEN</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht. Ideal für Sportwochen oder Projekttage.
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-6 font-heading uppercase">PROGRAMME FÜR <span class="text-brand-red">SCHULEN</span></h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+                    Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht. Ideal für Sportwochen oder Projekttage, um Freude an der Bewegung zu vermitteln.
                 </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-brand-red rounded-full"></div>
-                        <span class="font-medium">Sicherheit im Straßenverkehr & Technik</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-brand-red rounded-full"></div>
-                        <span class="font-medium">Spielerisches Erlernen von Bewegungsabläufen</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <div class="w-2 h-2 bg-brand-red rounded-full"></div>
-                        <span class="font-medium">Förderung von Teamgeist und Koordination</span>
-                    </li>
-                </ul>
-                <a href="#kontakt" class="btn-tech bg-gray-900 dark:bg-white text-white dark:text-black px-8 py-3 rounded-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200">
+                <a href="#kontakt" class="btn-sport btn-sport-primary">
                     ANFRAGE SENDEN
                 </a>
             </div>
@@ -342,148 +272,155 @@ html.lenis { height: auto; }
     <section id="about" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-4xl font-bold mb-4">DAS TEAM <span class="text-brand-red">BEHIND THE DATA</span></h2>
-                <p class="max-w-2xl mx-auto text-gray-500">Gegründet 2025. Zwei Athleten, eine Mission: Deine Leistung auf das nächste Level heben.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-6 font-heading uppercase">DAS TEAM <span class="text-brand-red">HINTER TPTRAINING</span></h2>
+            </div>
+
+             <div class="mb-24 text-center max-w-4xl mx-auto">
+                <button id="info-toggle" class="btn-sport btn-sport-outline border-brand-red text-brand-red hover:bg-brand-red hover:text-white mb-8">
+                    Mehr über TP-Training erfahren
+                </button>
+                <div id="info-text" class="hidden text-left text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-[#111111] p-8 rounded-3xl shadow-inner">
+                    <p>TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco Tiefenbacher und Benjamin Pletzer, mit dem Ziel, junge Menschen für die Welt des Triathlons und Mountainbikens zu begeistern. Als staatlich geprüfte Übungsleiter und selbst aktive Leistungssportler bieten wir ein umfassendes Angebot. Dieses reicht von Radfahrtechnik-Kursen über Schwimmkurse bis hin zu erlebnisreichen Sportcamps. Darüber hinaus erstellen wir individuelle Trainingspläne und bieten kompetente Trainingsberatung für ambitionierte Hobbysportler und Fortgeschrittene. Unser Fokus liegt auf der Vermittlung von Freude am Sport und der Förderung eines aktiven Lebensstils. Mit TP-Training möchten wir Kindern und Jugendlichen die Möglichkeit geben, ihre Fähigkeiten zu entdecken, ihre Grenzen zu erweitern und unvergessliche sportliche Erfahrungen zu sammeln.</p>
+                </div>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
-                <div class="glass-panel p-8 rounded-2xl tech-border">
-                    <div class="flex flex-col sm:flex-row items-center gap-8 mb-6">
-                        <div class="w-32 h-32 rounded-full p-1 border-2 border-brand-red overflow-hidden shrink-0">
-                             <img src="tf.png" alt="Marco" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500">
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <h3 class="text-2xl font-bold">MARCO TIEFENBACHER</h3>
-                            <div class="text-brand-red font-mono text-sm mb-2">HEAD COACH / TRIATHLON</div>
-                            <p class="text-sm text-gray-500">Spezialgebiete: Periodisierung, Leistungstests, Bike-Fitting</p>
+                <div class="sport-panel p-10 rounded-3xl relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
+                        <img src="tf.png" alt="Marco Tiefenbacher" class="w-40 h-40 rounded-full object-cover border-4 border-brand-red shadow-xl shrink-0">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-2xl font-bold font-heading uppercase mb-2">Marco Tiefenbacher</h3>
+                            <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & Triathlon Coach</p>
+                             <p class="text-sm text-gray-500 dark:text-gray-400">
+                                Spezialgebiete: Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
+                              </p>
                         </div>
                     </div>
-                    <div class="prose dark:prose-invert text-sm max-w-none">
-                         <p class="mb-2"><strong>Hallo zusammen</strong>, mein Name ist Marco Tiefenbacher, ich bin 18 Jahre alt und stamme aus Grafenstein.</p>
-                         <div class="bio-content hidden" id="bio-marco">
-                             <p class="mb-2">Mein Weg führte vom Kinderschnuppertraining über die Leichtathletik (1000m/3000m) zum Berglauf und schließlich 2022 zum Rennradsport. Seit 2024 bin ich staatlich geprüfter Triathlon-Übungsleiter.</p>
-                             <p>Mein Herzensanliegen: jungen Menschen die Freude an Schwimmen, Radfahren und Laufen zu vermitteln.</p>
-                         </div>
-                         <button class="text-brand-red text-xs font-bold uppercase tracking-wider mt-2 hover:underline toggle-bio" data-target="bio-marco">+ READ FULL BIO</button>
+                    <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+                        <div id="marcoBio" class="clamp-7 transition-all duration-500">
+                            <p><strong>Hallo zusammen</strong>, mein Name ist Marco Tiefenbacher, ich bin 18 Jahre alt und stamme aus dem wunderschönen <em>Grafenstein</em>. Mein sportlicher Werdegang ist zugegebenermaßen etwas verschlungen: Er begann mit einem Kinderschnuppertraining und führte mich in die Leichtathletik-Ausbildung beim LAC Klagenfurt.</p>
+                            <p class="mt-4">Dort spezialisierte ich mich nach einigen Saisonen als Mehrkämpfer auf die <strong>1000 m</strong>- und <strong>3000 m</strong>-Bahnrennen. Weil mir das monotone Kreislaufen irgendwann zu eintönig wurde, wechselte ich in den <strong>Berglauf</strong>, wo ich zwei Jahre lang unbezahlbare Erfahrungen und große Erfolge sammeln konnte.</p>
+                            <p class="mt-4">2022 brachte mich ein Freund zum <strong>Rennradsport</strong> – Liebe auf den ersten Tritt. Seitdem bin ich dem Radsport treu und wechselte im Sommer 2024 ganz auf zwei Räder.</p>
+                            <p class="mt-4">Im selben Jahr schloss ich erfolgreich meine Ausbildung zum <strong>Triathlon-Übungsleiter</strong> ab. Mein Herzensanliegen: jungen Menschen – vor allem Kindern – die Freude an Schwimmen, Radfahren und Laufen zu vermitteln und ihnen zu zeigen, wie viel Spaß diese Sportarten machen und welche Werte sie fürs Leben schenken.</p>
+                        </div>
+                        <button class="bio-toggle text-brand-red font-bold uppercase text-sm mt-4 hover:underline" data-target="#marcoBio">Mehr lesen</button>
                     </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl tech-border">
-                    <div class="flex flex-col sm:flex-row items-center gap-8 mb-6">
-                        <div class="w-32 h-32 rounded-full p-1 border-2 border-brand-cyan overflow-hidden shrink-0">
-                             <img src="benj2.jpg" alt="Benjamin" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500">
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <h3 class="text-2xl font-bold">BENJAMIN PLETZER</h3>
-                            <div class="text-brand-cyan font-mono text-sm mb-2">MTB SPECIALIST / SKILLS</div>
-                            <p class="text-sm text-gray-500">Spezialgebiete: Trail-Skills, Mentalcoaching, Technik</p>
+                <div class="sport-panel p-10 rounded-3xl relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
+                        <img src="benj2.jpg" alt="Benjamin Pletzer" class="w-40 h-40 rounded-full object-cover border-4 border-brand-red shadow-xl shrink-0">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-2xl font-bold font-heading uppercase mb-2">Benjamin Pletzer</h3>
+                            <p class="text-sm font-bold text-brand-red uppercase tracking-wider mb-4">Co-Founder & MTB Specialist</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                Spezialgebiete: Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
+                              </p>
                         </div>
                     </div>
-                    <div class="prose dark:prose-invert text-sm max-w-none">
-                         <p class="mb-2"><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre alt und Leistungssportler im Mountainbike.</p>
-                         <div class="bio-content hidden" id="bio-benjamin">
-                             <p class="mb-2">Seit zwei Jahren arbeite ich als Trainer mit Kindern und Erwachsenen. Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft, Disziplin und Wille.</p>
-                             <p>Mein Ziel: Dir zeigen, wozu du auf dem Trail wirklich fähig bist.</p>
-                         </div>
-                         <button class="text-brand-cyan text-xs font-bold uppercase tracking-wider mt-2 hover:underline toggle-bio" data-target="bio-benjamin">+ READ FULL BIO</button>
+                    <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+                         <div id="benjaminBio" class="clamp-7 transition-all duration-500">
+                            <p><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre alt und seit vielen Jahren <strong>Leistungs­sportler im Mountainbike</strong>.</p>
+                            <p class="mt-4">Seit zwei Jahren arbeite ich in meiner Freizeit als Trainer – nicht nur mit Kindern, die Spaß auf dem Bike haben, sondern auch mit Erwachsenen, die ihre Freude am Rad erst später entdeckt haben. Ich darf meine Erfahrungen also an alle Altersgruppen weitergeben.</p>
+                            <p class="mt-4">Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft, Disziplin und der ständige Wille, das Beste aus sich herauszuholen. Als aktiver Racer weiß ich genau, was es braucht, um Ziele nicht nur zu setzen, sondern auch zu erreichen – und dieses Wissen gebe ich eins-zu-eins weiter.</p>
+                            <p class="mt-4"><strong>Mein Ziel:</strong> der Jugend den Spaß am Fahrrad, insbesondere Mountainbike, näherzubringen und meine eigenen Erfahrungen bestmöglich weiterzugeben. Ich begleite dich auf deiner Reise zum erfahrenen Mountainbiker und zeige dir, wozu du wirklich fähig bist.</p>
+                        </div>
+                         <button class="bio-toggle text-brand-red font-bold uppercase text-sm mt-4 hover:underline" data-target="#benjaminBio">Mehr lesen</button>
                     </div>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                <button id="info-toggle" class="text-sm font-bold border border-gray-300 dark:border-gray-700 px-6 py-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
-                    ÜBER TP-TRAINING (EXPAND)
-                </button>
-                <div id="info-text" class="hidden max-w-3xl mx-auto mt-8 text-gray-600 dark:text-gray-300 leading-relaxed bg-gray-100 dark:bg-white/5 p-6 rounded-xl">
-                    <p>TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco Tiefenbacher und Benjamin Pletzer... [Content preserved but hidden by default for cleaner UI]</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="preise" class="py-24 bg-white dark:bg-black relative">
-        <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(to right, #808080 1px, transparent 1px), linear-gradient(to bottom, #808080 1px, transparent 1px); background-size: 40px 40px;"></div>
-        
+    <section id="preise" class="py-24 bg-white dark:bg-[#0a0a0a] relative">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <h2 class="text-4xl font-bold text-center mb-16">PAKETE & <span class="text-brand-red">INVESTITION</span></h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16 font-heading uppercase">PAKETE & <span class="text-brand-red">PREISE</span></h2>
             
-            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <div class="glass-panel p-8 rounded-xl border-t-4 border-gray-400 flex flex-col hover:scale-105 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4">EINSTEIGER</h3>
-                    <div class="text-4xl font-display font-bold mb-1">€89</div>
-                    <div class="text-xs text-gray-500 font-mono mb-8">PRO MONAT</div>
-                    <ul class="space-y-3 text-sm flex-1 mb-8">
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Starterpaket</li>
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Trainingsplan (Basic)</li>
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Analyse & Tests</li>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="sport-panel p-10 rounded-3xl flex flex-col hover:-translate-y-2">
+                    <h3 class="text-xl font-bold mb-4 font-heading uppercase">Einsteiger</h3>
+                    <div class="flex items-baseline mb-2">
+                        <span class="text-4xl font-extrabold">€89</span>
+                        <span class="text-gray-500 ml-2">/ Monat</span>
+                    </div>
+                    <ul class="space-y-4 my-8 flex-1 font-medium text-gray-700 dark:text-gray-300">
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Starterpaket</li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Trainingsplan (Basis)</li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Analyse & Tests</li>
                     </ul>
-                    <a href="#kontakt" class="w-full block text-center py-3 border border-gray-300 dark:border-gray-600 rounded font-bold text-sm hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">BUCHEN</a>
+                    <a href="#kontakt" class="btn-sport btn-sport-outline w-full border-gray-300 dark:border-gray-700 hover:border-brand-red hover:text-brand-red">BUCHEN</a>
                 </div>
 
-                <div class="glass-panel p-8 rounded-xl border-t-4 border-brand-red relative transform md:-translate-y-4 shadow-2xl shadow-brand-red/20 flex flex-col">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">POPULAR</div>
-                    <h3 class="text-xl font-bold mb-4 text-brand-red">FORTGESCHRITTEN</h3>
-                    <div class="text-4xl font-display font-bold mb-1">€129</div>
-                    <div class="text-xs text-gray-500 font-mono mb-8">PRO MONAT</div>
-                    <ul class="space-y-3 text-sm flex-1 mb-8">
-                        <li class="flex gap-2"><span class="text-brand-red">✓</span> Alles aus Einsteiger</li>
-                        <li class="flex gap-2"><span class="text-brand-red">✓</span> <strong>Unlimitierter Kontakt</strong></li>
-                        <li class="flex gap-2"><span class="text-brand-red">✓</span> Tägliche Anpassungen</li>
+                <div class="sport-panel p-10 rounded-3xl flex flex-col relative transform md:-translate-y-4 shadow-2xl border-brand-red/30 dark:border-brand-red/30">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-red text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg">Empfohlen</div>
+                    <h3 class="text-xl font-bold mb-4 font-heading uppercase text-brand-red">Fortgeschritten</h3>
+                    <div class="flex items-baseline mb-2">
+                        <span class="text-4xl font-extrabold">€129</span>
+                        <span class="text-gray-500 ml-2">/ Monat</span>
+                    </div>
+                    <ul class="space-y-4 my-8 flex-1 font-medium text-gray-700 dark:text-gray-300">
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Alles aus Einsteiger</li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> <strong>Unlimitierter Kontakt</strong></li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Tägliche Anpassungen</li>
                     </ul>
-                    <a href="#kontakt" class="w-full block text-center py-3 bg-brand-red text-white rounded font-bold text-sm hover:bg-brand-darkRed transition-colors shadow-lg shadow-brand-red/30">BUCHEN</a>
+                    <a href="#kontakt" class="btn-sport btn-sport-primary w-full shadow-lg shadow-brand-red/20">BUCHEN</a>
                 </div>
 
-                <div class="glass-panel p-8 rounded-xl border-t-4 border-brand-cyan flex flex-col hover:scale-105 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4">PRO ATHLETE</h3>
-                    <div class="text-4xl font-display font-bold mb-1">€169</div>
-                    <div class="text-xs text-gray-500 font-mono mb-8">INDIVIDUALISIERT</div>
-                    <ul class="space-y-3 text-sm flex-1 mb-8">
-                        <li class="flex gap-2"><span class="text-brand-cyan">✓</span> Full Service Coaching</li>
-                        <li class="flex gap-2"><span class="text-brand-cyan">✓</span> Wettkampfsupport</li>
-                        <li class="flex gap-2"><span class="text-brand-cyan">✓</span> Regelmäßige Calls</li>
+                <div class="sport-panel p-10 rounded-3xl flex flex-col hover:-translate-y-2">
+                    <h3 class="text-xl font-bold mb-4 font-heading uppercase">Pro Athlete</h3>
+                    <div class="flex items-baseline mb-2">
+                        <span class="text-4xl font-extrabold">€169</span>
+                        <span class="text-gray-500 ml-2">/ Individualisiert</span>
+                    </div>
+                    <ul class="space-y-4 my-8 flex-1 font-medium text-gray-700 dark:text-gray-300">
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Full Service Coaching</li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Wettkampfsupport</li>
+                        <li class="flex gap-3"><svg class="w-5 h-5 text-brand-red shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Regelmäßige Calls</li>
                     </ul>
-                    <a href="#kontakt" class="w-full block text-center py-3 border border-gray-300 dark:border-gray-600 rounded font-bold text-sm hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">BUCHEN</a>
+                    <a href="#kontakt" class="btn-sport btn-sport-outline w-full border-gray-300 dark:border-gray-700 hover:border-brand-red hover:text-brand-red">BUCHEN</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-black relative h-[60vh] overflow-hidden">
+    <section class="bg-black relative h-[60vh] md:h-[80vh] overflow-hidden">
         <div id="slides-container" class="absolute inset-0">
-            <img src="cen.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" alt="Action">
-            <img src="crop.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" alt="Bike">
-            <img src="cropped.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" alt="Run">
+            <img src="cen.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 scale-105" alt="Training Impression 1">
+            <img src="crop.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 scale-105" alt="Training Impression 2">
+            <img src="cropped.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 scale-105" alt="Training Impression 3">
+            <img src="image_0.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 scale-105" alt="Cyclist in mountains">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-        <div class="absolute bottom-0 left-0 w-full p-10 text-center">
-            <p class="text-white/80 font-display text-2xl tracking-[0.5em]">PUSH YOUR LIMITS</p>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full p-10 text-center z-10">
+            <p class="text-white font-heading text-3xl md:text-4xl font-bold uppercase tracking-wider">Push Your Limits</p>
         </div>
     </section>
 
-    <section id="kontakt" class="py-24">
+    <section id="kontakt" class="py-24 bg-gray-50 dark:bg-[#111111]">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-8">READY TO <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-500">START?</span></h2>
-            <p class="text-xl text-gray-500 mb-10">Schreib uns deine Ziele. Wir kümmern uns um den Weg dorthin.</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-8 font-heading uppercase">BEREIT ZU <span class="text-brand-red">STARTEN?</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-10 font-medium">Schreib uns deine Ziele. Wir kümmern uns um den Weg dorthin.</p>
             
-            <a href="mailto:tp.training@gmx.net" class="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden font-bold text-white rounded-lg bg-gray-900 dark:bg-white dark:text-black transition-all duration-300 hover:scale-105">
-                <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-brand-red rounded-full group-hover:w-96 group-hover:h-96"></span>
-                <span class="relative flex items-center gap-3 text-2xl">
-                    tp.training@gmx.net
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </span>
+            <a href="mailto:tp.training@gmx.net" class="inline-flex items-center gap-3 text-2xl md:text-3xl font-bold text-brand-red hover:underline transition-all">
+                tp.training@gmx.net
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
     </section>
 
-    <footer class="bg-gray-100 dark:bg-[#050505] border-t border-gray-200 dark:border-gray-800 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="text-center md:text-left">
-                <div class="font-display font-bold text-xl">TP<span class="text-brand-red">TRAINING</span></div>
-                <div class="text-sm text-gray-500 mt-1">© <span id="year"></span> All Rights Reserved.</div>
+                <div class="font-heading font-bold text-2xl">TP<span class="text-brand-red">TRAINING</span></div>
+                <p class="text-sm text-gray-500 mt-2 font-medium">Train. Perform. Thrive.</p>
+                <div class="text-sm text-gray-400 mt-1">© <span id="year"></span> All Rights Reserved.</div>
             </div>
-            <div class="flex gap-6 text-sm font-bold text-gray-600 dark:text-gray-400">
-                <a href="Impressum.html" class="hover:text-brand-red transition-colors">IMPRESSUM</a>
-                <a href="#" class="hover:text-brand-red transition-colors">DATENSCHUTZ</a>
+             <div class="opacity-70 hover:opacity-100 transition-opacity">
+                <img src="image_1.png" alt="Kärnten Sport" class="h-12 w-auto grayscale">
+            </div>
+            <div class="flex gap-8 text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                <a href="Impressum.html" class="hover:text-brand-red transition-colors">Impressum</a>
+                <a href="#" class="hover:text-brand-red transition-colors">Datenschutz</a>
             </div>
         </div>
     </footer>
@@ -491,15 +428,28 @@ html.lenis { height: auto; }
 <script>
 // --- 1. THEME TOGGLE ---
 const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 const html = document.documentElement;
+
+function updateThemeIcon(isDark) {
+    if (isDark) {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>';
+    } else {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>';
+    }
+}
 
 function updateTheme() {
     const isDark = html.classList.contains('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeIcon(isDark);
 }
 
 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     html.classList.add('dark');
+    updateThemeIcon(true);
+} else {
+    updateThemeIcon(false);
 }
 
 themeToggle.addEventListener('click', () => {
@@ -522,215 +472,46 @@ navToggle.addEventListener('click', toggleNav);
 navClose.addEventListener('click', toggleNav);
 mobileLinks.forEach(l => l.addEventListener('click', toggleNav));
 
-// --- 3. TYPEWRITER EFFECT (Replaces Rainbow) ---
-const phrases = ["THRIVE.", "RUN FAST.", "RIDE SMART.", "SWIM STRONG."];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typeTarget = document.getElementById('typewriter');
-
-function type() {
-    const currentPhrase = phrases[phraseIndex];
-    if (isDeleting) {
-        typeTarget.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typeTarget.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentPhrase.length) {
-        typeSpeed = 2000; // Pause at end
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 200;
-    }
-
-    setTimeout(type, typeSpeed);
-}
-type();
-
-// --- 4. BIO & INFO TOGGLES ---
-document.querySelectorAll('.toggle-bio').forEach(btn => {
+// --- 3. BIO & INFO TOGGLES ---
+document.querySelectorAll('.bio-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.dataset.target);
-        target.classList.toggle('hidden');
-        btn.textContent = target.classList.contains('hidden') ? '+ READ FULL BIO' : '- CLOSE BIO';
+        const target = document.querySelector(btn.dataset.target);
+        target.classList.toggle('clamp-7');
+        btn.textContent = target.classList.contains('clamp-7') ? 'Mehr lesen' : 'Weniger lesen';
     });
 });
 
 document.getElementById('info-toggle').addEventListener('click', function() {
     const text = document.getElementById('info-text');
     text.classList.toggle('hidden');
-    this.textContent = text.classList.contains('hidden') ? 'ÜBER TP-TRAINING (EXPAND)' : 'SCHLIESSEN';
+    this.textContent = text.classList.contains('hidden') ? 'Mehr über TP-Training erfahren' : 'Weniger anzeigen';
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// --- 5. SLIDESHOW CROSSFADE ---
+// --- 4. SLIDESHOW CROSSFADE with Ken Burns effect ---
 const slides = document.querySelectorAll('#slides-container img');
 let currentSlide = 0;
 
 function nextSlide() {
+    // Reset previous slide
     slides[currentSlide].style.opacity = 0;
+    slides[currentSlide].style.transform = 'scale(1.05)'; 
+    
+    // Move to next
     currentSlide = (currentSlide + 1) % slides.length;
+    
+    // Activate next slide
     slides[currentSlide].style.opacity = 1;
+    slides[currentSlide].style.transform = 'scale(1)'; // Subtle zoom out effect
 }
+
 // Init first slide
-slides[0].style.opacity = 1;
-setInterval(nextSlide, 4000);
-
-// --- 6. GENERATIVE ART CANVASES (The "Graphs") ---
-const setupCanvas = (id, drawFn) => {
-    const canvas = document.getElementById(id);
-    if(!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    let w, h, frameId;
-    
-    const resize = () => {
-        const rect = canvas.parentElement.getBoundingClientRect();
-        canvas.width = w = rect.width;
-        canvas.height = h = rect.height;
-    };
-    
-    const loop = (t) => {
-        drawFn(ctx, w, h, t * 0.001);
-        frameId = requestAnimationFrame(loop);
-    };
-    
-    window.addEventListener('resize', resize);
-    resize();
-    loop(0);
-};
-
-// A. Background: "Warp Speed"
-setupCanvas('bg-canvas', (ctx, w, h, t) => {
-    ctx.clearRect(0, 0, w, h);
-    const isDark = html.classList.contains('dark');
-    ctx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-    
-    const cx = w / 2;
-    const cy = h / 2;
-    
-    for (let i = 0; i < 50; i++) {
-        const angle = i * (Math.PI * 2 / 50) + t * 0.1;
-        const r = (Math.sin(t + i) + 1) * 200 + 50;
-        const x = cx + Math.cos(angle) * r;
-        const y = cy + Math.sin(angle) * r;
-        
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fill();
-    }
-});
-
-// B. Coaching: "Biometric Waves"
-setupCanvas('canvas-coaching', (ctx, w, h, t) => {
-    ctx.fillStyle = '#000'; // Always dark bg for contrast
-    ctx.fillRect(0, 0, w, h);
-    
-    // Grid
-    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    for(let x=0; x<w; x+=40) { ctx.moveTo(x,0); ctx.lineTo(x,h); }
-    for(let y=0; y<h; y+=40) { ctx.moveTo(0,y); ctx.lineTo(w,y); }
-    ctx.stroke();
-
-    // Waves
-    const colors = ['#ED2939', '#06b6d4'];
-    colors.forEach((col, i) => {
-        ctx.beginPath();
-        ctx.strokeStyle = col;
-        ctx.lineWidth = 3;
-        for (let x = 0; x < w; x++) {
-            const y = h/2 + Math.sin(x * 0.01 + t * (2 + i) + i) * 40 * Math.sin(t);
-            ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-        
-        // Glow
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = col;
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-    });
-});
-
-// C. Camps: "Topography Map"
-setupCanvas('canvas-camps', (ctx, w, h, t) => {
-    ctx.fillStyle = '#1a1a1a';
-    ctx.fillRect(0, 0, w, h);
-    
-    const lines = 15;
-    for (let i = 0; i < lines; i++) {
-        ctx.beginPath();
-        const yBase = (h / lines) * i;
-        const colorVal = 100 + (i * 10);
-        ctx.strokeStyle = `rgb(${colorVal}, ${colorVal}, 50)`; // Yellowish
-        ctx.lineWidth = 1;
-        
-        for (let x = 0; x < w; x+=5) {
-            const noise = Math.sin(x * 0.01 + t + i) * Math.cos(x * 0.005) * 30;
-            ctx.lineTo(x, yBase + noise);
-        }
-        ctx.stroke();
-    }
-});
-
-// D. Schools: "Network Nodes"
-const nodes = Array.from({length: 30}, () => ({
-    x: Math.random(), y: Math.random(), 
-    vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2
-}));
-
-setupCanvas('canvas-schools', (ctx, w, h, t) => {
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, w, h);
-    
-    // Update nodes
-    nodes.forEach(n => {
-        n.x += n.vx * 0.01;
-        n.y += n.vy * 0.01;
-        if(n.x < 0 || n.x > 1) n.vx *= -1;
-        if(n.y < 0 || n.y > 1) n.vy *= -1;
-    });
-
-    // Draw Connections
-    ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)'; // Cyan
-    ctx.lineWidth = 1;
-    
-    for(let i=0; i<nodes.length; i++) {
-        for(let j=i+1; j<nodes.length; j++) {
-            const dx = (nodes[i].x - nodes[j].x) * w;
-            const dy = (nodes[i].y - nodes[j].y) * h;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            
-            if(dist < 100) {
-                ctx.globalAlpha = 1 - (dist/100);
-                ctx.beginPath();
-                ctx.moveTo(nodes[i].x*w, nodes[i].y*h);
-                ctx.lineTo(nodes[j].x*w, nodes[j].y*h);
-                ctx.stroke();
-            }
-        }
-    }
-    
-    // Draw Nodes
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = '#fff';
-    nodes.forEach(n => {
-        ctx.beginPath();
-        ctx.arc(n.x*w, n.y*h, 3, 0, Math.PI*2);
-        ctx.fill();
-    });
-});
-
+if(slides.length > 0) {
+    slides[0].style.opacity = 1;
+    slides[0].style.transform = 'scale(1)';
+    setInterval(nextSlide, 5000);
+}
 </script>
 </body>
 </html>
