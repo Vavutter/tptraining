@@ -9,11 +9,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 tailwind.config = {
@@ -28,20 +26,22 @@ tailwind.config = {
         brand: {
           red: '#ED2939',
           darkRed: '#c51f2e',
-          black: '#0a0a0a'
         }
       },
-      boxShadow: {
-        'neon': '0 0 20px rgba(237, 41, 57, 0.3)',
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-      },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
+        blob: "blob 7s infinite",
+        fadeIn: "fadeIn 1s ease-out forwards",
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+        blob: {
+          "0%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+          "100%": { transform: "translate(0px, 0px) scale(1)" }
+        },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
         }
       }
     }
@@ -50,248 +50,206 @@ tailwind.config = {
 </script>
 
 <style>
-/* --- CORE & 3D STYLES --- */
+/* Global Styles */
 body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
-/* Canvas Background for Three.js */
-#canvas-container {
+/* Glassmorphism Cards - Stabilized */
+.glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dark .glass-card {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Typography */
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Fallback color if gradient fails */
+    color: #111; 
+}
+.dark .text-gradient {
+    color: #fff;
+}
+
+/* Background Mesh Animation (CSS Only - No JS Libraries) */
+.bg-mesh-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: -1;
-    opacity: 0.6; /* Subtle background */
-}
-.dark #canvas-container {
-    opacity: 0.8;
-}
-
-/* Glassmorphism Panels */
-.glass-panel {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.dark .glass-panel {
-    background: rgba(20, 20, 25, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* 3D Tilt Effect on Hover */
-.hover-3d {
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-}
-.hover-3d:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-/* Buttons */
-.btn-sport {
-    position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1;
+    background: #f8fafc;
 }
-.btn-sport::before {
-    content: '';
+.dark .bg-mesh-container {
+    background: #0a0a0a;
+}
+
+.blob {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
     z-index: -1;
 }
-.btn-sport:hover::before {
-    left: 100%;
-}
-
-/* Utility */
-.clamp-7{-webkit-line-clamp:7;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
-.text-gradient {
-    background: linear-gradient(135deg, #000 0%, #555 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.dark .text-gradient {
-    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
-}
-
-/* Abstract Shapes for "No Image" Replacements */
-.abstract-circle {
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--tw-gradient-from), var(--tw-gradient-to));
-}
+.blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #ED2939; animation-delay: 0s; }
+.blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #4a0409; animation-delay: 2s; }
+.blob-3 { top: 40%; left: 40%; width: 400px; height: 400px; background: #ff8a95; opacity: 0.3; animation-delay: 4s; }
 </style>
 </head>
 
-<body class="antialiased bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-gray-100 transition-colors duration-300">
+<body class="antialiased text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
-    <div id="canvas-container"></div>
+    <div class="bg-mesh-container">
+        <div class="blob blob-1 animate-blob"></div>
+        <div class="blob blob-2 animate-blob"></div>
+        <div class="blob blob-3 animate-blob"></div>
+    </div>
 
-    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/80 dark:bg-[#050505]/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800" id="navbar">
+    <header class="fixed w-full top-0 z-50 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group z-50">
-                <div class="relative w-10 h-10 flex items-center justify-center bg-brand-red rounded-lg text-white font-bold">
-                    TP
-                    <img src="tptraining.png" onerror="this.style.display='none'" alt="TP Logo" class="absolute inset-0 w-full h-full object-contain">
+            
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center">
+                    <span class="absolute inset-0 flex items-center justify-center font-black text-brand-red text-xl bg-gray-100 dark:bg-gray-800 rounded-lg">TP</span>
+                    <img src="tptraining.png" onerror="this.style.display='none'" alt="Logo" class="relative z-10 w-full h-full object-contain">
                 </div>
-                <span class="font-heading font-bold text-xl tracking-tighter">TP<span class="text-brand-red">TRAINING</span></span>
+                <span class="font-heading font-bold text-xl tracking-tight text-gray-900 dark:text-white">TP<span class="text-brand-red">TRAINING</span></span>
             </a>
 
-            <nav class="hidden md:flex items-center gap-8 font-heading text-xs font-bold tracking-widest uppercase">
-                <a href="#programme" class="hover:text-brand-red transition-colors relative group py-2">Programme
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#about" class="hover:text-brand-red transition-colors relative group py-2">Über Uns
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#schulen" class="hover:text-brand-red transition-colors relative group py-2">Schulen
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#preise" class="hover:text-brand-red transition-colors relative group py-2">Preise
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
+            <nav class="hidden md:flex items-center gap-8 font-heading text-xs font-bold tracking-widest uppercase text-gray-700 dark:text-gray-300">
+                <a href="#programme" class="hover:text-brand-red transition-colors">Programme</a>
+                <a href="#about" class="hover:text-brand-red transition-colors">Über Uns</a>
+                <a href="#schulen" class="hover:text-brand-red transition-colors">Schulen</a>
+                <a href="#preise" class="hover:text-brand-red transition-colors">Preise</a>
             </nav>
 
-            <div class="flex items-center gap-4 z-50">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Dark Mode">
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-                <a href="#kontakt" class="hidden md:inline-flex px-6 py-2.5 font-heading font-bold text-xs uppercase tracking-wider text-white bg-brand-red hover:bg-brand-darkRed rounded-full shadow-neon transition-all transform hover:-translate-y-1 btn-sport">
+                
+                <a href="#kontakt" class="hidden md:inline-block btn-primary bg-brand-red hover:bg-brand-darkRed text-white px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg transition-transform hover:-translate-y-0.5">
                     Kontakt
                 </a>
-                <button id="nav-toggle" class="md:hidden p-2 text-gray-800 dark:text-white hover:text-brand-red transition-colors" aria-label="Menu">
+
+                <button id="nav-toggle" class="md:hidden p-2 text-gray-900 dark:text-white hover:text-brand-red" aria-label="Menu">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
-        
-        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 flex flex-col md:hidden overflow-y-auto">
-            <div class="min-h-screen flex flex-col justify-center items-center space-y-6 py-12">
-                <button id="nav-close" class="absolute top-6 right-6 p-2 text-gray-500 hover:text-brand-red transition-colors">
+
+        <div id="mobile-nav" class="fixed inset-0 z-40 bg-white dark:bg-[#0a0a0a] transform translate-x-full transition-transform duration-300 flex flex-col md:hidden overflow-y-auto">
+            <div class="p-6 flex justify-end">
+                <button id="nav-close" class="p-2 text-gray-900 dark:text-white hover:text-brand-red">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
-                
-                <a href="#programme" class="text-3xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:text-brand-red uppercase">Programme</a>
-                <a href="#about" class="text-3xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:text-brand-red uppercase">Über Uns</a>
-                <a href="#schulen" class="text-3xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:text-brand-red uppercase">Schulen</a>
-                <a href="#preise" class="text-3xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 hover:text-brand-red uppercase">Preise</a>
-                <div class="pt-8">
-                    <a href="#kontakt" class="px-8 py-4 bg-brand-red text-white font-bold text-xl uppercase rounded-full shadow-lg">Kontakt</a>
-                </div>
+            </div>
+            <div class="flex flex-col items-center gap-8 mt-10 font-heading font-bold text-2xl uppercase text-gray-900 dark:text-white">
+                <a href="#programme" class="hover:text-brand-red">Programme</a>
+                <a href="#about" class="hover:text-brand-red">Über Uns</a>
+                <a href="#schulen" class="hover:text-brand-red">Schulen</a>
+                <a href="#preise" class="hover:text-brand-red">Preise</a>
+                <a href="#kontakt" class="text-brand-red mt-4">Kontakt</a>
             </div>
         </div>
     </header>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto animate-float">
-            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-brand-red/30 bg-brand-red/10 backdrop-blur-sm text-brand-red font-bold text-xs tracking-widest uppercase">
-                Next Level Coaching
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="animate-fadeIn" style="animation-delay: 0.1s;">
+                <span class="inline-block py-1 px-3 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-xs font-bold uppercase tracking-widest mb-6">
+                    Next Level Coaching
+                </span>
             </div>
-            <h1 class="text-6xl md:text-8xl font-black leading-none mb-6 font-heading uppercase tracking-tighter text-gradient">
-                Train.<br>
-                Perform.<br>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8 font-heading uppercase tracking-tighter animate-fadeIn" style="animation-delay: 0.2s;">
+                Train. Perform.<br>
                 <span class="text-brand-red">Thrive.</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium backdrop-blur-sm bg-white/30 dark:bg-black/30 p-4 rounded-xl border border-white/10">
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium animate-fadeIn" style="animation-delay: 0.3s;">
                 Einsteigerkurse, Sport-Camps und individuelle Trainingspläne – alles für deinen Multisport-Erfolg.
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#programme" class="btn-sport bg-brand-red text-white w-full sm:w-auto px-10 py-4 text-sm font-bold uppercase tracking-widest rounded-full shadow-neon hover:bg-brand-darkRed">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeIn" style="animation-delay: 0.4s;">
+                <a href="#programme" class="w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-brand-darkRed transition-all hover:-translate-y-1">
                     Jetzt Starten
                 </a>
-                <a href="#about" class="btn-sport bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white w-full sm:w-auto px-10 py-4 text-sm font-bold uppercase tracking-widest rounded-full hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black">
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white font-bold uppercase tracking-wider rounded-full hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
                     Mehr Erfahren
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="py-6 bg-white/50 dark:bg-black/50 backdrop-blur border-y border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
+    <section class="py-8 border-y border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black/20 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4">
             <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Unterstützt von</span>
-            <div class="flex items-center gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
-                <img src="KärntenSport.jpeg" onerror="this.style.display='none'" alt="Kärnten Sport Logo" class="h-12 w-auto object-contain">
-                <span class="font-heading font-bold text-lg hidden" id="logo-fallback">KÄRNTEN SPORT</span>
+            <div class="flex items-center gap-2 opacity-70 grayscale hover:grayscale-0 transition-all">
+                <img src="KärntenSport.jpeg" onerror="this.style.display='none'" alt="Kärnten Sport" class="h-12 w-auto">
+                <span class="text-sm font-heading font-bold text-gray-400 hidden" id="partner-fallback">KÄRNTEN SPORT</span>
             </div>
         </div>
     </section>
 
-    <section id="programme" class="py-24 relative">
+    <section id="programme" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black mb-4 font-heading uppercase text-transparent bg-clip-text bg-gradient-to-b from-gray-900 to-gray-500 dark:from-white dark:to-gray-500">Unsere <span class="text-brand-red">Programme</span></h2>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black mb-4 font-heading uppercase">Unsere <span class="text-brand-red">Programme</span></h2>
                 <p class="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
                     Maßgeschneidert für jedes Level. Von der ersten Trainingseinheit bis zum Wettkampf.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-panel rounded-3xl overflow-hidden hover-3d group p-1">
-                    <div class="bg-gray-100 dark:bg-[#151515] rounded-[22px] overflow-hidden h-full flex flex-col">
-                        <div class="h-64 relative bg-gray-900 overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-80"></div>
-                            <div class="w-32 h-32 rounded-full border-4 border-brand-red/50 animate-[ping_3s_ease-in-out_infinite] absolute"></div>
-                            <div class="w-24 h-24 rounded-full bg-brand-red/20 backdrop-blur-md flex items-center justify-center z-10 border border-brand-red/50">
-                                <svg class="w-10 h-10 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                            </div>
-                            <div class="absolute bottom-4 left-6 z-20">
-                                <h3 class="text-2xl font-black font-heading uppercase text-white">Trainingspläne</h3>
-                                <p class="text-brand-red font-bold text-sm tracking-wider">Individuell & Datenbasiert</p>
-                            </div>
+                <div class="glass-card rounded-3xl overflow-hidden group hover:-translate-y-2">
+                    <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brand-red/20 to-black"></div>
+                        <div class="w-32 h-32 border-4 border-brand-red rounded-full opacity-20 group-hover:scale-125 transition-transform duration-700"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <h3 class="text-2xl font-black text-white uppercase mb-1">Trainingspläne</h3>
+                            <p class="text-brand-red font-bold text-sm">Individuell & Datenbasiert</p>
                         </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed flex-grow">
-                                Strukturierte Pläne, die sich deinem Leben anpassen. Wir analysieren deine Ziele und erstellen den optimalen Weg dorthin.
-                            </p>
-                            <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-800 pt-6">
-                                <span class="font-heading font-bold text-xl uppercase text-gray-900 dark:text-white">ab €89<span class="text-xs text-gray-500">/Monat</span></span>
-                                <a href="#preise" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-brand-red hover:text-white transition-colors group-hover:scale-110">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                </a>
-                            </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                            Strukturierte Pläne, die sich deinem Leben anpassen. Wir analysieren deine Ziele und erstellen den optimalen Weg dorthin.
+                        </p>
+                        <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <span class="font-bold text-lg uppercase">Ab €89<span class="text-xs text-gray-500 normal-case">/Monat</span></span>
+                            <a href="#preise" class="text-brand-red font-bold uppercase text-sm hover:underline">Details &rarr;</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-3xl overflow-hidden hover-3d group p-1">
-                    <div class="bg-gray-100 dark:bg-[#151515] rounded-[22px] overflow-hidden h-full flex flex-col">
-                        <div class="h-64 relative bg-gray-900 overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gradient-to-tl from-brand-red/40 to-black opacity-80"></div>
-                            <svg class="absolute bottom-0 w-full h-32 text-white/10" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <path d="M0 100 L40 20 L60 50 L80 10 L100 100 Z" fill="currentColor" />
-                            </svg>
-                            <div class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center z-10 border border-white/20">
-                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div class="absolute bottom-4 left-6 z-20">
-                                <h3 class="text-2xl font-black font-heading uppercase text-white">Sport-Camps</h3>
-                                <p class="text-brand-red font-bold text-sm tracking-wider">Erlebnis & Technik</p>
-                            </div>
+                <div class="glass-card rounded-3xl overflow-hidden group hover:-translate-y-2">
+                    <div class="h-64 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-bl from-gray-700 to-black"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                            <div class="w-full h-1 bg-white rotate-12 transform group-hover:rotate-45 transition-transform duration-700"></div>
+                            <div class="w-full h-1 bg-white -rotate-12 transform group-hover:-rotate-45 transition-transform duration-700"></div>
                         </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed flex-grow">
-                                Intensive Tage in den österreichischen Bergen. Verbessere deine Technik, Ausdauer und erlebe den Teamgeist.
-                            </p>
-                            <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-800 pt-6">
-                                <span class="font-heading font-bold text-xl uppercase text-gray-900 dark:text-white">Auf Anfrage</span>
-                                <a href="#preise" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-brand-red hover:text-white transition-colors group-hover:scale-110">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                </a>
-                            </div>
+                        <div class="absolute bottom-6 left-8">
+                            <h3 class="text-2xl font-black text-white uppercase mb-1">Sport-Camps</h3>
+                            <p class="text-brand-red font-bold text-sm">Erlebnis & Technik</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                            Intensive Tage in den österreichischen Bergen. Verbessere deine Technik, Ausdauer und erlebe den Teamgeist.
+                        </p>
+                        <div class="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <span class="font-bold text-lg uppercase">Auf Anfrage</span>
+                            <a href="#preise" class="text-brand-red font-bold uppercase text-sm hover:underline">Details &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -299,308 +257,162 @@ body {
         </div>
     </section>
 
-    <section id="schulen" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gray-100 dark:bg-[#111111] -z-10 skew-y-3 scale-110 transform origin-top-left"></div>
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div class="order-2 lg:order-1 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
-                <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel flex items-center justify-center group">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-red/20 to-transparent"></div>
-                    <div class="absolute w-3/4 h-3/4 border-2 border-gray-400/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                    <div class="absolute w-1/2 h-1/2 border-2 border-brand-red/40 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div class="z-10 text-center p-8">
-                        <div class="text-6xl mb-4">🚴‍♂️ 🏃‍♀️</div>
-                        <h3 class="font-heading font-bold text-2xl uppercase">School Sports</h3>
-                    </div>
+    <section id="schulen" class="py-24 bg-gray-50 dark:bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <div class="aspect-video rounded-3xl bg-gradient-to-tr from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 relative overflow-hidden shadow-xl flex items-center justify-center">
+                     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ED2939 1px, transparent 1px); background-size: 20px 20px;"></div>
+                     <div class="text-6xl">🎓</div>
                 </div>
             </div>
-            
             <div class="order-1 lg:order-2">
-                <h2 class="text-4xl font-black mb-6 font-heading uppercase">Programme für <span class="text-brand-red">Schulen</span></h2>
+                <h2 class="text-3xl md:text-4xl font-black mb-6 font-heading uppercase">Programme für <span class="text-brand-red">Schulen</span></h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                     Unsere zertifizierten Coaches bringen sichere Rad-, Lauf- und Schwimm-Basics direkt in den Unterricht. Ideal für Sportwochen oder Projekttage, um Freude an der Bewegung zu vermitteln.
                 </p>
-                <a href="#kontakt" class="btn-sport bg-brand-red text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider shadow-neon hover:bg-brand-darkRed inline-block">
-                    Anfrage Senden
+                <a href="#kontakt" class="inline-flex items-center justify-center px-8 py-3 bg-brand-red text-white font-bold uppercase tracking-wider rounded-full hover:bg-brand-darkRed transition-colors">
+                    Anfrage senden
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 relative">
+    <section id="about" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black mb-6 font-heading uppercase">Das Team <span class="text-brand-red">hinter TPTraining</span></h2>
+                <h2 class="text-3xl md:text-5xl font-black mb-6 font-heading uppercase">Das Team <span class="text-brand-red">hinter TPTraining</span></h2>
             </div>
 
              <div class="mb-24 text-center max-w-4xl mx-auto">
-                <button id="info-toggle" class="px-8 py-3 border border-brand-red text-brand-red font-bold uppercase rounded-full hover:bg-brand-red hover:text-white transition-all mb-8">
+                <button id="info-toggle" class="px-6 py-2 border border-brand-red text-brand-red font-bold uppercase rounded-full hover:bg-brand-red hover:text-white transition-colors mb-8 text-sm">
                     Mehr über TP-Training erfahren
                 </button>
-                <div id="info-text" class="hidden text-left text-gray-700 dark:text-gray-300 leading-relaxed glass-panel p-8 rounded-3xl shadow-xl transform transition-all">
+                <div id="info-text" class="hidden text-left text-gray-700 dark:text-gray-300 leading-relaxed glass-card p-8 rounded-3xl">
                     <p>TP-Training ist ein junges Unternehmen, gegründet 2025 von Marco Tiefenbacher und Benjamin Pletzer, mit dem Ziel, junge Menschen für die Welt des Triathlons und Mountainbikens zu begeistern. Als staatlich geprüfte Übungsleiter und selbst aktive Leistungssportler bieten wir ein umfassendes Angebot. Dieses reicht von Radfahrtechnik-Kursen über Schwimmkurse bis hin zu erlebnisreichen Sportcamps. Darüber hinaus erstellen wir individuelle Trainingspläne und bieten kompetente Trainingsberatung für ambitionierte Hobbysportler und Fortgeschrittene. Unser Fokus liegt auf der Vermittlung von Freude am Sport und der Förderung eines aktiven Lebensstils. Mit TP-Training möchten wir Kindern und Jugendlichen die Möglichkeit geben, ihre Fähigkeiten zu entdecken, ihre Grenzen zu erweitern und unvergessliche sportliche Erfahrungen zu sammeln.</p>
                 </div>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
-                <div class="glass-panel p-8 rounded-3xl relative hover:bg-white/80 dark:hover:bg-white/5 transition-colors">
+                <div class="glass-card p-8 rounded-3xl">
                     <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
-                        <div class="relative w-40 h-40 shrink-0">
-                             <div class="absolute inset-0 bg-brand-red rounded-full blur-md opacity-50"></div>
-                             <img src="tf.png" onerror="this.src='https://ui-avatars.com/api/?name=Marco+T&background=ED2939&color=fff'" alt="Marco Tiefenbacher" class="relative w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-xl z-10">
+                        <div class="w-32 h-32 shrink-0 rounded-full p-1 border-2 border-brand-red">
+                             <img src="tf.png" onerror="this.src='https://ui-avatars.com/api/?name=Marco&background=ED2939&color=fff'" alt="Marco" class="w-full h-full rounded-full object-cover bg-gray-200">
                         </div>
                         <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-black font-heading uppercase mb-1">Marco Tiefenbacher</h3>
-                            <p class="text-xs font-bold text-brand-red uppercase tracking-widest mb-4">Co-Founder & Triathlon Coach</p>
-                             <p class="text-sm text-gray-500 dark:text-gray-400 italic">
-                                Spezialgebiete: Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting
-                             </p>
+                            <h3 class="text-2xl font-bold font-heading uppercase mb-1">Marco Tiefenbacher</h3>
+                            <p class="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Co-Founder & Triathlon Coach</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">Spezialgebiete: Trainings­periodisierung, Leistungstests, Bike-Fitting</p>
                         </div>
                     </div>
-                    <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                        <div id="marcoBio" class="clamp-7 transition-all duration-500">
+                    <div class="prose dark:prose-invert text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <div id="marcoBio" class="clamp-7">
                             <p><strong>Hallo zusammen</strong>, mein Name ist Marco Tiefenbacher, ich bin 18 Jahre alt und stamme aus dem wunderschönen <em>Grafenstein</em>. Mein sportlicher Werdegang ist zugegebenermaßen etwas verschlungen: Er begann mit einem Kinderschnuppertraining und führte mich in die Leichtathletik-Ausbildung beim LAC Klagenfurt.</p>
                             <p class="mt-4">Dort spezialisierte ich mich nach einigen Saisonen als Mehrkämpfer auf die <strong>1000 m</strong>- und <strong>3000 m</strong>-Bahnrennen. Weil mir das monotone Kreislaufen irgendwann zu eintönig wurde, wechselte ich in den <strong>Berglauf</strong>, wo ich zwei Jahre lang unbezahlbare Erfahrungen und große Erfolge sammeln konnte.</p>
                             <p class="mt-4">2022 brachte mich ein Freund zum <strong>Rennradsport</strong> – Liebe auf den ersten Tritt. Seitdem bin ich dem Radsport treu und wechselte im Sommer 2024 ganz auf zwei Räder.</p>
                             <p class="mt-4">Im selben Jahr schloss ich erfolgreich meine Ausbildung zum <strong>Triathlon-Übungsleiter</strong> ab. Mein Herzensanliegen: jungen Menschen – vor allem Kindern – die Freude an Schwimmen, Radfahren und Laufen zu vermitteln und ihnen zu zeigen, wie viel Spaß diese Sportarten machen und welche Werte sie fürs Leben schenken.</p>
                         </div>
-                        <button class="bio-toggle text-brand-red font-bold uppercase text-xs mt-4 hover:text-white hover:bg-brand-red px-3 py-1 rounded transition-all" data-target="#marcoBio">Mehr lesen</button>
+                        <button class="bio-toggle text-brand-red font-bold uppercase text-xs mt-4 hover:underline" data-target="#marcoBio">Mehr lesen</button>
                     </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl relative hover:bg-white/80 dark:hover:bg-white/5 transition-colors">
+                <div class="glass-card p-8 rounded-3xl">
                     <div class="flex flex-col md:flex-row items-center gap-8 mb-8">
-                         <div class="relative w-40 h-40 shrink-0">
-                            <div class="absolute inset-0 bg-brand-red rounded-full blur-md opacity-50"></div>
-                            <img src="benj2.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Benji+P&background=ED2939&color=fff'" alt="Benjamin Pletzer" class="relative w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-xl z-10">
-                       </div>
+                         <div class="w-32 h-32 shrink-0 rounded-full p-1 border-2 border-brand-red">
+                             <img src="benj2.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Benjamin&background=ED2939&color=fff'" alt="Benjamin" class="w-full h-full rounded-full object-cover bg-gray-200">
+                        </div>
                         <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-black font-heading uppercase mb-1">Benjamin Pletzer</h3>
-                            <p class="text-xs font-bold text-brand-red uppercase tracking-widest mb-4">Co-Founder & MTB Specialist</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">
-                                Spezialgebiete: Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training
-                             </p>
+                            <h3 class="text-2xl font-bold font-heading uppercase mb-1">Benjamin Pletzer</h3>
+                            <p class="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Co-Founder & MTB Specialist</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">Spezialgebiete: Trail-Skills, Nachwuchs­förderung, Mentalcoaching</p>
                         </div>
                     </div>
-                    <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                         <div id="benjaminBio" class="clamp-7 transition-all duration-500">
+                    <div class="prose dark:prose-invert text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <div id="benjaminBio" class="clamp-7">
                             <p><strong>Mein Name ist Benjamin Pletzer</strong>, ich bin 18 Jahre alt und seit vielen Jahren <strong>Leistungs­sportler im Mountainbike</strong>.</p>
                             <p class="mt-4">Seit zwei Jahren arbeite ich in meiner Freizeit als Trainer – nicht nur mit Kindern, die Spaß auf dem Bike haben, sondern auch mit Erwachsenen, die ihre Freude am Rad erst später entdeckt haben. Ich darf meine Erfahrungen also an alle Altersgruppen weitergeben.</p>
                             <p class="mt-4">Für mich ist Sport mehr als Bewegung: Er ist Leidenschaft, Disziplin und der ständige Wille, das Beste aus sich herauszuholen. Als aktiver Racer weiß ich genau, was es braucht, um Ziele nicht nur zu setzen, sondern auch zu erreichen – und dieses Wissen gebe ich eins-zu-eins weiter.</p>
                             <p class="mt-4"><strong>Mein Ziel:</strong> der Jugend den Spaß am Fahrrad, insbesondere Mountainbike, näherzubringen und meine eigenen Erfahrungen bestmöglich weiterzugeben. Ich begleite dich auf deiner Reise zum erfahrenen Mountainbiker und zeige dir, wozu du wirklich fähig bist.</p>
                         </div>
-                         <button class="bio-toggle text-brand-red font-bold uppercase text-xs mt-4 hover:text-white hover:bg-brand-red px-3 py-1 rounded transition-all" data-target="#benjaminBio">Mehr lesen</button>
+                        <button class="bio-toggle text-brand-red font-bold uppercase text-xs mt-4 hover:underline" data-target="#benjaminBio">Mehr lesen</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="preise" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <h2 class="text-4xl font-black text-center mb-16 font-heading uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">Pakete & <span class="text-brand-red">Preise</span></h2>
+    <section id="preise" class="py-24 bg-gray-50 dark:bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black text-center mb-16 font-heading uppercase">Pakete & <span class="text-brand-red">Preise</span></h2>
             
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="glass-panel p-10 rounded-3xl flex flex-col hover:-translate-y-2 transition-transform">
-                    <h3 class="text-lg font-bold mb-4 font-heading uppercase tracking-wider text-gray-500 dark:text-gray-400">Einsteiger</h3>
-                    <div class="flex items-baseline mb-2">
-                        <span class="text-5xl font-black tracking-tighter">€89</span>
-                        <span class="text-gray-500 ml-2 font-medium">/ Monat</span>
-                    </div>
-                    <div class="w-12 h-1 bg-brand-red mt-4 mb-8"></div>
-                    <ul class="space-y-4 mb-8 flex-1 font-medium text-gray-700 dark:text-gray-300 text-sm">
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Starterpaket</li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Trainingsplan (Basis)</li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Analyse & Tests</li>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-lg hover:-translate-y-2 transition-transform">
+                    <h3 class="text-lg font-bold mb-4 text-gray-500 uppercase tracking-widest">Einsteiger</h3>
+                    <div class="text-4xl font-black mb-2">€89 <span class="text-sm font-medium text-gray-400">/ Monat</span></div>
+                    <ul class="mt-6 space-y-4 text-sm text-gray-600 dark:text-gray-400 mb-8">
+                        <li class="flex gap-2">✓ Starterpaket</li>
+                        <li class="flex gap-2">✓ Trainingsplan (Basis)</li>
+                        <li class="flex gap-2">✓ Analyse & Tests</li>
                     </ul>
-                    <a href="#kontakt" class="w-full py-3 border-2 border-gray-300 dark:border-gray-700 rounded-xl font-bold text-center uppercase text-sm hover:border-brand-red hover:text-brand-red transition-colors">Buchen</a>
+                    <a href="#kontakt" class="block w-full py-3 border-2 border-gray-200 dark:border-gray-700 text-center font-bold uppercase text-xs rounded-lg hover:border-brand-red hover:text-brand-red transition-colors">Buchen</a>
                 </div>
 
-                <div class="glass-panel p-10 rounded-3xl flex flex-col relative transform md:-translate-y-6 shadow-neon border-brand-red/30 z-10 bg-white dark:bg-[#111]">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-red to-brand-darkRed text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
-                        Most Popular
-                    </div>
-                    <h3 class="text-lg font-bold mb-4 font-heading uppercase tracking-wider text-brand-red">Fortgeschritten</h3>
-                    <div class="flex items-baseline mb-2">
-                        <span class="text-5xl font-black tracking-tighter">€129</span>
-                        <span class="text-gray-500 ml-2 font-medium">/ Monat</span>
-                    </div>
-                    <div class="w-12 h-1 bg-brand-red mt-4 mb-8"></div>
-                    <ul class="space-y-4 mb-8 flex-1 font-medium text-gray-700 dark:text-gray-300 text-sm">
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Alles aus Einsteiger</li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> <strong>Unlimitierter Kontakt</strong></li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Tägliche Anpassungen</li>
+                <div class="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-2xl relative transform md:-translate-y-4 border-t-4 border-brand-red">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-red text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Empfohlen</div>
+                    <h3 class="text-lg font-bold mb-4 text-brand-red uppercase tracking-widest">Fortgeschritten</h3>
+                    <div class="text-4xl font-black mb-2">€129 <span class="text-sm font-medium text-gray-400">/ Monat</span></div>
+                    <ul class="mt-6 space-y-4 text-sm text-gray-600 dark:text-gray-400 mb-8">
+                        <li class="flex gap-2">✓ Alles aus Einsteiger</li>
+                        <li class="flex gap-2 text-gray-900 dark:text-white font-bold">✓ Unlimitierter Kontakt</li>
+                        <li class="flex gap-2">✓ Tägliche Anpassungen</li>
                     </ul>
-                    <a href="#kontakt" class="w-full py-3 bg-brand-red text-white rounded-xl font-bold text-center uppercase text-sm shadow-lg hover:bg-brand-darkRed transition-colors">Buchen</a>
+                    <a href="#kontakt" class="block w-full py-3 bg-brand-red text-white text-center font-bold uppercase text-xs rounded-lg hover:bg-brand-darkRed transition-colors">Buchen</a>
                 </div>
 
-                <div class="glass-panel p-10 rounded-3xl flex flex-col hover:-translate-y-2 transition-transform">
-                    <h3 class="text-lg font-bold mb-4 font-heading uppercase tracking-wider text-gray-500 dark:text-gray-400">Pro Athlete</h3>
-                    <div class="flex items-baseline mb-2">
-                        <span class="text-5xl font-black tracking-tighter">€169</span>
-                        <span class="text-gray-500 ml-2 font-medium">/ Individual</span>
-                    </div>
-                    <div class="w-12 h-1 bg-brand-red mt-4 mb-8"></div>
-                    <ul class="space-y-4 mb-8 flex-1 font-medium text-gray-700 dark:text-gray-300 text-sm">
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Full Service Coaching</li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Wettkampfsupport</li>
-                        <li class="flex gap-3"><span class="text-brand-red font-bold">✓</span> Regelmäßige Calls</li>
+                <div class="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-lg hover:-translate-y-2 transition-transform">
+                    <h3 class="text-lg font-bold mb-4 text-gray-500 uppercase tracking-widest">Pro Athlete</h3>
+                    <div class="text-4xl font-black mb-2">€169 <span class="text-sm font-medium text-gray-400">/ Monat</span></div>
+                    <ul class="mt-6 space-y-4 text-sm text-gray-600 dark:text-gray-400 mb-8">
+                        <li class="flex gap-2">✓ Full Service Coaching</li>
+                        <li class="flex gap-2">✓ Wettkampfsupport</li>
+                        <li class="flex gap-2">✓ Regelmäßige Calls</li>
                     </ul>
-                    <a href="#kontakt" class="w-full py-3 border-2 border-gray-300 dark:border-gray-700 rounded-xl font-bold text-center uppercase text-sm hover:border-brand-red hover:text-brand-red transition-colors">Buchen</a>
+                    <a href="#kontakt" class="block w-full py-3 border-2 border-gray-200 dark:border-gray-700 text-center font-bold uppercase text-xs rounded-lg hover:border-brand-red hover:text-brand-red transition-colors">Buchen</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="relative py-32 overflow-hidden bg-black">
-         <div class="absolute inset-0">
-             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-red/20 via-black to-black"></div>
-         </div>
-        <div class="relative z-10 text-center px-6">
-            <h2 class="text-white font-heading text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">Push Your Limits</h2>
-            <div class="w-24 h-1 bg-brand-red mx-auto"></div>
-        </div>
+    <section class="py-20 bg-black text-center px-6">
+        <h2 class="text-4xl md:text-6xl font-black text-white uppercase mb-4">Push Your Limits</h2>
+        <div class="w-16 h-1 bg-brand-red mx-auto"></div>
     </section>
 
-    <section id="kontakt" class="py-24 bg-white dark:bg-[#050505]">
+    <section id="kontakt" class="py-24">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl font-black mb-8 font-heading uppercase">Bereit zu <span class="text-brand-red">Starten?</span></h2>
-            <p class="text-xl text-gray-600 dark:text-gray-400 mb-12 font-medium">Schreib uns deine Ziele. Wir kümmern uns um den Weg dorthin.</p>
+            <h2 class="text-3xl md:text-5xl font-black mb-8 font-heading uppercase">Bereit zu <span class="text-brand-red">Starten?</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-10">Schreib uns deine Ziele. Wir kümmern uns um den Weg dorthin.</p>
             
-            <a href="mailto:tp.training@gmx.net" class="group inline-flex items-center gap-4 px-8 py-6 rounded-2xl bg-gray-100 dark:bg-[#151515] border border-transparent hover:border-brand-red transition-all hover:-translate-y-1">
-                <div class="w-12 h-12 rounded-full bg-brand-red flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </div>
-                <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">tp.training@gmx.net</span>
+            <a href="mailto:tp.training@gmx.net" class="inline-flex items-center gap-3 text-2xl md:text-3xl font-black text-gray-900 dark:text-white hover:text-brand-red transition-colors border-b-2 border-transparent hover:border-brand-red pb-2">
+                tp.training@gmx.net
             </a>
         </div>
     </section>
 
-    <footer class="bg-white dark:bg-[#050505] border-t border-gray-200 dark:border-gray-800 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-12 bg-gray-50 dark:bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left">
-                <div class="font-heading font-black text-2xl tracking-tighter">TP<span class="text-brand-red">TRAINING</span></div>
-                <p class="text-xs text-gray-500 mt-2 font-bold uppercase tracking-widest">Train. Perform. Thrive.</p>
-                <div class="text-xs text-gray-400 mt-4">© <span id="year"></span> All Rights Reserved.</div>
+                <div class="font-heading font-bold text-xl">TP<span class="text-brand-red">TRAINING</span></div>
+                <div class="text-xs text-gray-500 mt-2">© <span id="year"></span> All Rights Reserved.</div>
             </div>
-             <div class="opacity-50 hover:opacity-100 transition-opacity">
-                 <img src="KärntenSport.jpeg" onerror="this.style.display='none'" alt="Kärnten Sport" class="h-10 w-auto grayscale">
-            </div>
-            <div class="flex gap-8 text-xs font-bold text-gray-500 dark:text-gray-500 uppercase tracking-widest">
-                <a href="Impressum.html" class="hover:text-brand-red transition-colors">Impressum</a>
-                <a href="#" class="hover:text-brand-red transition-colors">Datenschutz</a>
+            <div class="flex gap-6 text-xs font-bold uppercase tracking-wider text-gray-500">
+                <a href="Impressum.html" class="hover:text-gray-900 dark:hover:text-white">Impressum</a>
+                <a href="#" class="hover:text-gray-900 dark:hover:text-white">Datenschutz</a>
             </div>
         </div>
     </footer>
 
 <script>
-// --- THREE.JS BACKGROUND ANIMATION ---
-function initThreeJS() {
-    const container = document.getElementById('canvas-container');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
-
-    // Create Particles (Dust/Stars representation of "Data")
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 700;
-    
-    const posArray = new Float32Array(particlesCount * 3);
-    
-    for(let i = 0; i < particlesCount * 3; i++) {
-        // Spread particles wide
-        posArray[i] = (Math.random() - 0.5) * 15;
-    }
-    
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    
-    // Check theme for color
-    const isDark = document.documentElement.classList.contains('dark');
-    const particleColor = isDark ? 0xffffff : 0xED2939; // White in dark mode, Red in light mode
-
-    const material = new THREE.PointsMaterial({
-        size: 0.02,
-        color: particleColor,
-        transparent: true,
-        opacity: 0.8,
-    });
-    
-    const particlesMesh = new THREE.Points(particlesGeometry, material);
-    scene.add(particlesMesh);
-    
-    // Add Lines (Connectivity)
-    const lineMaterial = new THREE.LineBasicMaterial({ color: particleColor, transparent: true, opacity: 0.15 });
-    const linesGeometry = new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(4, 1));
-    const linesMesh = new THREE.LineSegments(linesGeometry, lineMaterial);
-    scene.add(linesMesh);
-
-    camera.position.z = 3;
-
-    // Mouse Interaction
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    const windowHalfX = window.innerWidth / 2;
-    const windowHalfY = window.innerHeight / 2;
-
-    document.addEventListener('mousemove', (event) => {
-        mouseX = (event.clientX - windowHalfX);
-        mouseY = (event.clientY - windowHalfY);
-    });
-
-    const clock = new THREE.Clock();
-
-    function animate() {
-        requestAnimationFrame(animate);
-        const elapsedTime = clock.getElapsedTime();
-
-        targetX = mouseX * 0.001;
-        targetY = mouseY * 0.001;
-
-        // Rotate Objects
-        particlesMesh.rotation.y = 0.1 * elapsedTime;
-        particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
-        
-        linesMesh.rotation.y = 0.05 * elapsedTime;
-        linesMesh.rotation.x += 0.05 * (targetY - linesMesh.rotation.x);
-        linesMesh.rotation.y += 0.05 * (targetX - linesMesh.rotation.y);
-
-        // Gentle wave motion
-        particlesMesh.position.y = Math.sin(elapsedTime * 0.5) * 0.2;
-
-        renderer.render(scene, camera);
-    }
-
-    animate();
-
-    // Resize Handler
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Theme Change Listener
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-        setTimeout(() => {
-             const isDarkNow = document.documentElement.classList.contains('dark');
-             material.color.setHex(isDarkNow ? 0xffffff : 0xED2939);
-             lineMaterial.color.setHex(isDarkNow ? 0xffffff : 0xED2939);
-        }, 100);
-    });
-}
-
-// Initialize 3D
-initThreeJS();
-
-// --- UI SCRIPTS ---
-
-// Theme Toggle
+// --- THEME TOGGLE ---
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const html = document.documentElement;
@@ -619,6 +431,7 @@ function updateTheme() {
     updateThemeIcon(isDark);
 }
 
+// Init Theme
 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     html.classList.add('dark');
     updateThemeIcon(true);
@@ -631,7 +444,7 @@ themeToggle.addEventListener('click', () => {
     updateTheme();
 });
 
-// Mobile Nav
+// --- MOBILE NAV ---
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 const mobileNav = document.getElementById('mobile-nav');
@@ -646,7 +459,7 @@ navToggle.addEventListener('click', toggleNav);
 navClose.addEventListener('click', toggleNav);
 mobileLinks.forEach(l => l.addEventListener('click', toggleNav));
 
-// Text Toggles
+// --- TEXT TOGGLES ---
 document.querySelectorAll('.bio-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
         const target = document.querySelector(btn.dataset.target);
@@ -662,22 +475,6 @@ document.getElementById('info-toggle').addEventListener('click', function() {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// Scroll Animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
