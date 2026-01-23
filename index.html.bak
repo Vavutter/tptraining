@@ -510,59 +510,6 @@ input:checked + .option-card{
 input:focus-visible + .option-card{
   box-shadow: 0 0 0 4px var(--ring);
 }
-
-    /* ------------------------------
-       Mobile refinements
-    ------------------------------ */
-    @media (max-width: 767px){
-      /* Prevent horizontal overflow from long German compounds / non-breaking hyphens */
-      h1,h2,h3,h4,h5,h6,p,li,a,button,span,small,div{
-        overflow-wrap: anywhere;
-        word-break: break-word;
-        hyphens: auto;
-      }
-
-      /* Reduce extreme tracking on small screens (readability + less overflow) */
-      .btn, .label, .option-title, .scroll-indicator{
-        letter-spacing: .10em;
-      }
-
-      /* Buttons: allow wrapping + slightly tighter sizing */
-      .btn{
-        flex-wrap: wrap;
-        white-space: normal;
-        text-align: center;
-        line-height: 1.15;
-        padding: .85rem 1.05rem;
-        font-size: .80rem;
-      }
-
-      /* Improve safe-area behavior on modern phones (iOS home indicator) */
-      .booking-body{
-        padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
-      }
-
-      /* Booking modal: turn into a bottom-sheet for phones (less cramped, easier to scan) */
-      .booking-panel{
-        left: 0;
-        right: 0;
-        top: auto;
-        bottom: 0;
-        width: 100%;
-        max-width: 100%;
-        max-height: 92svh;
-        border-radius: 26px 26px 0 0;
-        transform: translateY(18px);
-      }
-      #booking-modal.is-open .booking-panel{
-        transform: translateY(0);
-      }
-
-      /* Inputs/cards: slightly smaller radii + padding to reduce visual bulk */
-      .input{ border-radius: 14px; }
-      .option-card{ border-radius: 16px; padding: 12px 12px; }
-    }
-
 </style>
 </head>
 
@@ -577,9 +524,9 @@ input:focus-visible + .option-card{
 
   <!-- Header -->
   <header id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6">
-      <div class="mt-2 sm:mt-4 rounded-2xl surface px-4 sm:px-6">
-        <div class="flex h-14 sm:h-16 items-center justify-between">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mt-4 rounded-2xl surface px-4 sm:px-6">
+        <div class="flex h-16 items-center justify-between">
           <!-- Logo -->
           <a href="#" class="group flex items-center gap-3">
             <span class="relative grid h-10 w-10 place-items-center rounded-xl surface-soft">
@@ -660,7 +607,7 @@ input:focus-visible + .option-card{
 
   <main id="main">
     <!-- HERO -->
-    <section id="top" class="relative isolate min-h-[100svh] pt-24 sm:pt-28 md:pt-32">
+    <section id="top" class="relative isolate min-h-[100svh] pt-32">
       <!-- Background -->
       <div class="absolute inset-0 -z-10 overflow-hidden">
         <img
@@ -677,7 +624,7 @@ input:focus-visible + .option-card{
         <div class="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-white/10 blur-3xl"></div>
       </div>
 
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="mx-auto max-w-7xl px-6">
         <div class="grid items-center gap-12 lg:grid-cols-12">
           <!-- Text -->
           <div class="lg:col-span-7">
@@ -693,7 +640,7 @@ input:focus-visible + .option-card{
               </span>
             </div>
 
-            <h1 class="reveal mt-6 font-heading font-black uppercase leading-[0.92] text-white text-[clamp(2.2rem,9vw,4.7rem)] sm:text-[clamp(2.6rem,7vw,4.7rem)]">
+            <h1 class="reveal mt-6 font-heading font-black uppercase leading-[0.92] text-white text-[clamp(2.6rem,7vw,4.7rem)]">
               <span class="block">Train.</span>
               <span class="block">Perform.</span>
               <span class="block text-brand-red">Thrive.</span>
@@ -764,21 +711,21 @@ input:focus-visible + .option-card{
 
                 <div class="mt-6 grid grid-cols-2 gap-3">
                   <figure class="relative overflow-hidden rounded-2xl">
-                    <img src="cen.jpg" alt="Mountainbike Training" class="h-36 sm:h-44 w-full object-cover transition duration-500 hover:scale-[1.06]" loading="eager" decoding="async" />
+                    <img src="cen.jpg" alt="Mountainbike Training" class="h-44 w-full object-cover transition duration-500 hover:scale-[1.06]" loading="eager" decoding="async" />
                     <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2 text-xs font-black uppercase tracking-widest text-white">
                       MTB
                     </figcaption>
                   </figure>
 
                   <figure class="relative overflow-hidden rounded-2xl">
-                    <img src="cropped.jpg" alt="Rennrad Training" class="h-36 sm:h-44 w-full object-cover transition duration-500 hover:scale-[1.06]" loading="eager" decoding="async" />
+                    <img src="cropped.jpg" alt="Rennrad Training" class="h-44 w-full object-cover transition duration-500 hover:scale-[1.06]" loading="eager" decoding="async" />
                     <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2 text-xs font-black uppercase tracking-widest text-white">
                       Bike
                     </figcaption>
                   </figure>
 
                   <figure class="relative col-span-2 overflow-hidden rounded-2xl">
-                    <img src="MarcoSlideshow.jpeg" alt="Training in den Bergen" class="h-36 sm:h-44 w-full object-cover transition duration-500 hover:scale-[1.04]" loading="eager" decoding="async" />
+                    <img src="MarcoSlideshow.jpeg" alt="Training in den Bergen" class="h-44 w-full object-cover transition duration-500 hover:scale-[1.04]" loading="eager" decoding="async" />
                     <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2 text-xs font-black uppercase tracking-widest text-white">
                       Adventure
                     </figcaption>
@@ -812,8 +759,8 @@ input:focus-visible + .option-card{
 
     <!-- PARTNER -->
     <section class="py-10">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="reveal surface flex flex-col items-center justify-between gap-6 rounded-3xl px-4 sm:px-6 py-6 sm:py-7 md:flex-row">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="reveal surface flex flex-col items-center justify-between gap-6 rounded-3xl px-6 py-7 md:flex-row">
           <div class="text-center md:text-left">
             <div class="font-heading text-sm font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Unterstützt von</div>
             <div class="mt-1 text-sm text-[color:var(--muted)]">Partnerschaft, die jungen Sport fördert.</div>
@@ -834,8 +781,8 @@ input:focus-visible + .option-card{
     </section>
 
     <!-- PROGRAMME -->
-    <section id="programme" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="programme" class="scroll-mt-28 py-20">
+      <div class="mx-auto max-w-7xl px-6">
         <div class="reveal text-center">
           <h2 class="font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
             Unsere <span class="text-brand-red">Programme</span>
@@ -847,7 +794,7 @@ input:focus-visible + .option-card{
 
         <div class="mt-12 grid gap-8 md:grid-cols-2">
           <!-- Card: Performance Coaching -->
-          <article class="reveal tilt surface-gradient group relative overflow-hidden rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface-gradient group relative overflow-hidden rounded-3xl p-8">
             <div class="absolute inset-0 pointer-events-none">
               <div class="absolute -left-24 -top-24 h-60 w-60 rounded-full bg-brand-red/18 blur-3xl"></div>
               <div class="absolute -right-24 -bottom-28 h-60 w-60 rounded-full bg-black/10 blur-3xl dark:bg-white/10"></div>
@@ -886,7 +833,7 @@ input:focus-visible + .option-card{
           </article>
 
           <!-- Card: Adventure Camps -->
-          <article class="reveal tilt surface-gradient group relative overflow-hidden rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface-gradient group relative overflow-hidden rounded-3xl p-8">
             <div class="absolute inset-0 pointer-events-none">
               <div class="absolute -left-24 -top-24 h-60 w-60 rounded-full bg-white/10 blur-3xl"></div>
               <div class="absolute -right-24 -bottom-28 h-60 w-60 rounded-full bg-brand-red/18 blur-3xl"></div>
@@ -928,11 +875,11 @@ input:focus-visible + .option-card{
     </section>
 
     <!-- SCHOOLS -->
-    <section id="schulen" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="schulen" class="scroll-mt-28 py-20">
+      <div class="mx-auto max-w-7xl px-6">
         <div class="grid items-center gap-12 lg:grid-cols-12">
           <div class="lg:col-span-5">
-            <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-6 sm:p-8">
+            <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-8">
               <div class="absolute inset-0 pointer-events-none">
                 <div class="absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-red/20 blur-3xl"></div>
                 <div class="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-black/10 blur-3xl dark:bg-white/10"></div>
@@ -968,7 +915,7 @@ input:focus-visible + .option-card{
           </div>
 
           <div class="lg:col-span-7">
-            <div class="reveal tilt surface relative overflow-hidden rounded-3xl p-5 sm:p-8">
+            <div class="reveal tilt surface relative overflow-hidden rounded-3xl p-7 sm:p-8">
               <div class="absolute inset-0 pointer-events-none">
                 <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-black/5 blur-3xl dark:bg-white/5"></div>
                 <div class="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-brand-red/14 blur-3xl"></div>
@@ -1029,8 +976,8 @@ input:focus-visible + .option-card{
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="about" class="scroll-mt-28 py-20">
+      <div class="mx-auto max-w-7xl px-6">
         <div class="reveal text-center">
           <h2 class="font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
             Das Team <span class="text-brand-red">hinter TPTraining</span>
@@ -1039,7 +986,7 @@ input:focus-visible + .option-card{
 
         <!-- About accordion -->
         <div class="reveal mx-auto mt-10 max-w-4xl">
-          <details class="surface rounded-3xl p-5 sm:p-8">
+          <details class="surface rounded-3xl p-7 sm:p-8">
             <summary class="cursor-pointer list-none">
               <div class="flex items-center justify-between gap-4">
                 <div>
@@ -1064,7 +1011,7 @@ input:focus-visible + .option-card{
         <!-- Team cards -->
         <div class="mt-12 grid gap-8 lg:grid-cols-2">
           <!-- Marco -->
-          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface-gradient rounded-3xl p-8">
             <div class="flex flex-col gap-7 md:flex-row md:items-center">
               <img
                 src="tf.png"
@@ -1095,7 +1042,7 @@ input:focus-visible + .option-card{
           </article>
 
           <!-- Benjamin -->
-          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface-gradient rounded-3xl p-8">
             <div class="flex flex-col gap-7 md:flex-row md:items-center">
               <img
                 src="benj2.jpg"
@@ -1129,8 +1076,8 @@ input:focus-visible + .option-card{
     </section>
 
     <!-- PRICES -->
-    <section id="preise" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="preise" class="scroll-mt-28 py-20">
+      <div class="mx-auto max-w-7xl px-6">
         <div class="reveal text-center">
           <h2 class="font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
             Pakete & <span class="text-brand-red">Preise</span>
@@ -1139,7 +1086,7 @@ input:focus-visible + .option-card{
 
         <div class="mt-12 grid gap-8 md:grid-cols-3">
           <!-- Einsteiger -->
-          <article class="reveal tilt surface rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface rounded-3xl p-8">
             <h3 class="font-heading text-xl font-black uppercase tracking-tight">Einsteiger</h3>
             <div class="mt-4 flex items-end gap-2">
               <div class="font-heading text-4xl font-black">€89</div>
@@ -1159,7 +1106,7 @@ input:focus-visible + .option-card{
           </article>
 
           <!-- Fortgeschritten (highlight) -->
-          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-8 relative">
+          <article class="reveal tilt surface-gradient rounded-3xl p-8 relative">
             <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-red px-4 py-2 text-[0.7rem] font-black uppercase tracking-[0.18em] text-white shadow-glow">
               Empfohlen
             </div>
@@ -1183,7 +1130,7 @@ input:focus-visible + .option-card{
           </article>
 
           <!-- Pro Athlete -->
-          <article class="reveal tilt surface rounded-3xl p-6 sm:p-8">
+          <article class="reveal tilt surface rounded-3xl p-8">
             <h3 class="font-heading text-xl font-black uppercase tracking-tight">Pro Athlete</h3>
             <div class="mt-4 flex items-end gap-2">
               <div class="font-heading text-4xl font-black">€169</div>
@@ -1207,9 +1154,9 @@ input:focus-visible + .option-card{
 
 
 <!-- SCHNELLSTART (BIG FEATURE) -->
-<section id="schnellstart" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-6 sm:p-10">
+<section id="schnellstart" class="scroll-mt-28 py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-8 sm:p-10">
       <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -left-32 top-10 h-96 w-96 rounded-full bg-brand-red/20 blur-3xl"></div>
         <div class="absolute -right-32 -bottom-24 h-96 w-96 rounded-full bg-black/10 blur-3xl dark:bg-white/10"></div>
@@ -1274,7 +1221,7 @@ input:focus-visible + .option-card{
         </div>
 
         <div class="lg:col-span-5">
-          <div class="surface rounded-3xl p-5 sm:p-7">
+          <div class="surface rounded-3xl p-7">
             <div class="flex items-start justify-between gap-4">
               <div>
                 <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Was du bekommst</div>
@@ -1318,7 +1265,7 @@ input:focus-visible + .option-card{
   </div>
 </section>
     <!-- SLIDESHOW -->
-    <section class="relative h-[52vh] sm:h-[62vh] overflow-hidden bg-black md:h-[82vh]">
+    <section class="relative h-[62vh] overflow-hidden bg-black md:h-[82vh]">
       <div id="slides-container" class="absolute inset-0">
         <img src="cen.jpg" alt="Training Impression 1" class="slide absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
         <img src="crop.jpg" alt="Training Impression 2" class="slide absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
@@ -1328,9 +1275,9 @@ input:focus-visible + .option-card{
 
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10"></div>
 
-      <div class="absolute inset-x-0 bottom-0 z-10 px-4 sm:px-6 pb-6 sm:pb-10">
+      <div class="absolute inset-x-0 bottom-0 z-10 px-6 pb-10">
         <div class="mx-auto max-w-7xl">
-          <div class="surface-soft rounded-3xl p-5 sm:p-7 text-white backdrop-blur-md">
+          <div class="surface-soft rounded-3xl p-7 text-white backdrop-blur-md">
             <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
                 <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-white/70">Momente, die bleiben</div>
@@ -1364,9 +1311,9 @@ input:focus-visible + .option-card{
     </section>
 
     <!-- CONTACT -->
-    <section id="kontakt" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="reveal surface-gradient mx-auto max-w-4xl rounded-3xl p-6 sm:p-10 text-center">
+    <section id="kontakt" class="scroll-mt-28 py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="reveal surface-gradient mx-auto max-w-4xl rounded-3xl p-8 sm:p-10 text-center">
           <h2 class="font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
             Bereit zu <span class="text-brand-red">starten?</span>
           </h2>
@@ -1385,7 +1332,7 @@ input:focus-visible + .option-card{
             </button>
           </div>
 
-          <div class="mt-7 font-heading text-sm font-black uppercase tracking-[0.18em] break-all sm:break-normal text-[color:var(--muted)]">
+          <div class="mt-7 font-heading text-sm font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">
             tp.training@gmx.net
           </div>
         </div>
@@ -1394,8 +1341,8 @@ input:focus-visible + .option-card{
 
     <!-- FOOTER -->
     <footer class="py-12">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="surface rounded-3xl px-4 sm:px-6 py-6 sm:py-8">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="surface rounded-3xl px-6 py-8">
           <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
             <div class="text-center md:text-left">
               <div class="font-heading text-2xl font-black tracking-tight text-[color:var(--text)]">TP<span class="text-brand-red">TRAINING</span></div>
@@ -1403,7 +1350,7 @@ input:focus-visible + .option-card{
               <div class="mt-2 text-xs text-[color:var(--muted)]">© <span id="year"></span> All Rights Reserved.</div>
             </div>
 
-            <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <div class="flex items-center gap-6">
               <img
                 src="KärntenSport.jpeg"
                 onerror="this.onerror=null; this.src='Ka%23U0308rntenSport.jpeg';"
@@ -1415,7 +1362,7 @@ input:focus-visible + .option-card{
             </div>
 
             <div class="flex flex-col items-center gap-3 text-sm font-black uppercase tracking-[0.18em] text-[color:var(--muted)] md:items-end">
-              <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              <div class="flex items-center gap-6">
                 <a href="Impressum.html" class="hover:text-brand-red transition-colors">Impressum</a>
                 <a href="#" class="hover:text-brand-red transition-colors">Datenschutz</a>
               </div>
@@ -1440,7 +1387,7 @@ input:focus-visible + .option-card{
 
   <div id="booking-panel" class="booking-panel surface-gradient" role="dialog" aria-modal="true" aria-labelledby="booking-title">
     <!-- Header -->
-    <div class="flex items-start justify-between gap-4 border-b border-[color:var(--border)] px-4 py-4 sm:px-7 sm:py-5">
+    <div class="flex items-start justify-between gap-4 border-b border-[color:var(--border)] px-6 py-5 sm:px-7">
       <div>
         <div class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/10 px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.18em] text-[color:var(--text)] dark:bg-white/5">
           <i class="ph-fill ph-sparkle text-brand-red"></i>
@@ -1460,7 +1407,7 @@ input:focus-visible + .option-card{
     </div>
 
     <!-- Progress -->
-    <div class="px-4 pt-4 sm:px-7 sm:pt-5">
+    <div class="px-6 pt-5 sm:px-7">
       <div class="flex items-center justify-between text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">
         <span id="booking-step-label">Schritt 1 / 4</span>
         <span class="inline-flex items-center gap-2">
@@ -1474,7 +1421,7 @@ input:focus-visible + .option-card{
     </div>
 
     <!-- Content -->
-    <div class="booking-body px-4 pb-5 pt-5 sm:px-7 sm:pb-7 sm:pt-6">
+    <div class="booking-body px-6 pb-6 pt-6 sm:px-7 sm:pb-7">
       <form id="booking-form" class="space-y-6">
         <!-- Hidden metadata -->
         <input type="hidden" name="page_url" id="booking-page-url" />
@@ -1912,7 +1859,7 @@ input:focus-visible + .option-card{
 
       <!-- Success state -->
       <div id="booking-success" class="hidden">
-        <div class="surface rounded-3xl p-5 sm:p-8">
+        <div class="surface rounded-3xl p-7 sm:p-8">
           <div class="flex items-start justify-between gap-4">
             <div>
               <div class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white shadow-glow">
@@ -1976,7 +1923,7 @@ input:focus-visible + .option-card{
   </div>
 
   <noscript>
-    <div class="fixed inset-x-0 bottom-0 z-50 bg-brand-red px-4 sm:px-6 py-4 text-center text-sm font-semibold text-white">
+    <div class="fixed inset-x-0 bottom-0 z-50 bg-brand-red px-6 py-4 text-center text-sm font-semibold text-white">
       Diese Seite nutzt JavaScript für Menüs, Animationen und Slideshow. Bitte aktiviere JavaScript für das beste Erlebnis.
     </div>
   </noscript>

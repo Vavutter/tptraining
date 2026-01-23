@@ -15,22 +15,12 @@
 :root{--accent:#ED2939;--accent-dark:#c51f2e;}
 body{font-family:'Inter',sans-serif;}
 h1,h2{font-family:'Poppins',sans-serif;letter-spacing:-.01em;}
-
-
-@media (max-width: 767px){
-  h1,h2,p,a{
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
-  }
-}
-
 </style>
 </head>
 <body class="antialiased text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
-<div class="min-h-screen flex items-center justify-center px-4 sm:px-6">
-  <main class="max-w-3xl w-full space-y-10 py-16 md:py-24">
+<div class="min-h-screen flex items-center justify-center px-6">
+  <main class="max-w-3xl w-full space-y-10 py-24">
 
     <header class="text-center space-y-4">
       <h1 class="text-4xl font-bold">Impressum</h1>
@@ -62,7 +52,7 @@ h1,h2{font-family:'Poppins',sans-serif;letter-spacing:-.01em;}
       <p>
         Verbraucher haben die Möglichkeit, Beschwerden an die Plattform der EU-Kommission zur
         Online-Streitbeilegung zu richten:
-        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" class="underline break-all sm:break-normal">
+        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" class="underline">
           https://ec.europa.eu/consumers/odr/
         </a>.
         Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungs­verfahren vor einer
