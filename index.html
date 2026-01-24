@@ -319,6 +319,7 @@
     /* Hero background parallax helper */
     .hero-bg{
       transform: translateY(var(--p, 0px)) scale(1.08);
+      filter: saturate(0.9) contrast(1.12) brightness(0.9);
       will-change: transform;
       transition: transform .2s ease-out;
     }
@@ -563,6 +564,117 @@ input:focus-visible + .option-card{
       .option-card{ border-radius: 16px; padding: 12px 12px; }
     }
 
+    /* ------------------------------
+       Mobile-first cinematic hero + dock navigation
+    ------------------------------ */
+    .hero-rotate{
+      position: relative;
+      display: inline-block;
+      height: 1.05em;
+      min-width: 8.2ch; /* prevents layout jump when words rotate */
+      vertical-align: bottom;
+    }
+    .hero-rotate span{
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(6px);
+      animation: heroWord 9s infinite;
+      will-change: opacity, transform, filter;
+    }
+    .hero-rotate span:nth-child(1){ animation-delay: 0s; }
+    .hero-rotate span:nth-child(2){ animation-delay: 3s; }
+    .hero-rotate span:nth-child(3){ animation-delay: 6s; }
+    @keyframes heroWord{
+      0%{ opacity: 0; transform: translateY(18px); filter: blur(6px); }
+      10%{ opacity: 1; transform: translateY(0); filter: blur(0); }
+      30%{ opacity: 1; transform: translateY(0); filter: blur(0); }
+      40%{ opacity: 0; transform: translateY(-18px); filter: blur(6px); }
+      100%{ opacity: 0; }
+    }
+
+    .mobile-dock{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 55;
+      padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+      pointer-events: none; /* only inner controls are clickable */
+    }
+    .mobile-dock .surface{
+      pointer-events: auto;
+    }
+    .dock-link{
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: .55rem .35rem;
+      border-radius: 18px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: transform .18s ease, background-color .18s ease, color .18s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .dock-link:active{ transform: translateY(1px) scale(.99); }
+    .dock-icon{
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .dark .dock-icon{
+      background: rgba(255,255,255,0.06);
+    }
+    .dock-label{
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      line-height: 1;
+    }
+    .dock-link:hover{ color: var(--text); }
+    .dock-link[aria-current="page"]{ color: var(--text); }
+    .dock-link[aria-current="page"] .dock-icon{
+      background: linear-gradient(180deg, rgba(237,41,57,0.14), rgba(255,255,255,0.00));
+      border-color: rgba(237,41,57,0.38);
+      box-shadow: 0 0 0 3px var(--ring);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 767px){
+      html{ scroll-padding-bottom: calc(112px + env(safe-area-inset-bottom)); }
+      #main{ padding-bottom: calc(112px + env(safe-area-inset-bottom)); }
+      #to-top{ bottom: calc(112px + env(safe-area-inset-bottom)); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .hero-rotate{
+        height: auto;
+        min-width: 0;
+      }
+      .hero-rotate span{
+        position: static;
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
+      }
+      .hero-rotate span + span{
+        margin-left: .35rem;
+      }
+    }
+
 </style>
 </head>
 
@@ -593,6 +705,7 @@ input:focus-visible + .option-card{
           <!-- Desktop nav -->
           <nav class="hidden items-center gap-7 md:flex">
             <a class="nav-link" href="#programme" data-spy="programme">Programme</a>
+            <a class="nav-link" href="#sportarten" data-spy="sportarten">Sportarten</a>
             <a class="nav-link" href="#about" data-spy="about">Über uns</a>
             <a class="nav-link" href="#schulen" data-spy="schulen">Schulen</a>
             <a class="nav-link" href="#preise" data-spy="preise">Preise</a>
@@ -634,6 +747,7 @@ input:focus-visible + .option-card{
 
           <div class="mt-8 space-y-2">
             <a href="#programme" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Programme</a>
+            <a href="#sportarten" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Sportarten</a>
             <a href="#about" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Über uns</a>
             <a href="#schulen" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Schulen</a>
             <a href="#preise" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Preise</a>
@@ -678,7 +792,54 @@ input:focus-visible + .option-card{
       </div>
 
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="grid items-center gap-12 lg:grid-cols-12">
+
+        <!-- Mobile-first: cinematic entry (minimal text above the fold) -->
+        <div class="md:hidden">
+          <div class="surface-gradient relative overflow-hidden rounded-3xl p-3">
+            <div class="relative overflow-hidden rounded-2xl">
+              <div class="grid grid-cols-2 gap-2">
+                <img src="cen.jpg" alt="Mountainbike Training" class="h-40 w-full object-cover" loading="eager" decoding="async" />
+                <img src="cropped.jpg" alt="Rennrad Training" class="h-40 w-full object-cover" loading="eager" decoding="async" />
+                <img src="MarcoSlideshow.jpg" alt="Training in den Bergen" class="h-44 w-full col-span-2 object-cover" loading="eager" decoding="async" />
+              </div>
+
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
+
+              <div class="absolute inset-x-0 bottom-0 p-5">
+                <div class="font-heading text-[clamp(2.2rem,12vw,3.2rem)] font-black uppercase leading-[0.92] text-white">
+                  <span class="hero-rotate" aria-label="Train. Perform. Thrive.">
+                    <span>Train.</span>
+                    <span>Perform.</span>
+                    <span class="text-brand-red">Thrive.</span>
+                  </span>
+                </div>
+
+                <p class="mt-3 max-w-[28rem] text-sm leading-relaxed text-white/75">
+                  Coaching, Adventure Camps und School‑Athletics für Triathlon, Mountainbike, Laufen und Schwimmen.
+                </p>
+
+                <div class="mt-5 flex flex-col gap-3">
+                  <a href="#sportarten" class="btn btn-primary w-full justify-center">
+                    Start
+                    <i class="ph-bold ph-arrow-right"></i>
+                  </a>
+                  <button type="button" class="btn btn-invert w-full justify-center" data-booking-open>
+                    Schnellstart‑Check
+                    <i class="ph-bold ph-sparkle"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex items-center justify-center">
+            <a href="#sportarten" class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
+              <i class="ph-bold ph-arrow-down"></i>
+              Entdecken
+            </a>
+          </div>
+        </div>
+        <div class="hidden md:grid items-center gap-12 lg:grid-cols-12">
           <!-- Text -->
           <div class="lg:col-span-7">
             <div class="reveal inline-flex flex-wrap items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
@@ -821,14 +982,173 @@ input:focus-visible + .option-card{
 
           <div class="flex items-center gap-4">
             <img
-              src="KärntenSport.jpeg"
-              onerror="this.onerror=null; this.src='Ka%23U0308rntenSport.jpeg';"
+              src="KaerntenSport.png"
               alt="Kärnten Sport Logo"
               class="h-14 w-auto object-contain opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
               loading="lazy"
               decoding="async"
             />
           </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- SPORTARTEN -->
+    <section id="sportarten" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal text-center">
+          <h2 class="font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
+            Sportarten <span class="text-brand-red">&amp; Angebote</span>
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-[color:var(--muted)]">
+            Tippe auf deinen Fokus – du wirst direkt in den Schnellstart‑Check geführt (nichts wird bevorzugt, nichts wird ausgelassen).
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Triathlon -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Triathlon</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Schwimmen · Rad · Lauf – smart kombiniert.</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-activity text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Struktur, Periodisierung & Trainingspläne</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Technik‑Bausteine (Schwimmen / Laufen)</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Optional: Tests, Analysen & Bike‑Fitting</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-sport-focus="Triathlon">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
+
+          <!-- Mountainbike -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Mountainbike</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Skills, Technik, Sicherheit &amp; Speed.</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-bicycle text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Trail‑Skills &amp; Techniktraining</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Linienwahl, Bremsen, Kurven &amp; Balance</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Nachwuchs &amp; Erwachsene – passend zum Level</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-sport-focus="Mountainbike">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
+
+          <!-- Laufen -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Laufen</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Grundlagen, Tempo &amp; Wettkampf‑Prep.</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-person-simple-run text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Lauftechnik, Haltung &amp; Koordination</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Tempo‑Variationen &amp; Trainingssteuerung</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Aufbau bis Wettkampf – klar &amp; planbar</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-sport-focus="Laufen">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
+
+          <!-- Schwimmen -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Schwimmen</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Technik &amp; Effizienz – ohne Frust.</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-swimming-pool text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Technik‑Grundlagen &amp; saubere Abläufe</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Effizienz, Atmung &amp; Wasserlage</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Sicherheit &amp; Vertrauen im Wasser</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-sport-focus="Schwimmen">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
+
+          <!-- Adventure Camps -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Adventure Camps</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Mehrtagesevents in den Bergen (auf Anfrage).</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-mountains text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Technik‑Sessions &amp; Skills</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Ausdauer &amp; Athletik – intensiv &amp; sicher</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Teamgeist, Motivation &amp; Erlebnis</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-plan="Adventure Camps Anfrage" data-sport-focus="Adventure Camps">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
+
+          <!-- Schulen -->
+          <article class="reveal tilt surface-gradient rounded-3xl p-6 sm:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading text-xl font-black uppercase tracking-tight">Schule / Projekt</h3>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Sportwochen, Projekttage &amp; Basics (auf Anfrage).</p>
+              </div>
+              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-student text-2xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-5 space-y-3 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Rad‑, Lauf‑ &amp; Schwimm‑Basics im Unterricht</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Altersgerecht, strukturiert &amp; sicher</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Spaß, Technik &amp; aktiver Lifestyle</li>
+            </ul>
+
+            <button type="button" class="mt-6 inline-flex w-full btn btn-ghost justify-center" data-booking-open data-plan="Schule / Projekt Anfrage" data-sport-focus="Schule / Projekt">
+              Schnellstart
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </article>
         </div>
       </div>
     </section>
@@ -1037,6 +1357,31 @@ input:focus-visible + .option-card{
           </h2>
         </div>
 
+                <!-- Kurzüberblick (alle Infos ohne „Aufklappen“) -->
+        <div class="reveal mx-auto mt-10 max-w-4xl">
+          <div class="surface-soft rounded-3xl p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Kurzüberblick</div>
+                <div class="mt-1 font-heading text-xl font-black uppercase tracking-tight">TP‑Training in 7 Punkten</div>
+              </div>
+              <div class="grid h-11 w-11 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                <i class="ph-bold ph-note-pencil text-xl"></i>
+              </div>
+            </div>
+
+            <ul class="mt-6 grid gap-3 sm:grid-cols-2 text-sm text-[color:var(--muted)]">
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Gegründet 2025 von Marco Tiefenbacher &amp; Benjamin Pletzer.</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Ziel: junge Menschen für Triathlon &amp; Mountainbike begeistern.</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Staatlich geprüfte Übungsleiter &amp; aktive Leistungssportler.</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Angebot: Radfahrtechnik‑Kurse, Schwimmkurse &amp; Sportcamps.</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Zusätzlich: individuelle Trainingspläne &amp; Trainingsberatung.</li>
+              <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Fokus: Freude am Sport &amp; aktiver Lebensstil.</li>
+              <li class="flex items-start gap-3 sm:col-span-2"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Für Kinder &amp; Jugendliche: Fähigkeiten entdecken, Grenzen erweitern, unvergessliche sportliche Erfahrungen sammeln.</li>
+            </ul>
+          </div>
+        </div>
+
         <!-- About accordion -->
         <div class="reveal mx-auto mt-10 max-w-4xl">
           <details class="surface rounded-3xl p-5 sm:p-8">
@@ -1077,6 +1422,14 @@ input:focus-visible + .option-card{
                 <h3 class="font-heading text-2xl font-black uppercase tracking-tight">Marco Tiefenbacher</h3>
                 <p class="mt-2 text-sm font-black uppercase tracking-[0.18em] text-brand-red">Co-Founder & Triathlon Coach</p>
                 <p class="mt-3 text-sm text-[color:var(--muted)]">Spezialgebiete: Trainings­periodisierung · Trainingspläne · Leistungstests / Analysen · Bike-Fitting</p>
+                <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-[color:var(--muted)]">
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> 18 Jahre · aus Grafenstein.</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Start über Kinderschnuppertraining.</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Leichtathletik‑Ausbildung beim LAC Klagenfurt.</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Fokus: 1000 m &amp; 3000 m (Bahn) · danach Berglauf (2 Jahre).</li>
+                  <li class="flex items-start gap-3 sm:col-span-2"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Rennrad seit 2022 · seit Sommer 2024 voll auf zwei Rädern · 2024 Triathlon‑Übungsleiter abgeschlossen.</li>
+                  <li class="flex items-start gap-3 sm:col-span-2"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Mission: Kindern &amp; Jugendlichen Freude an Schwimmen, Radfahren &amp; Laufen vermitteln – plus Werte fürs Leben.</li>
+                </ul>
               </div>
             </div>
 
@@ -1108,6 +1461,14 @@ input:focus-visible + .option-card{
                 <h3 class="font-heading text-2xl font-black uppercase tracking-tight">Benjamin Pletzer</h3>
                 <p class="mt-2 text-sm font-black uppercase tracking-[0.18em] text-brand-red">Co-Founder & MTB Specialist</p>
                 <p class="mt-3 text-sm text-[color:var(--muted)]">Spezialgebiete: Trail-Skills · Nachwuchs­förderung · Mentalcoaching · Technik Training</p>
+                <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-sm text-[color:var(--muted)]">
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> 18 Jahre · seit vielen Jahren MTB‑Leistungssportler.</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Trainer seit 2 Jahren (Freizeit).</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Coacht Kinder mit Spaß am Bike – und Erwachsene, die später einsteigen.</li>
+                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Know‑how aus dem Racer‑Alltag: Ziele setzen &amp; erreichen.</li>
+                  <li class="flex items-start gap-3 sm:col-span-2"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Fokus: Leidenschaft, Disziplin &amp; „eins‑zu‑eins“ Weitergabe von Erfahrung.</li>
+                  <li class="flex items-start gap-3 sm:col-span-2"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Ziel: Jugend für Fahrrad/MTB begeistern – dich zur erfahrenen Mountainbikerin / zum erfahrenen Mountainbiker begleiten.</li>
+                </ul>
               </div>
             </div>
 
@@ -1405,8 +1766,7 @@ input:focus-visible + .option-card{
 
             <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
               <img
-                src="KärntenSport.jpeg"
-                onerror="this.onerror=null; this.src='Ka%23U0308rntenSport.jpeg';"
+                src="KaerntenSport.png"
                 alt="Kärnten Sport"
                 class="h-12 w-auto object-contain opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
                 loading="lazy"
@@ -1427,6 +1787,40 @@ input:focus-visible + .option-card{
         </div>
       </div>
     </footer>
+
+            <!-- Mobile dock navigation (phones) -->
+    <nav id="mobile-dock" class="mobile-dock md:hidden" aria-label="Schnellnavigation">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="surface rounded-3xl px-2 py-2">
+          <div class="grid grid-cols-5 items-stretch">
+            <a href="#top" class="dock-link" data-spy="top">
+              <span class="dock-icon"><i class="ph-bold ph-house text-xl"></i></span>
+              <span class="dock-label">Start</span>
+            </a>
+
+            <a href="#sportarten" class="dock-link" data-spy="sportarten">
+              <span class="dock-icon"><i class="ph-bold ph-activity text-xl"></i></span>
+              <span class="dock-label">Sport</span>
+            </a>
+
+            <a href="#about" class="dock-link" data-spy="about">
+              <span class="dock-icon"><i class="ph-bold ph-users-three text-xl"></i></span>
+              <span class="dock-label">Team</span>
+            </a>
+
+            <a href="#preise" class="dock-link" data-spy="preise">
+              <span class="dock-icon"><i class="ph-bold ph-tag text-xl"></i></span>
+              <span class="dock-label">Preise</span>
+            </a>
+
+            <a href="#kontakt" class="dock-link" data-spy="kontakt">
+              <span class="dock-icon"><i class="ph-bold ph-paper-plane-right text-xl"></i></span>
+              <span class="dock-label">Kontakt</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- Back to top floating button -->
     <button id="to-top" class="fixed bottom-6 right-6 z-50 hidden h-12 w-12 rounded-2xl bg-brand-red text-white shadow-glow transition hover:brightness-95" aria-label="Nach oben scrollen">
@@ -2172,7 +2566,7 @@ input:focus-visible + .option-card{
        Scroll spy (highlight current section in nav)
     ------------------------------ */
     const spyLinks = $$('a[data-spy]');
-    const sections = ['programme', 'about', 'schulen', 'preise', 'schnellstart']
+    const sections = ['top', 'sportarten', 'programme', 'about', 'schulen', 'preise', 'schnellstart', 'kontakt']
       .map(id => document.getElementById(id))
       .filter(Boolean);
 
@@ -2272,7 +2666,7 @@ function cleanupDownloads(){
   }
 }
 
-function openBooking({ plan = '' } = {}){
+function openBooking({ plan = '', sportFocus = '' } = {}){
   if(!bookingModal || !bookingPanel || !bookingForm) return;
 
   bookingLastFocus = document.activeElement;
@@ -2286,6 +2680,13 @@ function openBooking({ plan = '' } = {}){
 
   bookingForm.reset();
   if($('#booking-page-url')) $('#booking-page-url').value = window.location.href;
+
+  // If user picked a sport entry point, preselect it in Schritt 1
+  if(sportFocus){
+    const sf = bookingForm.querySelector(`input[name="sport_focus"][value="${esc(sportFocus)}"]`);
+    if(sf) sf.checked = true;
+  }
+
 
   // If user clicked "Buchen" on a package, preselect it (and do not auto-overwrite with recommendation)
   if(plan){
@@ -2371,7 +2772,7 @@ document.addEventListener('keydown', (e) => {
 $$('[data-booking-open]').forEach(el => {
   el.addEventListener('click', (e) => {
     if(el.tagName.toLowerCase() === 'a') e.preventDefault();
-    openBooking({ plan: el.getAttribute('data-plan') || '' });
+    openBooking({ plan: el.getAttribute('data-plan') || '', sportFocus: el.getAttribute('data-sport-focus') || '' });
   });
 });
 
