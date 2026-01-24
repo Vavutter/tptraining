@@ -288,7 +288,6 @@
       box-shadow: var(--shadow);
     }
 
-
     /* Header state on scroll */
     #navbar.is-scrolled{
       transform: translateY(-2px);
@@ -401,116 +400,116 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-  
-/* ------------------------------
-   Schnellstart / Booking Funnel (Modal)
------------------------------- */
-.booking-panel{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(980px, 92vw);
-  max-height: min(88svh, 940px);
-  transform: translate(-50%, -50%) translateY(18px);
-  opacity: 0;
-  transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .28s cubic-bezier(.2,.9,.2,1);
-  overflow: hidden;
-}
-#booking-modal.is-open .booking-panel{
-  transform: translate(-50%, -50%) translateY(0);
-  opacity: 1;
-}
-.booking-panel{
-  display: flex;
-  flex-direction: column;
-}
-.booking-body{
-  flex: 1;
-  overflow: auto;
-  overscroll-behavior: contain;
-}
 
-.field{ display: flex; flex-direction: column; gap: .35rem; }
-.label{
-  font-size: .72rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  font-weight: 900;
-  font-family: Montserrat, Inter, system-ui, sans-serif;
-  color: var(--muted);
-}
-.input{
-  width: 100%;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.62);
-  padding: .9rem 1rem;
-  color: var(--text);
-  transition: box-shadow .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease;
-}
-.dark .input{
-  background: rgba(17,17,20,0.56);
-}
-.input::placeholder{
-  color: rgba(11,11,16,0.5);
-}
-.dark .input::placeholder{
-  color: rgba(255,255,255,0.45);
-}
-.input:focus{
-  border-color: rgba(237,41,57,0.48);
-  box-shadow: 0 0 0 4px var(--ring);
-  outline: none;
-}
+    /* ------------------------------
+       Schnellstart / Booking Funnel (Modal)
+    ------------------------------ */
+    .booking-panel{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(980px, 92vw);
+      max-height: min(88svh, 940px);
+      transform: translate(-50%, -50%) translateY(18px);
+      opacity: 0;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .28s cubic-bezier(.2,.9,.2,1);
+      overflow: hidden;
+    }
+    #booking-modal.is-open .booking-panel{
+      transform: translate(-50%, -50%) translateY(0);
+      opacity: 1;
+    }
+    .booking-panel{
+      display: flex;
+      flex-direction: column;
+    }
+    .booking-body{
+      flex: 1;
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
 
-.option-card{
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-  border-radius: 18px;
-  padding: 14px 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.46);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
-  cursor: pointer;
-  user-select: none;
-}
-.dark .option-card{
-  background: rgba(17,17,20,0.44);
-}
-.option-title{
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  font-family: Montserrat, Inter, system-ui, sans-serif;
-  font-weight: 900;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: .82rem;
-  color: var(--text);
-}
-.option-desc{
-  font-size: .88rem;
-  color: var(--muted);
-  line-height: 1.35;
-}
-.option-card:hover{
-  transform: translateY(-1px);
-  border-color: rgba(237,41,57,0.28);
-  box-shadow: var(--shadowSoft);
-}
-input:checked + .option-card{
-  border-color: rgba(237,41,57,0.75);
-  background: linear-gradient(180deg, rgba(237,41,57,0.10), rgba(255,255,255,0.44));
-  box-shadow: 0 0 0 1px rgba(237,41,57,0.22), 0 30px 80px -60px rgba(237,41,57,0.75);
-  transform: translateY(-1px);
-}
-.dark input:checked + .option-card{
-  background: linear-gradient(180deg, rgba(237,41,57,0.14), rgba(17,17,20,0.40));
-}
-input:focus-visible + .option-card{
-  box-shadow: 0 0 0 4px var(--ring);
-}
+    .field{ display: flex; flex-direction: column; gap: .35rem; }
+    .label{
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      color: var(--muted);
+    }
+    .input{
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.62);
+      padding: .9rem 1rem;
+      color: var(--text);
+      transition: box-shadow .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease;
+    }
+    .dark .input{
+      background: rgba(17,17,20,0.56);
+    }
+    .input::placeholder{
+      color: rgba(11,11,16,0.5);
+    }
+    .dark .input::placeholder{
+      color: rgba(255,255,255,0.45);
+    }
+    .input:focus{
+      border-color: rgba(237,41,57,0.48);
+      box-shadow: 0 0 0 4px var(--ring);
+      outline: none;
+    }
+
+    .option-card{
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      border-radius: 18px;
+      padding: 14px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.46);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .dark .option-card{
+      background: rgba(17,17,20,0.44);
+    }
+    .option-title{
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .82rem;
+      color: var(--text);
+    }
+    .option-desc{
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .option-card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(237,41,57,0.28);
+      box-shadow: var(--shadowSoft);
+    }
+    input:checked + .option-card{
+      border-color: rgba(237,41,57,0.75);
+      background: linear-gradient(180deg, rgba(237,41,57,0.10), rgba(255,255,255,0.44));
+      box-shadow: 0 0 0 1px rgba(237,41,57,0.22), 0 30px 80px -60px rgba(237,41,57,0.75);
+      transform: translateY(-1px);
+    }
+    .dark input:checked + .option-card{
+      background: linear-gradient(180deg, rgba(237,41,57,0.14), rgba(17,17,20,0.40));
+    }
+    input:focus-visible + .option-card{
+      box-shadow: 0 0 0 4px var(--ring);
+    }
 
     /* ------------------------------
        Mobile refinements
@@ -675,7 +674,178 @@ input:focus-visible + .option-card{
       }
     }
 
-</style>
+    /* ------------------------------
+       Mobile UX v2: Dock-CTA + Wizard-Navigation (Sticky)
+    ------------------------------ */
+
+    /* Dock: <a> und <button> gleich behandeln */
+    .dock-link{
+      border: 0;
+      background: transparent;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    /* Dock: Center CTA (Schnellstart) */
+    .dock-link--cta{
+      color: var(--text);
+    }
+    .dock-link--cta .dock-icon{
+      background: var(--brand);
+      border-color: rgba(255,255,255,0.14);
+      color: #fff;
+      box-shadow: 0 18px 55px -35px rgba(237,41,57,0.85);
+      transform: translateY(-6px);
+    }
+    .dock-link--cta .dock-label{
+      color: var(--text);
+    }
+    .dark .dock-link--cta .dock-icon{
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    /* Hero: Quick-Chips (direkter Einstieg) */
+    .hero-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      padding:.55rem .85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.92);
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .70rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .hero-chip:active{ transform: translateY(1px) scale(.99); }
+    .hero-chip:hover{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); }
+    .hero-chip i{ color: rgba(237,41,57,0.95); }
+
+    /* Wizard: Sticky Footer Controls (Next/Back immer sichtbar) */
+    .booking-footer{
+      position: sticky;
+      bottom: 0;
+      z-index: 30;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent 0%, var(--surface) 26%, var(--surface) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .booking-footer::before{
+      content:"";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: var(--border);
+      opacity: .9;
+    }
+
+    /* Disabled Buttons: klarer Status */
+    .btn:disabled{
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Option Cards: sichtbarer Selected Marker */
+    .option-card{
+      position: relative;
+      padding-right: 2.6rem; /* Platz für Marker */
+    }
+    .option-card::after{
+      content: "";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.04);
+      display: grid;
+      place-items: center;
+      color: transparent;
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .dark .option-card::after{
+      background: rgba(255,255,255,0.06);
+    }
+    input:checked + .option-card::after{
+      content: "✓";
+      color: #fff;
+      background: var(--brand);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    /* Sehr kleine Screens: Texte kürzen, damit Cards kompakter werden */
+    @media (max-width: 480px){
+      .option-desc{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    /* Wizard: Stepper Buttons */
+    .step-dot{
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.04);
+      color: var(--muted);
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      transition: background-color .18s ease, border-color .18s ease, transform .18s ease, color .18s ease;
+    }
+    .dark .step-dot{
+      background: rgba(255,255,255,0.06);
+    }
+    .step-dot[aria-current="step"]{
+      background: linear-gradient(180deg, rgba(237,41,57,0.18), rgba(255,255,255,0.02));
+      border-color: rgba(237,41,57,0.45);
+      color: var(--text);
+      box-shadow: 0 0 0 3px var(--ring);
+      transform: translateY(-1px);
+    }
+    .step-dot:disabled{
+      opacity: .5;
+    }
+
+    /* Optional Panel (details) */
+    .optional-details summary{
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .optional-details summary::-webkit-details-marker{ display:none; }
+    .optional-details[open] .optional-caret{
+      transform: rotate(180deg);
+    }
+  </style>
 </head>
 
 <body class="antialiased transition-colors duration-300">
@@ -751,8 +921,8 @@ input:focus-visible + .option-card{
             <a href="#about" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Über uns</a>
             <a href="#schulen" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Schulen</a>
             <a href="#preise" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Preise</a>
-                        <a href="#schnellstart" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Schnellstart</a>
-<a href="#kontakt" data-booking-open class="mt-3 inline-flex w-full btn btn-primary justify-center" data-mobile-link>
+            <a href="#schnellstart" class="block rounded-xl px-4 py-3 font-heading font-black uppercase tracking-widest text-[0.8rem] text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" data-mobile-link>Schnellstart</a>
+            <a href="#kontakt" data-booking-open class="mt-3 inline-flex w-full btn btn-primary justify-center" data-mobile-link>
               Kontakt
               <i class="ph-bold ph-paper-plane-right"></i>
             </a>
@@ -793,7 +963,7 @@ input:focus-visible + .option-card{
 
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
 
-        <!-- Mobile-first: cinematic entry (minimal text above the fold) -->
+        <!-- Mobile-first: cinematic entry (better guidance + quick entry chips) -->
         <div class="md:hidden">
           <div class="surface-gradient relative overflow-hidden rounded-3xl p-3">
             <div class="relative overflow-hidden rounded-2xl">
@@ -803,7 +973,7 @@ input:focus-visible + .option-card{
                 <img src="MarcoSlideshow.jpg" alt="Training in den Bergen" class="h-44 w-full col-span-2 object-cover" loading="eager" decoding="async" />
               </div>
 
-              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent"></div>
 
               <div class="absolute inset-x-0 bottom-0 p-5">
                 <div class="font-heading text-[clamp(2.2rem,12vw,3.2rem)] font-black uppercase leading-[0.92] text-white">
@@ -814,16 +984,38 @@ input:focus-visible + .option-card{
                   </span>
                 </div>
 
-
+                <p class="mt-3 text-sm leading-snug text-white/75">
+                  Triathlon, MTB &amp; Schwimmen – Kurse, Camps und Coaching für Kinder &amp; Jugendliche in Österreich.
+                </p>
 
                 <div class="mt-5 flex flex-col gap-3">
                   <a href="#sportarten" class="btn btn-primary w-full justify-center">
-                    Start
+                    Angebote entdecken
                     <i class="ph-bold ph-arrow-right"></i>
                   </a>
                   <button type="button" class="btn btn-invert w-full justify-center" data-booking-open>
                     Schnellstart‑Check
                     <i class="ph-bold ph-sparkle"></i>
+                  </button>
+
+                  <div class="mt-1 text-center text-xs font-black uppercase tracking-[0.18em] text-white/55">
+                    60 Sekunden · Empfehlung + nächster Schritt
+                  </div>
+                </div>
+
+                <!-- NEW: Quick entry chips (open funnel pre-filled) -->
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <button type="button" class="hero-chip" data-booking-open data-sport-focus="Triathlon">
+                    <i class="ph-bold ph-activity"></i> Triathlon
+                  </button>
+                  <button type="button" class="hero-chip" data-booking-open data-sport-focus="Mountainbike">
+                    <i class="ph-bold ph-bicycle"></i> MTB
+                  </button>
+                  <button type="button" class="hero-chip" data-booking-open data-sport-focus="Laufen">
+                    <i class="ph-bold ph-person-simple-run"></i> Laufen
+                  </button>
+                  <button type="button" class="hero-chip" data-booking-open data-sport-focus="Schwimmen">
+                    <i class="ph-bold ph-swimming-pool"></i> Schwimmen
                   </button>
                 </div>
               </div>
@@ -837,6 +1029,7 @@ input:focus-visible + .option-card{
             </a>
           </div>
         </div>
+
         <div class="hidden md:grid items-center gap-12 lg:grid-cols-12">
           <!-- Text -->
           <div class="lg:col-span-7">
@@ -991,7 +1184,7 @@ input:focus-visible + .option-card{
       </div>
     </section>
 
-        <!-- SPORTARTEN -->
+    <!-- SPORTARTEN -->
     <section id="sportarten" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="reveal text-center">
@@ -1352,7 +1545,7 @@ input:focus-visible + .option-card{
           </h2>
         </div>
 
-                <!-- Kurzüberblick (alle Infos ohne „Aufklappen“) -->
+        <!-- Kurzüberblick (alle Infos ohne „Aufklappen“) -->
         <div class="reveal mx-auto mt-10 max-w-4xl">
           <div class="surface-soft rounded-3xl p-6 sm:p-8">
             <div class="flex items-start justify-between gap-4">
@@ -1561,118 +1754,118 @@ input:focus-visible + .option-card{
       </div>
     </section>
 
-
-<!-- SCHNELLSTART (BIG FEATURE) -->
-<section id="schnellstart" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-6 sm:p-10">
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute -left-32 top-10 h-96 w-96 rounded-full bg-brand-red/20 blur-3xl"></div>
-        <div class="absolute -right-32 -bottom-24 h-96 w-96 rounded-full bg-black/10 blur-3xl dark:bg-white/10"></div>
-      </div>
-
-      <div class="relative grid gap-10 lg:grid-cols-12 lg:items-center">
-        <div class="lg:col-span-7">
-          <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/10 px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-[color:var(--text)] backdrop-blur-md dark:bg-white/5">
-            <span class="inline-flex items-center gap-2">
-              <i class="ph-fill ph-sparkle text-brand-red"></i>
-              Neu: Schnellstart‑Check
-            </span>
-            <span class="opacity-40">•</span>
-            <span class="inline-flex items-center gap-2">
-              <i class="ph-fill ph-timer text-[color:var(--muted)]"></i>
-              ~60 Sekunden
-            </span>
-            <span class="opacity-40">•</span>
-            <span class="inline-flex items-center gap-2">
-              <i class="ph-fill ph-lock-key-open text-[color:var(--muted)]"></i>
-              Kontaktdaten erst am Ende
-            </span>
+    <!-- SCHNELLSTART (BIG FEATURE) -->
+    <section id="schnellstart" class="scroll-mt-24 md:scroll-mt-28 py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal surface-gradient relative overflow-hidden rounded-3xl p-6 sm:p-10">
+          <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -left-32 top-10 h-96 w-96 rounded-full bg-brand-red/20 blur-3xl"></div>
+            <div class="absolute -right-32 -bottom-24 h-96 w-96 rounded-full bg-black/10 blur-3xl dark:bg-white/10"></div>
           </div>
 
-          <h2 class="mt-6 font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
-            60‑Sekunden <span class="text-brand-red">Schnellstart‑Check</span>
-          </h2>
-
-          <p class="mt-4 max-w-2xl text-[color:var(--muted)] md:text-lg">
-            Beantworte ein paar kurze Fragen und erhalte sofort eine klare Empfehlung (Einsteiger / Fortgeschritten / Pro) inklusive nächstem Schritt – direkt hier auf der Website.
-          </p>
-
-          <ul class="mt-7 space-y-3 text-sm text-[color:var(--muted)]">
-            <li class="flex items-start gap-3">
-              <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
-              Sofort‑Empfehlung basierend auf Ziel, Level und Zeitbudget.
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
-              Optionale Terminwahl fürs kostenlose Erstgespräch.
-            </li>
-            <li class="flex items-start gap-3">
-              <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
-              Am Ende: Anfrage per E‑Mail oder (optional) über ein statisches Formular‑Backend.
-            </li>
-          </ul>
-
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#kontakt" data-booking-open class="btn btn-primary justify-center">
-              Check starten
-              <i class="ph-bold ph-arrow-right"></i>
-            </a>
-            <a href="#preise" class="btn btn-ghost justify-center">
-              Pakete ansehen
-              <i class="ph-bold ph-cards"></i>
-            </a>
-          </div>
-
-          <p class="mt-4 text-xs text-[color:var(--muted)]">
-            Hinweis: Der Check ist eine Orientierung (keine medizinische Beratung) und hilft uns, dein optimales Setup schneller zu finden.
-          </p>
-        </div>
-
-        <div class="lg:col-span-5">
-          <div class="surface rounded-3xl p-5 sm:p-7">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Was du bekommst</div>
-                <div class="mt-2 font-heading text-2xl font-black uppercase tracking-tight">
-                  Empfehlung + Next Step
-                </div>
+          <div class="relative grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/10 px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-[color:var(--text)] backdrop-blur-md dark:bg-white/5">
+                <span class="inline-flex items-center gap-2">
+                  <i class="ph-fill ph-sparkle text-brand-red"></i>
+                  Neu: Schnellstart‑Check
+                </span>
+                <span class="opacity-40">•</span>
+                <span class="inline-flex items-center gap-2">
+                  <i class="ph-fill ph-timer text-[color:var(--muted)]"></i>
+                  ~60 Sekunden
+                </span>
+                <span class="opacity-40">•</span>
+                <span class="inline-flex items-center gap-2">
+                  <i class="ph-fill ph-lock-key-open text-[color:var(--muted)]"></i>
+                  Kontaktdaten erst am Ende
+                </span>
               </div>
-              <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
-                <i class="ph-bold ph-magic-wand text-2xl"></i>
+
+              <h2 class="mt-6 font-heading text-3xl font-black uppercase tracking-tight md:text-4xl">
+                60‑Sekunden <span class="text-brand-red">Schnellstart‑Check</span>
+              </h2>
+
+              <p class="mt-4 max-w-2xl text-[color:var(--muted)] md:text-lg">
+                Beantworte ein paar kurze Fragen und erhalte sofort eine klare Empfehlung (Einsteiger / Fortgeschritten / Pro) inklusive nächstem Schritt – direkt hier auf der Website.
+              </p>
+
+              <ul class="mt-7 space-y-3 text-sm text-[color:var(--muted)]">
+                <li class="flex items-start gap-3">
+                  <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
+                  Sofort‑Empfehlung basierend auf Ziel, Level und Zeitbudget.
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
+                  Optionale Terminwahl fürs kostenlose Erstgespräch.
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i>
+                  Am Ende: Anfrage per E‑Mail oder (optional) über ein statisches Formular‑Backend.
+                </li>
+              </ul>
+
+              <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a href="#kontakt" data-booking-open class="btn btn-primary justify-center">
+                  Check starten
+                  <i class="ph-bold ph-arrow-right"></i>
+                </a>
+                <a href="#preise" class="btn btn-ghost justify-center">
+                  Pakete ansehen
+                  <i class="ph-bold ph-cards"></i>
+                </a>
               </div>
+
+              <p class="mt-4 text-xs text-[color:var(--muted)]">
+                Hinweis: Der Check ist eine Orientierung (keine medizinische Beratung) und hilft uns, dein optimales Setup schneller zu finden.
+              </p>
             </div>
 
-            <div class="mt-6 space-y-4">
-              <div class="rounded-2xl border border-[color:var(--border)] bg-white/5 p-4 dark:bg-white/0">
-                <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Beispiel‑Output</div>
-                <div class="mt-2 text-sm text-[color:var(--muted)]">
-                  <span class="font-heading font-black uppercase tracking-widest text-[color:var(--text)]">Fortgeschritten</span>
-                  <span class="ml-2">– wenn du regelmäßig trainierst und schnelle Anpassungen willst.</span>
+            <div class="lg:col-span-5">
+              <div class="surface rounded-3xl p-5 sm:p-7">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Was du bekommst</div>
+                    <div class="mt-2 font-heading text-2xl font-black uppercase tracking-tight">
+                      Empfehlung + Next Step
+                    </div>
+                  </div>
+                  <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                    <i class="ph-bold ph-magic-wand text-2xl"></i>
+                  </div>
                 </div>
-              </div>
 
-              <div class="grid grid-cols-2 gap-4">
-                <div class="surface-soft rounded-2xl p-4">
-                  <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Nächster Schritt</div>
-                  <div class="mt-2 text-sm font-semibold text-[color:var(--text)]">Kostenloses 15‑Min‑Erstgespräch</div>
-                </div>
-                <div class="surface-soft rounded-2xl p-4">
-                  <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Dauer</div>
-                  <div class="mt-2 text-sm font-semibold text-[color:var(--text)]">~60 Sekunden</div>
-                </div>
-              </div>
+                <div class="mt-6 space-y-4">
+                  <div class="rounded-2xl border border-[color:var(--border)] bg-white/5 p-4 dark:bg-white/0">
+                    <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Beispiel‑Output</div>
+                    <div class="mt-2 text-sm text-[color:var(--muted)]">
+                      <span class="font-heading font-black uppercase tracking-widest text-[color:var(--text)]">Fortgeschritten</span>
+                      <span class="ml-2">– wenn du regelmäßig trainierst und schnelle Anpassungen willst.</span>
+                    </div>
+                  </div>
 
-              <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                Du kannst deine Antworten am Ende als Text kopieren oder einen Termin als Kalenderdatei (.ics) herunterladen.
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="surface-soft rounded-2xl p-4">
+                      <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Nächster Schritt</div>
+                      <div class="mt-2 text-sm font-semibold text-[color:var(--text)]">Kostenloses 15‑Min‑Erstgespräch</div>
+                    </div>
+                    <div class="surface-soft rounded-2xl p-4">
+                      <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Dauer</div>
+                      <div class="mt-2 text-sm font-semibold text-[color:var(--text)]">~60 Sekunden</div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                    Du kannst deine Antworten am Ende als Text kopieren oder einen Termin als Kalenderdatei (.ics) herunterladen.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
     <!-- SLIDESHOW -->
     <section class="relative h-[52vh] sm:h-[62vh] overflow-hidden bg-black md:h-[82vh]">
       <div id="slides-container" class="absolute inset-0">
@@ -1783,7 +1976,7 @@ input:focus-visible + .option-card{
       </div>
     </footer>
 
-            <!-- Mobile dock navigation (phones) -->
+    <!-- Mobile dock navigation (phones) -->
     <nav id="mobile-dock" class="mobile-dock md:hidden" aria-label="Schnellnavigation">
       <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="surface rounded-3xl px-2 py-2">
@@ -1798,10 +1991,11 @@ input:focus-visible + .option-card{
               <span class="dock-label">Sport</span>
             </a>
 
-            <a href="#about" class="dock-link" data-spy="about">
-              <span class="dock-icon"><i class="ph-bold ph-users-three text-xl"></i></span>
-              <span class="dock-label">Team</span>
-            </a>
+            <!-- NEW: Center CTA -->
+            <button type="button" class="dock-link dock-link--cta" data-booking-open aria-label="Schnellstart-Check öffnen">
+              <span class="dock-icon"><i class="ph-bold ph-sparkle text-xl"></i></span>
+              <span class="dock-label">Check</span>
+            </button>
 
             <a href="#preise" class="dock-link" data-spy="preise">
               <span class="dock-icon"><i class="ph-bold ph-tag text-xl"></i></span>
@@ -1823,539 +2017,558 @@ input:focus-visible + .option-card{
     </button>
   </main>
 
-<!-- BOOKING / LEAD FUNNEL MODAL (BIG FEATURE) -->
-<div id="booking-modal" class="fixed inset-0 z-[70] hidden" aria-hidden="true">
-  <div class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+  <!-- BOOKING / LEAD FUNNEL MODAL (BIG FEATURE) -->
+  <div id="booking-modal" class="fixed inset-0 z-[70] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
 
-  <div id="booking-panel" class="booking-panel surface-gradient" role="dialog" aria-modal="true" aria-labelledby="booking-title">
-    <!-- Header -->
-    <div class="flex items-start justify-between gap-4 border-b border-[color:var(--border)] px-4 py-4 sm:px-7 sm:py-5">
-      <div>
-        <div class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/10 px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.18em] text-[color:var(--text)] dark:bg-white/5">
-          <i class="ph-fill ph-sparkle text-brand-red"></i>
-          Schnellstart‑Check
+    <div id="booking-panel" class="booking-panel surface-gradient" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+      <!-- Header -->
+      <div class="flex items-start justify-between gap-4 border-b border-[color:var(--border)] px-4 py-4 sm:px-7 sm:py-5">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/10 px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.18em] text-[color:var(--text)] dark:bg-white/5">
+            <i class="ph-fill ph-sparkle text-brand-red"></i>
+            Schnellstart‑Check
+          </div>
+          <h3 id="booking-title" class="mt-3 font-heading text-xl font-black uppercase tracking-tight">
+            In 60 Sekunden zur Empfehlung
+          </h3>
+          <p class="mt-1 text-sm text-[color:var(--muted)]">
+            Beantworte ein paar Fragen – wir melden uns mit einem klaren nächsten Schritt.
+          </p>
         </div>
-        <h3 id="booking-title" class="mt-3 font-heading text-xl font-black uppercase tracking-tight">
-          In 60 Sekunden zur Empfehlung
-        </h3>
-        <p class="mt-1 text-sm text-[color:var(--muted)]">
-          Beantworte ein paar Fragen – wir melden uns mit einem klaren nächsten Schritt.
-        </p>
+
+        <button id="booking-close" class="grid h-11 w-11 place-items-center rounded-xl border border-[color:var(--border)] bg-transparent text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" aria-label="Schließen">
+          <i class="ph-bold ph-x text-xl"></i>
+        </button>
       </div>
 
-      <button id="booking-close" class="grid h-11 w-11 place-items-center rounded-xl border border-[color:var(--border)] bg-transparent text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" aria-label="Schließen">
-        <i class="ph-bold ph-x text-xl"></i>
-      </button>
-    </div>
+      <!-- Progress -->
+      <div class="px-4 pt-4 sm:px-7 sm:pt-5">
+        <div class="flex items-center justify-between text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">
+          <span id="booking-step-label">Schritt 1 / 4</span>
+          <span class="inline-flex items-center gap-2">
+            <i class="ph-bold ph-timer"></i> ~60 Sekunden
+          </span>
+        </div>
 
-    <!-- Progress -->
-    <div class="px-4 pt-4 sm:px-7 sm:pt-5">
-      <div class="flex items-center justify-between text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">
-        <span id="booking-step-label">Schritt 1 / 4</span>
-        <span class="inline-flex items-center gap-2">
-          <i class="ph-bold ph-timer"></i> ~60 Sekunden
-        </span>
+        <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/5" aria-hidden="true">
+          <div id="booking-progress" class="h-full w-[25%] bg-brand-red"></div>
+        </div>
+
+        <!-- Stepper (tap to go back) -->
+        <div class="mt-4 grid grid-cols-4 gap-2" aria-label="Schnellstart Schritte">
+          <button type="button" class="step-dot" data-step-jump="0" aria-label="Schritt 1: Fokus & Ziel">1</button>
+          <button type="button" class="step-dot" data-step-jump="1" aria-label="Schritt 2: Level & Zeitbudget">2</button>
+          <button type="button" class="step-dot" data-step-jump="2" aria-label="Schritt 3: Empfehlung & Auswahl">3</button>
+          <button type="button" class="step-dot" data-step-jump="3" aria-label="Schritt 4: Kontaktdaten">4</button>
+        </div>
       </div>
 
-      <div class="mt-3 h-2 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/5" aria-hidden="true">
-        <div id="booking-progress" class="h-full w-[25%] bg-brand-red"></div>
-      </div>
-    </div>
+      <!-- Content -->
+      <div class="booking-body px-4 pb-5 pt-5 sm:px-7 sm:pb-7 sm:pt-6">
+        <form id="booking-form" class="space-y-6">
+          <!-- Hidden metadata -->
+          <input type="hidden" name="page_url" id="booking-page-url" />
+          <input type="hidden" name="recommended_plan" id="booking-recommended-plan" value="" />
 
-    <!-- Content -->
-    <div class="booking-body px-4 pb-5 pt-5 sm:px-7 sm:pb-7 sm:pt-6">
-      <form id="booking-form" class="space-y-6">
-        <!-- Hidden metadata -->
-        <input type="hidden" name="page_url" id="booking-page-url" />
-        <input type="hidden" name="recommended_plan" id="booking-recommended-plan" value="" />
+          <!-- STEP 1 -->
+          <section class="booking-step" data-step="0">
+            <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
+              <div class="lg:col-span-7">
+                <h4 class="font-heading text-lg font-black uppercase tracking-tight">1) Fokus & Ziel</h4>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Wähle aus, womit wir dir am besten helfen können.</p>
 
-        <!-- STEP 1 -->
-        <section class="booking-step" data-step="0">
-          <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
-            <div class="lg:col-span-7">
-              <h4 class="font-heading text-lg font-black uppercase tracking-tight">1) Fokus & Ziel</h4>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">Wähle aus, womit wir dir am besten helfen können.</p>
+                <div class="mt-5" id="booking-focus-block">
+                  <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Sport / Angebot</div>
+                  <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                    <div>
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-tri" value="Triathlon" required />
+                      <label class="option-card" for="sf-tri">
+                        <span class="option-title"><i class="ph-bold ph-activity text-brand-red"></i> Triathlon</span>
+                        <span class="option-desc">Schwimmen · Rad · Lauf – strukturiert kombinieren.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-mtb" value="Mountainbike" />
+                      <label class="option-card" for="sf-mtb">
+                        <span class="option-title"><i class="ph-bold ph-bicycle text-brand-red"></i> Mountainbike</span>
+                        <span class="option-desc">Skills, Technik, Sicherheit & Speed.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-run" value="Laufen" />
+                      <label class="option-card" for="sf-run">
+                        <span class="option-title"><i class="ph-bold ph-person-simple-run text-brand-red"></i> Laufen</span>
+                        <span class="option-desc">Grundlagen, Tempo, Wettkampf‑Prep.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-swim" value="Schwimmen" />
+                      <label class="option-card" for="sf-swim">
+                        <span class="option-title"><i class="ph-bold ph-swimming-pool text-brand-red"></i> Schwimmen</span>
+                        <span class="option-desc">Technik & Effizienz – ohne Frust.</span>
+                      </label>
+                    </div>
+                    <div class="sm:col-span-2">
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-camp" value="Adventure Camps" />
+                      <label class="option-card" for="sf-camp">
+                        <span class="option-title"><i class="ph-bold ph-mountains text-brand-red"></i> Adventure Camps</span>
+                        <span class="option-desc">Mehrtagesevents in den Bergen (auf Anfrage).</span>
+                      </label>
+                    </div>
+                    <div class="sm:col-span-2">
+                      <input class="sr-only" type="radio" name="sport_focus" id="sf-school" value="Schule / Projekt" />
+                      <label class="option-card" for="sf-school">
+                        <span class="option-title"><i class="ph-bold ph-student text-brand-red"></i> Schule / Projekt</span>
+                        <span class="option-desc">Sportwochen, Projekttage & sichere Basics (auf Anfrage).</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
 
-              <div class="mt-5">
-                <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Sport / Angebot</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-tri" value="Triathlon" required />
-                    <label class="option-card" for="sf-tri">
-                      <span class="option-title"><i class="ph-bold ph-activity text-brand-red"></i> Triathlon</span>
-                      <span class="option-desc">Schwimmen · Rad · Lauf – strukturiert kombinieren.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-mtb" value="Mountainbike" />
-                    <label class="option-card" for="sf-mtb">
-                      <span class="option-title"><i class="ph-bold ph-bicycle text-brand-red"></i> Mountainbike</span>
-                      <span class="option-desc">Skills, Technik, Sicherheit & Speed.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-run" value="Laufen" />
-                    <label class="option-card" for="sf-run">
-                      <span class="option-title"><i class="ph-bold ph-person-simple-run text-brand-red"></i> Laufen</span>
-                      <span class="option-desc">Grundlagen, Tempo, Wettkampf‑Prep.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-swim" value="Schwimmen" />
-                    <label class="option-card" for="sf-swim">
-                      <span class="option-title"><i class="ph-bold ph-swimming-pool text-brand-red"></i> Schwimmen</span>
-                      <span class="option-desc">Technik & Effizienz – ohne Frust.</span>
-                    </label>
-                  </div>
-                  <div class="sm:col-span-2">
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-camp" value="Adventure Camps" />
-                    <label class="option-card" for="sf-camp">
-                      <span class="option-title"><i class="ph-bold ph-mountains text-brand-red"></i> Adventure Camps</span>
-                      <span class="option-desc">Mehrtagesevents in den Bergen (auf Anfrage).</span>
-                    </label>
-                  </div>
-                  <div class="sm:col-span-2">
-                    <input class="sr-only" type="radio" name="sport_focus" id="sf-school" value="Schule / Projekt" />
-                    <label class="option-card" for="sf-school">
-                      <span class="option-title"><i class="ph-bold ph-student text-brand-red"></i> Schule / Projekt</span>
-                      <span class="option-desc">Sportwochen, Projekttage & sichere Basics (auf Anfrage).</span>
-                    </label>
+                <div class="mt-6" id="booking-goal-block">
+                  <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Primäres Ziel</div>
+                  <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                    <div>
+                      <input class="sr-only" type="radio" name="primary_goal" id="g-basics" value="Grundlagen aufbauen" required />
+                      <label class="option-card" for="g-basics">
+                        <span class="option-title"><i class="ph-bold ph-compass text-brand-red"></i> Grundlagen</span>
+                        <span class="option-desc">Struktur finden, sauber starten.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="primary_goal" id="g-tech" value="Technik verbessern" />
+                      <label class="option-card" for="g-tech">
+                        <span class="option-title"><i class="ph-bold ph-wrench text-brand-red"></i> Technik</span>
+                        <span class="option-desc">Skills, Effizienz, Sicherheit.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="primary_goal" id="g-race" value="Wettkampf vorbereiten" />
+                      <label class="option-card" for="g-race">
+                        <span class="option-title"><i class="ph-bold ph-flag-checkered text-brand-red"></i> Wettkampf</span>
+                        <span class="option-desc">Build, Peak, Taper – planbar.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="primary_goal" id="g-perf" value="Leistung steigern" />
+                      <label class="option-card" for="g-perf">
+                        <span class="option-title"><i class="ph-bold ph-trend-up text-brand-red"></i> Performance</span>
+                        <span class="option-desc">Mehr Output, weniger Chaos.</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="mt-6">
-                <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Primäres Ziel</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <input class="sr-only" type="radio" name="primary_goal" id="g-basics" value="Grundlagen aufbauen" required />
-                    <label class="option-card" for="g-basics">
-                      <span class="option-title"><i class="ph-bold ph-compass text-brand-red"></i> Grundlagen</span>
-                      <span class="option-desc">Struktur finden, sauber starten.</span>
+              <aside class="lg:col-span-5">
+                <details class="optional-details surface rounded-3xl p-6" data-open-desktop>
+                  <summary>
+                    <div class="flex items-center gap-3">
+                      <span class="grid h-10 w-10 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                        <i class="ph-bold ph-calendar text-xl"></i>
+                      </span>
+                      <div>
+                        <div class="font-heading text-sm font-black uppercase tracking-widest">Optional</div>
+                        <div class="text-xs text-[color:var(--muted)]">Wettkampfdatum &amp; kurze Notiz</div>
+                      </div>
+                    </div>
+                    <i class="ph-bold ph-caret-down text-xl text-[color:var(--muted)] optional-caret transition-transform duration-200"></i>
+                  </summary>
+
+                  <div class="mt-4 space-y-4">
+                    <label class="field">
+                      <span class="label">Wettkampfdatum (optional)</span>
+                      <input class="input" type="date" name="event_date" />
                     </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="primary_goal" id="g-tech" value="Technik verbessern" />
-                    <label class="option-card" for="g-tech">
-                      <span class="option-title"><i class="ph-bold ph-wrench text-brand-red"></i> Technik</span>
-                      <span class="option-desc">Skills, Effizienz, Sicherheit.</span>
+
+                    <label class="field">
+                      <span class="label">Kurzbeschreibung (optional)</span>
+                      <textarea class="input" name="notes" rows="4" placeholder="z.B. „Triathlon‑Einsteiger, 2–3x/Woche, Ziel: Sprint‑Distanz im Sommer“"></textarea>
                     </label>
+
+                    <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                      Wir fragen Kontaktdaten erst am Ende ab – damit der Start möglichst schnell ist.
+                    </div>
                   </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="primary_goal" id="g-race" value="Wettkampf vorbereiten" />
-                    <label class="option-card" for="g-race">
-                      <span class="option-title"><i class="ph-bold ph-flag-checkered text-brand-red"></i> Wettkampf</span>
-                      <span class="option-desc">Build, Peak, Taper – planbar.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="primary_goal" id="g-perf" value="Leistung steigern" />
-                    <label class="option-card" for="g-perf">
-                      <span class="option-title"><i class="ph-bold ph-trend-up text-brand-red"></i> Performance</span>
-                      <span class="option-desc">Mehr Output, weniger Chaos.</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
+                </details>
+              </aside>
             </div>
+          </section>
 
-            <aside class="lg:col-span-5">
-              <div class="surface rounded-3xl p-6">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-heading text-sm font-black uppercase tracking-widest">Optional</div>
-                  <i class="ph-bold ph-calendar text-brand-red text-xl"></i>
+          <!-- STEP 2 -->
+          <section class="booking-step hidden" data-step="1" aria-hidden="true">
+            <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
+              <div class="lg:col-span-7">
+                <h4 class="font-heading text-lg font-black uppercase tracking-tight">2) Level & Zeitbudget</h4>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Damit wir die Intensität richtig setzen.</p>
+
+                <div class="mt-5">
+                  <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Erfahrung</div>
+                  <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                    <div>
+                      <input class="sr-only" type="radio" name="experience" id="ex-beginner" value="Anfänger" required />
+                      <label class="option-card" for="ex-beginner">
+                        <span class="option-title"><i class="ph-bold ph-seedling text-brand-red"></i> Anfänger</span>
+                        <span class="option-desc">Starten & Routine bauen.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="experience" id="ex-inter" value="Fortgeschritten" />
+                      <label class="option-card" for="ex-inter">
+                        <span class="option-title"><i class="ph-bold ph-fire text-brand-red"></i> Fortgeschritten</span>
+                        <span class="option-desc">Struktur & Feinschliff.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="experience" id="ex-race" value="Wettkampf / Leistung" />
+                      <label class="option-card" for="ex-race">
+                        <span class="option-title"><i class="ph-bold ph-trophy text-brand-red"></i> Leistung</span>
+                        <span class="option-desc">Daten & Peak‑Phasen.</span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="mt-4 space-y-4">
+                <div class="mt-6">
+                  <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Training pro Woche</div>
+                  <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                    <div>
+                      <input class="sr-only" type="radio" name="weekly_sessions" id="ws-2" value="2–3 Einheiten" required />
+                      <label class="option-card" for="ws-2">
+                        <span class="option-title"><i class="ph-bold ph-number-circle-two text-brand-red"></i> 2–3x</span>
+                        <span class="option-desc">Klarer, einfacher Plan.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="weekly_sessions" id="ws-4" value="4–5 Einheiten" />
+                      <label class="option-card" for="ws-4">
+                        <span class="option-title"><i class="ph-bold ph-number-circle-four text-brand-red"></i> 4–5x</span>
+                        <span class="option-desc">Mehr Bausteine, mehr Wirkung.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="weekly_sessions" id="ws-6" value="6+ Einheiten" />
+                      <label class="option-card" for="ws-6">
+                        <span class="option-title"><i class="ph-bold ph-infinity text-brand-red"></i> 6+ </span>
+                        <span class="option-desc">Hoher Umfang, fein steuern.</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6">
                   <label class="field">
-                    <span class="label">Wettkampfdatum (optional)</span>
-                    <input class="input" type="date" name="event_date" />
-                  </label>
-
-                  <label class="field">
-                    <span class="label">Kurzbeschreibung (optional)</span>
-                    <textarea class="input" name="notes" rows="4" placeholder="z.B. „Triathlon‑Einsteiger, 2–3x/Woche, Ziel: Sprint‑Distanz im Sommer“"></textarea>
-                  </label>
-
-                  <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                    Wir fragen Kontaktdaten erst am Ende ab – damit der Start möglichst schnell ist.
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <!-- STEP 2 -->
-        <section class="booking-step hidden" data-step="1" aria-hidden="true">
-          <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
-            <div class="lg:col-span-7">
-              <h4 class="font-heading text-lg font-black uppercase tracking-tight">2) Level & Zeitbudget</h4>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">Damit wir die Intensität richtig setzen.</p>
-
-              <div class="mt-5">
-                <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Erfahrung</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-3">
-                  <div>
-                    <input class="sr-only" type="radio" name="experience" id="ex-beginner" value="Anfänger" required />
-                    <label class="option-card" for="ex-beginner">
-                      <span class="option-title"><i class="ph-bold ph-seedling text-brand-red"></i> Anfänger</span>
-                      <span class="option-desc">Starten & Routine bauen.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="experience" id="ex-inter" value="Fortgeschritten" />
-                    <label class="option-card" for="ex-inter">
-                      <span class="option-title"><i class="ph-bold ph-fire text-brand-red"></i> Fortgeschritten</span>
-                      <span class="option-desc">Struktur & Feinschliff.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="experience" id="ex-race" value="Wettkampf / Leistung" />
-                    <label class="option-card" for="ex-race">
-                      <span class="option-title"><i class="ph-bold ph-trophy text-brand-red"></i> Leistung</span>
-                      <span class="option-desc">Daten & Peak‑Phasen.</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-6">
-                <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Training pro Woche</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-3">
-                  <div>
-                    <input class="sr-only" type="radio" name="weekly_sessions" id="ws-2" value="2–3 Einheiten" required />
-                    <label class="option-card" for="ws-2">
-                      <span class="option-title"><i class="ph-bold ph-number-circle-two text-brand-red"></i> 2–3x</span>
-                      <span class="option-desc">Klarer, einfacher Plan.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="weekly_sessions" id="ws-4" value="4–5 Einheiten" />
-                    <label class="option-card" for="ws-4">
-                      <span class="option-title"><i class="ph-bold ph-number-circle-four text-brand-red"></i> 4–5x</span>
-                      <span class="option-desc">Mehr Bausteine, mehr Wirkung.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="weekly_sessions" id="ws-6" value="6+ Einheiten" />
-                    <label class="option-card" for="ws-6">
-                      <span class="option-title"><i class="ph-bold ph-infinity text-brand-red"></i> 6+ </span>
-                      <span class="option-desc">Hoher Umfang, fein steuern.</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-6">
-                <label class="field">
-                  <span class="label">Altersgruppe</span>
-                  <select class="input" name="age_group" required>
-                    <option value="" selected disabled>Bitte wählen …</option>
-                    <option>U12</option>
-                    <option>U15</option>
-                    <option>U18</option>
-                    <option>18+</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-
-            <aside class="lg:col-span-5">
-              <div class="surface rounded-3xl p-6">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-heading text-sm font-black uppercase tracking-widest">Was ist aktuell der Engpass?</div>
-                  <i class="ph-bold ph-funnel-simple text-brand-red text-xl"></i>
-                </div>
-
-                <div class="mt-4 grid gap-3">
-                  <div>
-                    <input class="sr-only" type="radio" name="main_challenge" id="c-time" value="Zeit / Organisation" required />
-                    <label class="option-card" for="c-time">
-                      <span class="option-title"><i class="ph-bold ph-clock text-brand-red"></i> Zeit</span>
-                      <span class="option-desc">Alles unterbringen – ohne Stress.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="main_challenge" id="c-mot" value="Motivation / Fokus" />
-                    <label class="option-card" for="c-mot">
-                      <span class="option-title"><i class="ph-bold ph-bullseye text-brand-red"></i> Fokus</span>
-                      <span class="option-desc">Dranbleiben, Ziele klar halten.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="main_challenge" id="c-tech" value="Technik / Sicherheit" />
-                    <label class="option-card" for="c-tech">
-                      <span class="option-title"><i class="ph-bold ph-shield-check text-brand-red"></i> Technik</span>
-                      <span class="option-desc">Besser, sicherer, effizienter.</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="main_challenge" id="c-plan" value="Planung / Struktur" />
-                    <label class="option-card" for="c-plan">
-                      <span class="option-title"><i class="ph-bold ph-list-checks text-brand-red"></i> Struktur</span>
-                      <span class="option-desc">Wissen, was wann Sinn macht.</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                  Auf Basis deiner Antworten erzeugen wir gleich eine Paket‑Empfehlung – du kannst sie aber jederzeit ändern.
-                </div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <!-- STEP 3 -->
-        <section class="booking-step hidden" data-step="2" aria-hidden="true">
-          <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
-            <div class="lg:col-span-7">
-              <h4 class="font-heading text-lg font-black uppercase tracking-tight">3) Empfehlung & Auswahl</h4>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">Hier ist unser Vorschlag – du kannst ihn übernehmen oder anpassen.</p>
-
-              <div id="recommendation-card" class="mt-5 rounded-3xl border border-[color:var(--border)] bg-white/10 p-6 dark:bg-white/5">
-                <div class="flex items-start justify-between gap-4">
-                  <div>
-                    <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Empfohlen</div>
-                    <div class="mt-2 font-heading text-2xl font-black uppercase tracking-tight" id="recommendation-title">Fortgeschritten</div>
-                    <div class="mt-1 text-sm text-[color:var(--muted)]" id="recommendation-subtitle">Basierend auf deinen Angaben.</div>
-                  </div>
-                  <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
-                    <i class="ph-bold ph-crown text-2xl"></i>
-                  </div>
-                </div>
-
-                <ul class="mt-4 space-y-2 text-sm text-[color:var(--muted)]" id="recommendation-bullets">
-                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Unlimitierter Kontakt & schnelle Anpassungen.</li>
-                  <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Ideal bei regelmäßigem Training und klaren Zielen.</li>
-                </ul>
-
-                <div class="mt-5 flex flex-wrap items-center gap-3">
-                  <span class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white shadow-glow" id="recommendation-price">
-                    ab €129/Monat
-                  </span>
-                  <span class="text-xs text-[color:var(--muted)]">Du kannst im nächsten Schritt auch nur per E‑Mail anfragen.</span>
-                </div>
-              </div>
-
-              <div class="mt-6">
-                <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Paket auswählen</div>
-                <div class="mt-3 grid gap-3">
-                  <div>
-                    <input class="sr-only" type="radio" name="selected_plan" id="pl-ein" value="Einsteiger" required />
-                    <label class="option-card" for="pl-ein">
-                      <span class="option-title"><i class="ph-bold ph-rocket-launch text-brand-red"></i> Einsteiger</span>
-                      <span class="option-desc">Basis‑Plan, Analyse & Tests · ab €89/Monat</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="selected_plan" id="pl-fort" value="Fortgeschritten" />
-                    <label class="option-card" for="pl-fort">
-                      <span class="option-title"><i class="ph-bold ph-lightning text-brand-red"></i> Fortgeschritten</span>
-                      <span class="option-desc">Unlimitierter Kontakt & tägliche Anpassungen · ab €129/Monat</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="selected_plan" id="pl-pro" value="Pro Athlete" />
-                    <label class="option-card" for="pl-pro">
-                      <span class="option-title"><i class="ph-bold ph-trophy text-brand-red"></i> Pro Athlete</span>
-                      <span class="option-desc">Full‑Service Coaching & Wettkampfsupport · ab €169</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="selected_plan" id="pl-camp" value="Adventure Camps Anfrage" />
-                    <label class="option-card" for="pl-camp">
-                      <span class="option-title"><i class="ph-bold ph-mountains text-brand-red"></i> Adventure Camps</span>
-                      <span class="option-desc">Mehrtagesevent · Termin & Details auf Anfrage</span>
-                    </label>
-                  </div>
-                  <div>
-                    <input class="sr-only" type="radio" name="selected_plan" id="pl-school" value="Schule / Projekt Anfrage" />
-                    <label class="option-card" for="pl-school">
-                      <span class="option-title"><i class="ph-bold ph-student text-brand-red"></i> Schule / Projekt</span>
-                      <span class="option-desc">Sportwochen / Projekttage · auf Anfrage</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <aside class="lg:col-span-5">
-              <div class="surface rounded-3xl p-6">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-heading text-sm font-black uppercase tracking-widest">Kontakt</div>
-                  <i class="ph-bold ph-chat-circle-dots text-brand-red text-xl"></i>
-                </div>
-
-                <div class="mt-4 space-y-4">
-                  <label class="field">
-                    <span class="label">Bevorzugter Kanal</span>
-                    <select class="input" name="preferred_channel" required>
+                    <span class="label">Altersgruppe</span>
+                    <select class="input" name="age_group" required>
                       <option value="" selected disabled>Bitte wählen …</option>
-                      <option>E‑Mail</option>
-                      <option>Telefon</option>
-                      <option>Kostenloses Erstgespräch (15 min)</option>
+                      <option>U12</option>
+                      <option>U15</option>
+                      <option>U18</option>
+                      <option>18+</option>
                     </select>
                   </label>
+                </div>
+              </div>
 
-                  <div class="grid gap-3 sm:grid-cols-2">
-                    <label class="field">
-                      <span class="label">Wunschtermin (optional)</span>
-                      <input class="input" type="date" name="preferred_date" />
-                    </label>
-                    <label class="field">
-                      <span class="label">Uhrzeit (optional)</span>
-                      <input class="input" type="time" name="preferred_time" />
-                    </label>
+              <aside class="lg:col-span-5">
+                <div class="surface rounded-3xl p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="font-heading text-sm font-black uppercase tracking-widest">Was ist aktuell der Engpass?</div>
+                    <i class="ph-bold ph-funnel-simple text-brand-red text-xl"></i>
                   </div>
 
-                  <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                    Wenn du einen Termin auswählst, kannst du am Ende eine Kalenderdatei (.ics) herunterladen.
+                  <div class="mt-4 grid gap-3">
+                    <div>
+                      <input class="sr-only" type="radio" name="main_challenge" id="c-time" value="Zeit / Organisation" required />
+                      <label class="option-card" for="c-time">
+                        <span class="option-title"><i class="ph-bold ph-clock text-brand-red"></i> Zeit</span>
+                        <span class="option-desc">Alles unterbringen – ohne Stress.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="main_challenge" id="c-mot" value="Motivation / Fokus" />
+                      <label class="option-card" for="c-mot">
+                        <span class="option-title"><i class="ph-bold ph-bullseye text-brand-red"></i> Fokus</span>
+                        <span class="option-desc">Dranbleiben, Ziele klar halten.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="main_challenge" id="c-tech" value="Technik / Sicherheit" />
+                      <label class="option-card" for="c-tech">
+                        <span class="option-title"><i class="ph-bold ph-shield-check text-brand-red"></i> Technik</span>
+                        <span class="option-desc">Besser, sicherer, effizienter.</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="main_challenge" id="c-plan" value="Planung / Struktur" />
+                      <label class="option-card" for="c-plan">
+                        <span class="option-title"><i class="ph-bold ph-list-checks text-brand-red"></i> Struktur</span>
+                        <span class="option-desc">Wissen, was wann Sinn macht.</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                    Auf Basis deiner Antworten erzeugen wir gleich eine Paket‑Empfehlung – du kannst sie aber jederzeit ändern.
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- STEP 3 -->
+          <section class="booking-step hidden" data-step="2" aria-hidden="true">
+            <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
+              <div class="lg:col-span-7">
+                <h4 class="font-heading text-lg font-black uppercase tracking-tight">3) Empfehlung & Auswahl</h4>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Hier ist unser Vorschlag – du kannst ihn übernehmen oder anpassen.</p>
+
+                <div id="recommendation-card" class="mt-5 rounded-3xl border border-[color:var(--border)] bg-white/10 p-6 dark:bg-white/5">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">Empfohlen</div>
+                      <div class="mt-2 font-heading text-2xl font-black uppercase tracking-tight" id="recommendation-title">Fortgeschritten</div>
+                      <div class="mt-1 text-sm text-[color:var(--muted)]" id="recommendation-subtitle">Basierend auf deinen Angaben.</div>
+                    </div>
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-red/10 text-brand-red">
+                      <i class="ph-bold ph-crown text-2xl"></i>
+                    </div>
+                  </div>
+
+                  <ul class="mt-4 space-y-2 text-sm text-[color:var(--muted)]" id="recommendation-bullets">
+                    <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Unlimitierter Kontakt & schnelle Anpassungen.</li>
+                    <li class="flex items-start gap-3"><i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> Ideal bei regelmäßigem Training und klaren Zielen.</li>
+                  </ul>
+
+                  <div class="mt-5 flex flex-wrap items-center gap-3">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white shadow-glow" id="recommendation-price">
+                      ab €129/Monat
+                    </span>
+                    <span class="text-xs text-[color:var(--muted)]">Du kannst im nächsten Schritt auch nur per E‑Mail anfragen.</span>
+                  </div>
+                </div>
+
+                <div class="mt-6">
+                  <div class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]">Paket auswählen</div>
+                  <div class="mt-3 grid gap-3">
+                    <div>
+                      <input class="sr-only" type="radio" name="selected_plan" id="pl-ein" value="Einsteiger" required />
+                      <label class="option-card" for="pl-ein">
+                        <span class="option-title"><i class="ph-bold ph-rocket-launch text-brand-red"></i> Einsteiger</span>
+                        <span class="option-desc">Basis‑Plan, Analyse & Tests · ab €89/Monat</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="selected_plan" id="pl-fort" value="Fortgeschritten" />
+                      <label class="option-card" for="pl-fort">
+                        <span class="option-title"><i class="ph-bold ph-lightning text-brand-red"></i> Fortgeschritten</span>
+                        <span class="option-desc">Unlimitierter Kontakt & tägliche Anpassungen · ab €129/Monat</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="selected_plan" id="pl-pro" value="Pro Athlete" />
+                      <label class="option-card" for="pl-pro">
+                        <span class="option-title"><i class="ph-bold ph-trophy text-brand-red"></i> Pro Athlete</span>
+                        <span class="option-desc">Full‑Service Coaching & Wettkampfsupport · ab €169</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="selected_plan" id="pl-camp" value="Adventure Camps Anfrage" />
+                      <label class="option-card" for="pl-camp">
+                        <span class="option-title"><i class="ph-bold ph-mountains text-brand-red"></i> Adventure Camps</span>
+                        <span class="option-desc">Mehrtagesevent · Termin & Details auf Anfrage</span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="sr-only" type="radio" name="selected_plan" id="pl-school" value="Schule / Projekt Anfrage" />
+                      <label class="option-card" for="pl-school">
+                        <span class="option-title"><i class="ph-bold ph-student text-brand-red"></i> Schule / Projekt</span>
+                        <span class="option-desc">Sportwochen / Projekttage · auf Anfrage</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
-            </aside>
-          </div>
-        </section>
 
-        <!-- STEP 4 -->
-        <section class="booking-step hidden" data-step="3" aria-hidden="true">
-          <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
-            <div class="lg:col-span-7">
-              <h4 class="font-heading text-lg font-black uppercase tracking-tight">4) Kontaktdaten</h4>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">Jetzt noch kurz – dann ist die Anfrage fertig.</p>
+              <aside class="lg:col-span-5">
+                <div class="surface rounded-3xl p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="font-heading text-sm font-black uppercase tracking-widest">Kontakt</div>
+                    <i class="ph-bold ph-chat-circle-dots text-brand-red text-xl"></i>
+                  </div>
 
-              <div class="mt-5 grid gap-4 sm:grid-cols-2">
-                <label class="field sm:col-span-2">
-                  <span class="label">Name</span>
-                  <input class="input" type="text" name="name" autocomplete="name" required placeholder="Vorname Nachname" />
+                  <div class="mt-4 space-y-4">
+                    <label class="field">
+                      <span class="label">Bevorzugter Kanal</span>
+                      <select class="input" name="preferred_channel" required>
+                        <option value="" selected disabled>Bitte wählen …</option>
+                        <option>E‑Mail</option>
+                        <option>Telefon</option>
+                        <option>Kostenloses Erstgespräch (15 min)</option>
+                      </select>
+                    </label>
+
+                    <div class="grid gap-3 sm:grid-cols-2">
+                      <label class="field">
+                        <span class="label">Wunschtermin (optional)</span>
+                        <input class="input" type="date" name="preferred_date" />
+                      </label>
+                      <label class="field">
+                        <span class="label">Uhrzeit (optional)</span>
+                        <input class="input" type="time" name="preferred_time" />
+                      </label>
+                    </div>
+
+                    <div class="rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                      Wenn du einen Termin auswählst, kannst du am Ende eine Kalenderdatei (.ics) herunterladen.
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- STEP 4 -->
+          <section class="booking-step hidden" data-step="3" aria-hidden="true">
+            <div class="grid gap-7 lg:grid-cols-12 lg:items-start">
+              <div class="lg:col-span-7">
+                <h4 class="font-heading text-lg font-black uppercase tracking-tight">4) Kontaktdaten</h4>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Jetzt noch kurz – dann ist die Anfrage fertig.</p>
+
+                <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                  <label class="field sm:col-span-2">
+                    <span class="label">Name</span>
+                    <input class="input" type="text" name="name" autocomplete="name" required placeholder="Vorname Nachname" />
+                  </label>
+
+                  <label class="field">
+                    <span class="label">E‑Mail</span>
+                    <input class="input" type="email" name="email" autocomplete="email" required placeholder="name@email.com" />
+                  </label>
+
+                  <label class="field">
+                    <span class="label">Telefon (optional)</span>
+                    <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+43 …" />
+                  </label>
+
+                  <label class="field sm:col-span-2">
+                    <span class="label">Zusätzliche Infos (optional)</span>
+                    <textarea class="input" name="message" rows="5" placeholder="Alles, was wir vorab wissen sollten (z.B. Ziel, aktuelle Trainingswoche, Einschränkungen)."></textarea>
+                  </label>
+                </div>
+
+                <label class="mt-4 flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                  <input type="checkbox" name="consent" required class="mt-0.5 h-4 w-4 accent-[color:var(--brand)]" />
+                  <span>
+                    Ich stimme zu, dass TPTraining mich zur Bearbeitung dieser Anfrage kontaktieren darf. (Kein Spam, keine Weitergabe.)
+                  </span>
                 </label>
 
-                <label class="field">
-                  <span class="label">E‑Mail</span>
-                  <input class="input" type="email" name="email" autocomplete="email" required placeholder="name@email.com" />
-                </label>
-
-                <label class="field">
-                  <span class="label">Telefon (optional)</span>
-                  <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+43 …" />
-                </label>
-
-                <label class="field sm:col-span-2">
-                  <span class="label">Zusätzliche Infos (optional)</span>
-                  <textarea class="input" name="message" rows="5" placeholder="Alles, was wir vorab wissen sollten (z.B. Ziel, aktuelle Trainingswoche, Einschränkungen)."></textarea>
-                </label>
+                <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-white/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/0">
+                  <strong>Technischer Hinweis:</strong> Diese Website ist statisch. Standardmäßig wird eine E‑Mail‑Anfrage geöffnet. Optional kann ein Formular‑Backend (z.B. Formspree) aktiviert werden – siehe Code‑Kommentar in der Datei.
+                </div>
               </div>
 
-              <label class="mt-4 flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                <input type="checkbox" name="consent" required class="mt-0.5 h-4 w-4 accent-[color:var(--brand)]" />
-                <span>
-                  Ich stimme zu, dass TPTraining mich zur Bearbeitung dieser Anfrage kontaktieren darf. (Kein Spam, keine Weitergabe.)
-                </span>
-              </label>
+              <aside class="lg:col-span-5">
+                <div class="surface rounded-3xl p-6">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="font-heading text-sm font-black uppercase tracking-widest">Zusammenfassung</div>
+                    <i class="ph-bold ph-clipboard-text text-brand-red text-xl"></i>
+                  </div>
 
-              <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-white/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/0">
-                <strong>Technischer Hinweis:</strong> Diese Website ist statisch. Standardmäßig wird eine E‑Mail‑Anfrage geöffnet. Optional kann ein Formular‑Backend (z.B. Formspree) aktiviert werden – siehe Code‑Kommentar in der Datei.
+                  <div class="mt-4 space-y-3 text-sm text-[color:var(--muted)]" id="booking-summary">
+                    <!-- Filled by JS -->
+                  </div>
+
+                  <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+                    Nach dem Senden bekommst du Buttons zum Kopieren/Download und optional eine Kalenderdatei.
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- Footer controls (sticky + hint) -->
+          <div class="booking-footer flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button id="booking-prev" type="button" class="btn btn-ghost justify-center sm:w-auto">
+              <i class="ph-bold ph-arrow-left"></i>
+              Zurück
+            </button>
+
+            <div class="flex flex-col gap-2 sm:items-end">
+              <div id="booking-hint" class="text-xs font-black uppercase tracking-[0.18em] text-[color:var(--muted)]"></div>
+
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <button id="booking-next" type="button" class="btn btn-primary justify-center sm:w-auto">
+                  Weiter
+                  <i class="ph-bold ph-arrow-right"></i>
+                </button>
+                <button id="booking-submit" type="submit" class="btn btn-primary justify-center sm:w-auto hidden">
+                  Anfrage senden
+                  <i class="ph-bold ph-paper-plane-right"></i>
+                </button>
               </div>
             </div>
-
-            <aside class="lg:col-span-5">
-              <div class="surface rounded-3xl p-6">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-heading text-sm font-black uppercase tracking-widest">Zusammenfassung</div>
-                  <i class="ph-bold ph-clipboard-text text-brand-red text-xl"></i>
-                </div>
-
-                <div class="mt-4 space-y-3 text-sm text-[color:var(--muted)]" id="booking-summary">
-                  <!-- Filled by JS -->
-                </div>
-
-                <div class="mt-4 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-                  Nach dem Senden bekommst du Buttons zum Kopieren/Download und optional eine Kalenderdatei.
-                </div>
-              </div>
-            </aside>
           </div>
-        </section>
+        </form>
 
-        <!-- Footer controls -->
-        <div class="flex flex-col-reverse gap-3 border-t border-[color:var(--border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <button id="booking-prev" type="button" class="btn btn-ghost justify-center sm:w-auto">
-            <i class="ph-bold ph-arrow-left"></i>
-            Zurück
-          </button>
-
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button id="booking-next" type="button" class="btn btn-primary justify-center sm:w-auto">
-              Weiter
-              <i class="ph-bold ph-arrow-right"></i>
-            </button>
-            <button id="booking-submit" type="submit" class="btn btn-primary justify-center sm:w-auto hidden">
-              Anfrage senden
-              <i class="ph-bold ph-paper-plane-right"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-
-      <!-- Success state -->
-      <div id="booking-success" class="hidden">
-        <div class="surface rounded-3xl p-5 sm:p-8">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <div class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white shadow-glow">
-                <i class="ph-bold ph-check"></i> Fertig
+        <!-- Success state -->
+        <div id="booking-success" class="hidden">
+          <div class="surface rounded-3xl p-5 sm:p-8">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-[0.75rem] font-black uppercase tracking-[0.18em] text-white shadow-glow">
+                  <i class="ph-bold ph-check"></i> Fertig
+                </div>
+                <h4 class="mt-4 font-heading text-2xl font-black uppercase tracking-tight">Danke – Anfrage bereit!</h4>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">
+                  Je nach Setup öffnen wir jetzt deine E‑Mail‑App oder senden über ein Formular‑Backend. Du kannst die Anfrage auch direkt kopieren.
+                </p>
               </div>
-              <h4 class="mt-4 font-heading text-2xl font-black uppercase tracking-tight">Danke – Anfrage bereit!</h4>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">
-                Je nach Setup öffnen wir jetzt deine E‑Mail‑App oder senden über ein Formular‑Backend. Du kannst die Anfrage auch direkt kopieren.
-              </p>
+
+              <button id="booking-close-2" class="grid h-11 w-11 place-items-center rounded-xl border border-[color:var(--border)] bg-transparent text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" aria-label="Schließen">
+                <i class="ph-bold ph-x text-xl"></i>
+              </button>
             </div>
 
-            <button id="booking-close-2" class="grid h-11 w-11 place-items-center rounded-xl border border-[color:var(--border)] bg-transparent text-[color:var(--text)] transition hover:bg-black/5 dark:hover:bg-white/5" aria-label="Schließen">
-              <i class="ph-bold ph-x text-xl"></i>
-            </button>
-          </div>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <a id="booking-mailto" href="mailto:tp.training@gmx.net" class="btn btn-primary justify-center">
+                <i class="ph-bold ph-paper-plane-right"></i>
+                E‑Mail öffnen
+              </a>
 
-          <div class="mt-6 grid gap-3 sm:grid-cols-2">
-            <a id="booking-mailto" href="mailto:tp.training@gmx.net" class="btn btn-primary justify-center">
-              <i class="ph-bold ph-paper-plane-right"></i>
-              E‑Mail öffnen
-            </a>
+              <button id="booking-copy" type="button" class="btn btn-ghost justify-center">
+                <i class="ph-bold ph-copy"></i>
+                Anfrage kopieren
+              </button>
 
-            <button id="booking-copy" type="button" class="btn btn-ghost justify-center">
-              <i class="ph-bold ph-copy"></i>
-              Anfrage kopieren
-            </button>
+              <a id="booking-download-txt" class="btn btn-ghost justify-center" download="TPTraining-Anfrage.txt" href="#">
+                <i class="ph-bold ph-download-simple"></i>
+                Text herunterladen
+              </a>
 
-            <a id="booking-download-txt" class="btn btn-ghost justify-center" download="TPTraining-Anfrage.txt" href="#">
-              <i class="ph-bold ph-download-simple"></i>
-              Text herunterladen
-            </a>
+              <a id="booking-download-ics" class="btn btn-ghost justify-center hidden" download="TPTraining-Termin.ics" href="#">
+                <i class="ph-bold ph-calendar-check"></i>
+                Termin (.ics)
+              </a>
+            </div>
 
-            <a id="booking-download-ics" class="btn btn-ghost justify-center hidden" download="TPTraining-Termin.ics" href="#">
-              <i class="ph-bold ph-calendar-check"></i>
-              Termin (.ics)
-            </a>
-          </div>
+            <div class="mt-6 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
+              Tipp: Wenn du keinen Termin auswählst, kannst du trotzdem „E‑Mail öffnen“ nutzen und die Details stehen im Text.
+            </div>
 
-          <div class="mt-6 rounded-2xl border border-[color:var(--border)] bg-black/5 p-4 text-xs text-[color:var(--muted)] dark:bg-white/5">
-            Tipp: Wenn du keinen Termin auswählst, kannst du trotzdem „E‑Mail öffnen“ nutzen und die Details stehen im Text.
-          </div>
-
-          <div class="mt-6 text-right">
-            <button id="booking-done" type="button" class="btn btn-primary">
-              Zurück zur Seite
-              <i class="ph-bold ph-arrow-right"></i>
-            </button>
+            <div class="mt-6 text-right">
+              <button id="booking-done" type="button" class="btn btn-primary">
+                Zurück zur Seite
+                <i class="ph-bold ph-arrow-right"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <!-- Toast -->
   <div id="toast" class="toast">
@@ -2587,614 +2800,702 @@ input:focus-visible + .option-card{
     window.addEventListener('scroll', () => requestAnimationFrame(updateSpy), { passive: true });
     updateSpy();
 
-/* ------------------------------
-   Schnellstart / Booking Funnel (BIG FEATURE)
-   - Conversion-focused multi-step wizard
-   - Works without backend (mailto fallback)
-   - Optional: enable a static form backend (e.g., Formspree)
------------------------------- */
-const BUSINESS_EMAIL = 'tp.training@gmx.net';
+    /* ------------------------------
+       Schnellstart / Booking Funnel (BIG FEATURE)
+       - Conversion-focused multi-step wizard
+       - Works without backend (mailto fallback)
+       - Optional: enable a static form backend (e.g., Formspree)
+    ------------------------------ */
+    const BUSINESS_EMAIL = 'tp.training@gmx.net';
 
-// OPTIONAL: Static form backend (Formspree).
-// 1) Create a form and copy the endpoint (looks like https://formspree.io/f/xxxxxx)
-// 2) Paste it below. If empty, we fall back to opening a prepared mailto message.
-const FORMSPREE_ENDPOINT = '';
+    // OPTIONAL: Static form backend (Formspree).
+    // 1) Create a form and copy the endpoint (looks like https://formspree.io/f/xxxxxx)
+    // 2) Paste it below. If empty, we fall back to opening a prepared mailto message.
+    const FORMSPREE_ENDPOINT = '';
 
-const bookingModal = $('#booking-modal');
-const bookingPanel = $('#booking-panel');
-const bookingClose = $('#booking-close');
-const bookingClose2 = $('#booking-close-2');
-const bookingDone = $('#booking-done');
+    const bookingModal = $('#booking-modal');
+    const bookingPanel = $('#booking-panel');
+    const bookingClose = $('#booking-close');
+    const bookingClose2 = $('#booking-close-2');
+    const bookingDone = $('#booking-done');
 
-const bookingForm = $('#booking-form');
-const bookingSteps = bookingForm ? $$('.booking-step', bookingForm) : [];
-const bookingPrev = $('#booking-prev');
-const bookingNext = $('#booking-next');
-const bookingSubmit = $('#booking-submit');
+    const bookingForm = $('#booking-form');
+    const bookingSteps = bookingForm ? $$('.booking-step', bookingForm) : [];
+    const bookingPrev = $('#booking-prev');
+    const bookingNext = $('#booking-next');
+    const bookingSubmit = $('#booking-submit');
 
-const bookingProgress = $('#booking-progress');
-const bookingStepLabel = $('#booking-step-label');
+    const bookingProgress = $('#booking-progress');
+    const bookingStepLabel = $('#booking-step-label');
 
-const bookingSuccess = $('#booking-success');
-const bookingMailto = $('#booking-mailto');
-const bookingCopy = $('#booking-copy');
-const bookingDownloadTxt = $('#booking-download-txt');
-const bookingDownloadIcs = $('#booking-download-ics');
+    const bookingSuccess = $('#booking-success');
+    const bookingMailto = $('#booking-mailto');
+    const bookingCopy = $('#booking-copy');
+    const bookingDownloadTxt = $('#booking-download-txt');
+    const bookingDownloadIcs = $('#booking-download-ics');
 
-const bookingRecommendedPlan = $('#booking-recommended-plan');
-const bookingSummary = $('#booking-summary');
+    const bookingRecommendedPlan = $('#booking-recommended-plan');
+    const bookingSummary = $('#booking-summary');
 
-const recTitle = $('#recommendation-title');
-const recSubtitle = $('#recommendation-subtitle');
-const recBullets = $('#recommendation-bullets');
-const recPrice = $('#recommendation-price');
+    const recTitle = $('#recommendation-title');
+    const recSubtitle = $('#recommendation-subtitle');
+    const recBullets = $('#recommendation-bullets');
+    const recPrice = $('#recommendation-price');
 
-let bookingStep = 0;
-let bookingOpen = false;
-let bookingLastFocus = null;
-let userPlanTouched = false;
+    let bookingStep = 0;
+    let bookingOpen = false;
+    let bookingLastFocus = null;
+    let userPlanTouched = false;
 
-let lastCompiledMessage = '';
-let txtUrl = null;
-let icsUrl = null;
+    let lastCompiledMessage = '';
+    let txtUrl = null;
+    let icsUrl = null;
 
-const esc = (val) => (window.CSS && CSS.escape) ? CSS.escape(val) : String(val).replace(/["\\]/g, '\\$&');
+    // NEW: stepper + hint + button enable/disable
+    const stepDots = $$('[data-step-jump]');
+    const bookingHint = $('#booking-hint');
 
-function lockBodyScroll(lock){
-  if(lock){
-    document.body.classList.add('overflow-hidden');
-  }else{
-    // Only unlock if the mobile menu isn't open
-    if(mobileMenu?.classList.contains('hidden')){
-      document.body.classList.remove('overflow-hidden');
+    function requiredMissing(stepEl){
+      const required = $$('input[required], select[required], textarea[required]', stepEl)
+        .filter(el => !el.disabled);
+
+      const missing = new Set();
+      for(const el of required){
+        if(!el.checkValidity()){
+          missing.add(el.name || el.id || Math.random().toString(16));
+        }
+      }
+      return missing.size;
     }
-  }
-}
 
-function cleanupDownloads(){
-  if(txtUrl){ URL.revokeObjectURL(txtUrl); txtUrl = null; }
-  if(icsUrl){ URL.revokeObjectURL(icsUrl); icsUrl = null; }
-  if(bookingDownloadTxt) bookingDownloadTxt.href = '#';
-  if(bookingDownloadIcs){
-    bookingDownloadIcs.href = '#';
-    bookingDownloadIcs.classList.add('hidden');
-  }
-}
+    function updateActionState(){
+      if(!bookingSteps.length) return;
+      const stepEl = bookingSteps[bookingStep];
+      if(!stepEl) return;
 
-function openBooking({ plan = '', sportFocus = '' } = {}){
-  if(!bookingModal || !bookingPanel || !bookingForm) return;
+      const missing = requiredMissing(stepEl);
+      const ready = missing === 0;
 
-  bookingLastFocus = document.activeElement;
-  bookingOpen = true;
-  userPlanTouched = false;
-  cleanupDownloads();
-
-  // Reset UI state
-  bookingSuccess?.classList.add('hidden');
-  bookingForm.classList.remove('hidden');
-
-  bookingForm.reset();
-  if($('#booking-page-url')) $('#booking-page-url').value = window.location.href;
-
-  // If user picked a sport entry point, preselect it in Schritt 1
-  if(sportFocus){
-    const sf = bookingForm.querySelector(`input[name="sport_focus"][value="${esc(sportFocus)}"]`);
-    if(sf) sf.checked = true;
-  }
-
-
-  // If user clicked "Buchen" on a package, preselect it (and do not auto-overwrite with recommendation)
-  if(plan){
-    const radio = bookingForm.querySelector(`input[name="selected_plan"][value="${esc(plan)}"]`);
-    if(radio){
-      radio.checked = true;
-      userPlanTouched = true;
+      if(bookingNext && bookingStep < bookingSteps.length - 1){
+        bookingNext.disabled = !ready;
+        bookingNext.setAttribute('aria-disabled', String(!ready));
+      }
+      if(bookingSubmit && bookingStep === bookingSteps.length - 1){
+        bookingSubmit.disabled = !ready;
+        bookingSubmit.setAttribute('aria-disabled', String(!ready));
+      }
+      if(bookingHint){
+        bookingHint.textContent = ready ? 'Bereit' : `Noch ${missing} ${missing === 1 ? 'Antwort' : 'Antworten'}…`;
+      }
     }
-  }
 
-  bookingModal.classList.remove('hidden');
-  bookingModal.setAttribute('aria-hidden', 'false');
-  lockBodyScroll(true);
+    function updateStepper(){
+      if(stepDots.length === 0) return;
+      stepDots.forEach((btn, idx) => {
+        if(idx === bookingStep) btn.setAttribute('aria-current', 'step');
+        else btn.removeAttribute('aria-current');
 
-  // Play-in animation
-  requestAnimationFrame(() => bookingModal.classList.add('is-open'));
-
-  updateBookingStep(0);
-
-  // Focus first interactive element inside the panel
-  setTimeout(() => {
-    const first = bookingPanel.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    first?.focus();
-  }, 50);
-}
-
-function closeBooking(){
-  if(!bookingModal || !bookingPanel) return;
-  bookingOpen = false;
-
-  bookingModal.classList.remove('is-open');
-  bookingModal.setAttribute('aria-hidden', 'true');
-
-  setTimeout(() => bookingModal.classList.add('hidden'), 200);
-
-  lockBodyScroll(false);
-
-  if(bookingLastFocus && typeof bookingLastFocus.focus === 'function'){
-    bookingLastFocus.focus();
-  }
-  cleanupDownloads();
-}
-
-// Click to close on backdrop
-bookingModal?.addEventListener('click', (e) => {
-  if(e.target === bookingModal || e.target === bookingModal.firstElementChild){
-    closeBooking();
-  }
-});
-
-bookingClose?.addEventListener('click', closeBooking);
-bookingClose2?.addEventListener('click', closeBooking);
-bookingDone?.addEventListener('click', closeBooking);
-
-// Focus trap + ESC close
-document.addEventListener('keydown', (e) => {
-  if(!bookingOpen) return;
-
-  if(e.key === 'Escape'){
-    closeBooking();
-    return;
-  }
-  if(e.key !== 'Tab') return;
-
-  const focusables = $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', bookingPanel)
-    .filter(el => el.offsetParent !== null);
-
-  if(focusables.length === 0) return;
-
-  const first = focusables[0];
-  const last = focusables[focusables.length - 1];
-
-  if(e.shiftKey && document.activeElement === first){
-    e.preventDefault();
-    last.focus();
-  }else if(!e.shiftKey && document.activeElement === last){
-    e.preventDefault();
-    first.focus();
-  }
-});
-
-// Open triggers (anchors keep #kontakt fallback if JS is disabled)
-$$('[data-booking-open]').forEach(el => {
-  el.addEventListener('click', (e) => {
-    if(el.tagName.toLowerCase() === 'a') e.preventDefault();
-    openBooking({ plan: el.getAttribute('data-plan') || '', sportFocus: el.getAttribute('data-sport-focus') || '' });
-  });
-});
-
-function setStepEnabled(stepEl, enabled){
-  $$('input, select, textarea', stepEl).forEach(ctrl => {
-    ctrl.disabled = !enabled;
-  });
-}
-
-function updateBookingStep(next){
-  if(!bookingForm || bookingSteps.length === 0) return;
-
-  bookingStep = Math.max(0, Math.min(next, bookingSteps.length - 1));
-
-  bookingSteps.forEach((stepEl, idx) => {
-    const active = idx === bookingStep;
-    stepEl.classList.toggle('hidden', !active);
-    stepEl.setAttribute('aria-hidden', active ? 'false' : 'true');
-    setStepEnabled(stepEl, active);
-  });
-
-  // Progress UI
-  const pct = Math.round(((bookingStep + 1) / bookingSteps.length) * 100);
-  if(bookingProgress) bookingProgress.style.width = pct + '%';
-  if(bookingStepLabel) bookingStepLabel.textContent = `Schritt ${bookingStep + 1} / ${bookingSteps.length}`;
-
-  // Footer buttons
-  if(bookingPrev){
-    bookingPrev.style.visibility = bookingStep === 0 ? 'hidden' : 'visible';
-  }
-  if(bookingNext && bookingSubmit){
-    const last = bookingStep === bookingSteps.length - 1;
-    bookingNext.classList.toggle('hidden', last);
-    bookingSubmit.classList.toggle('hidden', !last);
-  }
-
-  // Dynamic content
-  if(bookingStep >= 2){
-    updateRecommendation();
-  }
-  if(bookingStep === 3){
-    renderSummary();
-  }
-
-  // Scroll modal body to top for each step (better mobile UX)
-  $('.booking-body')?.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-}
-
-function validateCurrentStep(){
-  const stepEl = bookingSteps[bookingStep];
-  if(!stepEl) return true;
-
-  // Native validation for visible step only
-  const controls = $$('input, select, textarea', stepEl).filter(el => !el.disabled);
-
-  for(const el of controls){
-    if(!el.checkValidity()){
-      el.reportValidity();
-      el.focus?.();
-      return false;
+        // only allow jumping back
+        btn.disabled = idx > bookingStep;
+      });
     }
-  }
-  return true;
-}
 
-bookingPrev?.addEventListener('click', () => updateBookingStep(bookingStep - 1));
-
-bookingNext?.addEventListener('click', () => {
-  if(!validateCurrentStep()) return;
-  updateBookingStep(bookingStep + 1);
-});
-
-// Track if user manually overrides package selection
-bookingForm?.addEventListener('change', (e) => {
-  if(e.target?.name === 'selected_plan'){
-    userPlanTouched = true;
-  }
-  // Recompute recommendation when relevant answers change
-  if(['sport_focus','primary_goal','experience','weekly_sessions','event_date','main_challenge','age_group'].includes(e.target?.name)){
-    updateRecommendation();
-  }
-  if(bookingStep === 3){
-    renderSummary();
-  }
-});
-
-function valRadio(name){
-  return bookingForm?.querySelector(`input[name="${name}"]:checked`)?.value || '';
-}
-function val(name){
-  const el = bookingForm?.querySelector(`[name="${name}"]`);
-  return el ? (el.value || '').trim() : '';
-}
-
-function daysUntil(dateStr){
-  if(!dateStr) return null;
-  const d = new Date(dateStr + 'T00:00:00');
-  if(Number.isNaN(d.getTime())) return null;
-  const now = new Date();
-  const diff = (d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
-  return diff;
-}
-
-function computeRecommendation(){
-  const focus = valRadio('sport_focus');
-  if(focus === 'Adventure Camps'){
-    return {
-      plan: 'Adventure Camps Anfrage',
-      price: 'auf Anfrage',
-      bullets: [
-        'Mehrtagesevent in den Bergen – Technik & Team.',
-        'Termin, Ort und Umfang individuell abstimmen.'
-      ],
-      subtitle: 'Camps werden individuell geplant.'
-    };
-  }
-  if(focus === 'Schule / Projekt'){
-    return {
-      plan: 'Schule / Projekt Anfrage',
-      price: 'auf Anfrage',
-      bullets: [
-        'Sportwochen / Projekttage – sichere Basics.',
-        'Ablauf und Gruppengröße individuell planbar.'
-      ],
-      subtitle: 'Für Schulen & Projekte.'
-    };
-  }
-
-  let score = 0;
-
-  const exp = valRadio('experience');
-  score += exp === 'Anfänger' ? 1 : exp === 'Fortgeschritten' ? 2 : exp ? 3 : 0;
-
-  const ws = valRadio('weekly_sessions');
-  score += ws.includes('2') ? 1 : ws.includes('4') ? 2 : ws ? 3 : 0;
-
-  const goal = valRadio('primary_goal');
-  if(goal === 'Wettkampf vorbereiten') score += 1;
-  if(goal === 'Leistung steigern') score += 1;
-
-  const challenge = valRadio('main_challenge');
-  if(challenge === 'Planung / Struktur') score += 1;
-
-  const until = daysUntil(val('event_date'));
-  if(until !== null && until >= 0 && until <= 60) score += 1;
-
-  let plan = 'Einsteiger';
-  if(score >= 7) plan = 'Pro Athlete';
-  else if(score >= 4) plan = 'Fortgeschritten';
-  else plan = 'Einsteiger';
-
-  if(plan === 'Einsteiger'){
-    return {
-      plan,
-      price: 'ab €89/Monat',
-      bullets: [
-        'Basis‑Trainingsplan + klare Struktur.',
-        'Analyse & Tests für einen sauberen Start.'
-      ],
-      subtitle: 'Ideal, wenn du gerade aufbaust oder (wieder) einsteigst.'
-    };
-  }
-  if(plan === 'Fortgeschritten'){
-    return {
-      plan,
-      price: 'ab €129/Monat',
-      bullets: [
-        'Unlimitierter Kontakt & schnelle Anpassungen.',
-        'Optimal bei regelmäßigen Einheiten und klaren Zielen.'
-      ],
-      subtitle: 'Empfohlen, wenn du schon trainierst und gezielt optimieren willst.'
-    };
-  }
-  return {
-    plan: 'Pro Athlete',
-    price: 'ab €169',
-    bullets: [
-      'Full‑Service Coaching + Wettkampfsupport.',
-      'Regelmäßige Calls & Detail‑Feinschliff.'
-    ],
-    subtitle: 'Für ambitionierte Athlet:innen mit hoher Belastung/Detailbedarf.'
-  };
-}
-
-function updateRecommendation(){
-  if(!bookingForm) return;
-
-  const rec = computeRecommendation();
-
-  if(bookingRecommendedPlan) bookingRecommendedPlan.value = rec.plan;
-
-  if(recTitle) recTitle.textContent = rec.plan;
-  if(recSubtitle) recSubtitle.textContent = rec.subtitle || 'Basierend auf deinen Angaben.';
-  if(recPrice) recPrice.textContent = rec.price || '';
-
-  if(recBullets){
-    recBullets.innerHTML = '';
-    (rec.bullets || []).slice(0, 4).forEach(t => {
-      const li = document.createElement('li');
-      li.className = 'flex items-start gap-3';
-      li.innerHTML = `<i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> ${t}`;
-      recBullets.appendChild(li);
+    stepDots.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = Number(btn.getAttribute('data-step-jump'));
+        if(Number.isFinite(target) && target >= 0 && target < bookingSteps.length){
+          if(target <= bookingStep) updateBookingStep(target);
+        }
+      });
     });
-  }
 
-  // Auto-select recommended plan unless user explicitly chose a plan (or arrived via a plan CTA)
-  if(!userPlanTouched){
-    const radio = bookingForm.querySelector(`input[name="selected_plan"][value="${esc(rec.plan)}"]`);
-    if(radio) radio.checked = true;
-  }
-}
+    // Optional panels: open by default on desktop, closed on mobile
+    (function initOptionalDetails(){
+      const details = $$('details[data-open-desktop]');
+      if(details.length === 0) return;
+      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+      details.forEach(d => d.open = isDesktop);
+    })();
 
-function formatPreferredSlot(){
-  const d = val('preferred_date');
-  const t = val('preferred_time');
-  if(!d && !t) return '';
-  if(d && t) return `${d} ${t}`;
-  if(d) return d;
-  return t;
-}
+    const esc = (val) => (window.CSS && CSS.escape) ? CSS.escape(val) : String(val).replace(/["\\]/g, '\\$&');
 
-function renderSummary(){
-  if(!bookingSummary) return;
-
-  const focus = valRadio('sport_focus');
-  const goal = valRadio('primary_goal');
-  const exp = valRadio('experience');
-  const ws = valRadio('weekly_sessions');
-  const age = val('age_group');
-  const chal = valRadio('main_challenge');
-  const rec = val('recommended_plan') || bookingRecommendedPlan?.value || '';
-  const sel = valRadio('selected_plan');
-  const channel = val('preferred_channel');
-  const slot = formatPreferredSlot();
-
-  const rows = [
-    ['Fokus', focus],
-    ['Ziel', goal],
-    ['Erfahrung', exp],
-    ['Training/Woche', ws],
-    ['Alter', age],
-    ['Engpass', chal],
-    ['Empfohlen', rec],
-    ['Gewählt', sel],
-    ['Kanal', channel],
-    ['Termin', slot || '—']
-  ].filter(([,v]) => v);
-
-  bookingSummary.innerHTML = rows.map(([k,v]) => `
-    <div class="flex items-start justify-between gap-4">
-      <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">${k}</div>
-      <div class="text-right text-sm text-[color:var(--text)]">${v}</div>
-    </div>
-  `).join('');
-}
-
-function buildMessage(){
-  const lines = [];
-  lines.push('TPTraining – Schnellstart Check');
-  lines.push('--------------------------------');
-  lines.push(`Seite: ${window.location.href}`);
-  lines.push('');
-
-  const fields = [
-    ['Name', val('name')],
-    ['E-Mail', val('email')],
-    ['Telefon', val('phone')],
-    ['Sport / Fokus', valRadio('sport_focus')],
-    ['Primäres Ziel', valRadio('primary_goal')],
-    ['Wettkampfdatum', val('event_date')],
-    ['Notizen', val('notes')],
-    ['Erfahrung', valRadio('experience')],
-    ['Training pro Woche', valRadio('weekly_sessions')],
-    ['Altersgruppe', val('age_group')],
-    ['Engpass', valRadio('main_challenge')],
-    ['Empfohlenes Paket', bookingRecommendedPlan?.value || val('recommended_plan')],
-    ['Gewähltes Paket', valRadio('selected_plan')],
-    ['Bevorzugter Kanal', val('preferred_channel')],
-    ['Wunschtermin', formatPreferredSlot()],
-    ['Zusätzliche Infos', val('message')]
-  ];
-
-  for(const [k,v] of fields){
-    if(v) lines.push(`${k}: ${v}`);
-  }
-
-  lines.push('');
-  lines.push('— Ende —');
-
-  return lines.join('\n');
-}
-
-function buildICS({ title, description, startLocal, minutes = 15 }){
-  // Convert local time to UTC string for broad compatibility
-  const dtStart = new Date(startLocal);
-  if(Number.isNaN(dtStart.getTime())) return null;
-
-  const dtEnd = new Date(dtStart.getTime() + minutes * 60 * 1000);
-
-  const fmt = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-  const stamp = fmt(new Date());
-
-  const uid = `tptraining-${Math.random().toString(16).slice(2)}@tptraining.at`;
-
-  const safe = (s) => String(s || '')
-    .replace(/\r?\n/g, '\\n')
-    .replace(/,/g, '\\,')
-    .replace(/;/g, '\\;');
-
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//TPTraining//Schnellstart//DE',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${stamp}`,
-    `DTSTART:${fmt(dtStart)}`,
-    `DTEND:${fmt(dtEnd)}`,
-    `SUMMARY:${safe(title)}`,
-    `DESCRIPTION:${safe(description)}`,
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
-
-  return ics;
-}
-
-async function copyToClipboard(text){
-  try{
-    await navigator.clipboard.writeText(text);
-    showToast('In die Zwischenablage kopiert.');
-    return true;
-  }catch(err){
-    const ok = window.prompt('Kopieren:', text);
-    if(ok !== null) showToast('Bereit zum Kopieren.');
-    return false;
-  }
-}
-
-bookingCopy?.addEventListener('click', () => {
-  if(!lastCompiledMessage) return;
-  copyToClipboard(lastCompiledMessage);
-});
-
-bookingForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  if(!validateCurrentStep()) return;
-
-  // Ensure recommendation is up-to-date
-  updateRecommendation();
-  renderSummary();
-
-  const message = buildMessage();
-  lastCompiledMessage = message;
-
-  const chosen = valRadio('selected_plan') || bookingRecommendedPlan?.value || 'Anfrage';
-  const subject = `TPTraining Anfrage – ${chosen}`;
-
-  const mailtoHref = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-  if(bookingMailto) bookingMailto.href = mailtoHref;
-
-  // Download TXT
-  cleanupDownloads();
-  txtUrl = URL.createObjectURL(new Blob([message], { type: 'text/plain;charset=utf-8' }));
-  if(bookingDownloadTxt) bookingDownloadTxt.href = txtUrl;
-
-  // Download ICS if preferred slot exists
-  const pd = val('preferred_date');
-  const pt = val('preferred_time');
-  if(pd && pt && bookingDownloadIcs){
-    const startLocal = `${pd}T${pt}:00`;
-    const ics = buildICS({
-      title: 'TPTraining – Erstgespräch',
-      description: message,
-      startLocal,
-      minutes: 15
-    });
-    if(ics){
-      icsUrl = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-      bookingDownloadIcs.href = icsUrl;
-      bookingDownloadIcs.classList.remove('hidden');
+    function lockBodyScroll(lock){
+      if(lock){
+        document.body.classList.add('overflow-hidden');
+      }else{
+        // Only unlock if the mobile menu isn't open
+        if(mobileMenu?.classList.contains('hidden')){
+          document.body.classList.remove('overflow-hidden');
+        }
+      }
     }
-  }
 
-  // Try backend submission if configured
-  let backendSent = false;
-  const hasBackend = typeof FORMSPREE_ENDPOINT === 'string' && FORMSPREE_ENDPOINT.trim().length > 0;
+    function cleanupDownloads(){
+      if(txtUrl){ URL.revokeObjectURL(txtUrl); txtUrl = null; }
+      if(icsUrl){ URL.revokeObjectURL(icsUrl); icsUrl = null; }
+      if(bookingDownloadTxt) bookingDownloadTxt.href = '#';
+      if(bookingDownloadIcs){
+        bookingDownloadIcs.href = '#';
+        bookingDownloadIcs.classList.add('hidden');
+      }
+    }
 
-  if(hasBackend){
-    try{
-      // Enable all controls so FormData includes all steps
-      $$('input, select, textarea', bookingForm).forEach(ctrl => ctrl.disabled = false);
+    function openBooking({ plan = '', sportFocus = '' } = {}){
+      if(!bookingModal || !bookingPanel || !bookingForm) return;
 
-      const fd = new FormData(bookingForm);
-      fd.append('compiled_message', message);
+      bookingLastFocus = document.activeElement;
+      bookingOpen = true;
+      userPlanTouched = false;
+      cleanupDownloads();
 
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: fd
+      // Reset UI state
+      bookingSuccess?.classList.add('hidden');
+      bookingForm.classList.remove('hidden');
+
+      bookingForm.reset();
+      if($('#booking-page-url')) $('#booking-page-url').value = window.location.href;
+
+      // If user picked a sport entry point, preselect it in Schritt 1
+      if(sportFocus){
+        const sf = bookingForm.querySelector(`input[name="sport_focus"][value="${esc(sportFocus)}"]`);
+        if(sf) sf.checked = true;
+      }
+
+      // If user clicked "Buchen" on a package, preselect it (and do not auto-overwrite with recommendation)
+      if(plan){
+        const radio = bookingForm.querySelector(`input[name="selected_plan"][value="${esc(plan)}"]`);
+        if(radio){
+          radio.checked = true;
+          userPlanTouched = true;
+        }
+      }
+
+      bookingModal.classList.remove('hidden');
+      bookingModal.setAttribute('aria-hidden', 'false');
+      lockBodyScroll(true);
+
+      // Play-in animation
+      requestAnimationFrame(() => bookingModal.classList.add('is-open'));
+
+      updateBookingStep(0);
+
+      // Focus first interactive element inside the panel
+      setTimeout(() => {
+        const first = bookingPanel.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        first?.focus();
+      }, 50);
+    }
+
+    function closeBooking(){
+      if(!bookingModal || !bookingPanel) return;
+      bookingOpen = false;
+
+      bookingModal.classList.remove('is-open');
+      bookingModal.setAttribute('aria-hidden', 'true');
+
+      setTimeout(() => bookingModal.classList.add('hidden'), 200);
+
+      lockBodyScroll(false);
+
+      if(bookingLastFocus && typeof bookingLastFocus.focus === 'function'){
+        bookingLastFocus.focus();
+      }
+      cleanupDownloads();
+    }
+
+    // Click to close on backdrop
+    bookingModal?.addEventListener('click', (e) => {
+      if(e.target === bookingModal || e.target === bookingModal.firstElementChild){
+        closeBooking();
+      }
+    });
+
+    bookingClose?.addEventListener('click', closeBooking);
+    bookingClose2?.addEventListener('click', closeBooking);
+    bookingDone?.addEventListener('click', closeBooking);
+
+    // Focus trap + ESC close
+    document.addEventListener('keydown', (e) => {
+      if(!bookingOpen) return;
+
+      if(e.key === 'Escape'){
+        closeBooking();
+        return;
+      }
+      if(e.key !== 'Tab') return;
+
+      const focusables = $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', bookingPanel)
+        .filter(el => el.offsetParent !== null);
+
+      if(focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      }else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    // Open triggers (anchors keep #kontakt fallback if JS is disabled)
+    $$('[data-booking-open]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if(el.tagName.toLowerCase() === 'a') e.preventDefault();
+        openBooking({ plan: el.getAttribute('data-plan') || '', sportFocus: el.getAttribute('data-sport-focus') || '' });
+      });
+    });
+
+    function setStepEnabled(stepEl, enabled){
+      $$('input, select, textarea', stepEl).forEach(ctrl => {
+        ctrl.disabled = !enabled;
+      });
+    }
+
+    function updateBookingStep(next){
+      if(!bookingForm || bookingSteps.length === 0) return;
+
+      bookingStep = Math.max(0, Math.min(next, bookingSteps.length - 1));
+
+      bookingSteps.forEach((stepEl, idx) => {
+        const active = idx === bookingStep;
+        stepEl.classList.toggle('hidden', !active);
+        stepEl.setAttribute('aria-hidden', active ? 'false' : 'true');
+        setStepEnabled(stepEl, active);
       });
 
-      if(res.ok){
-        backendSent = true;
-        showToast('Anfrage gesendet.');
-      }else{
-        showToast('Backend nicht erreichbar – E-Mail wird vorbereitet.');
+      // Progress UI
+      const pct = Math.round(((bookingStep + 1) / bookingSteps.length) * 100);
+      if(bookingProgress) bookingProgress.style.width = pct + '%';
+      if(bookingStepLabel) bookingStepLabel.textContent = `Schritt ${bookingStep + 1} / ${bookingSteps.length}`;
+
+      // Footer buttons
+      if(bookingPrev){
+        bookingPrev.style.visibility = bookingStep === 0 ? 'hidden' : 'visible';
       }
-    }catch(err){
-      showToast('Backend nicht erreichbar – E-Mail wird vorbereitet.');
+      if(bookingNext && bookingSubmit){
+        const last = bookingStep === bookingSteps.length - 1;
+        bookingNext.classList.toggle('hidden', last);
+        bookingSubmit.classList.toggle('hidden', !last);
+      }
+
+      // Dynamic content
+      if(bookingStep >= 2){
+        updateRecommendation();
+      }
+      if(bookingStep === 3){
+        renderSummary();
+      }
+
+      // Scroll modal body to top for each step (better mobile UX)
+      $('.booking-body')?.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+
+      // NEW: keep navigation state in sync
+      updateActionState();
+      updateStepper();
     }
-  }
 
-  if(!backendSent){
-    // Default: open the mail client with a prepared request
-    window.location.href = mailtoHref;
-    showToast('E-Mail vorbereitet – bitte senden.');
-  }
+    function validateCurrentStep(){
+      const stepEl = bookingSteps[bookingStep];
+      if(!stepEl) return true;
 
-  // Switch to success view
-  bookingForm.classList.add('hidden');
-  bookingSuccess?.classList.remove('hidden');
-});
+      // Native validation for visible step only
+      const controls = $$('input, select, textarea', stepEl).filter(el => !el.disabled);
 
+      for(const el of controls){
+        if(!el.checkValidity()){
+          el.reportValidity();
+          el.focus?.();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    bookingPrev?.addEventListener('click', () => updateBookingStep(bookingStep - 1));
+
+    bookingNext?.addEventListener('click', () => {
+      if(!validateCurrentStep()) return;
+      updateBookingStep(bookingStep + 1);
+    });
+
+    // Track if user manually overrides package selection
+    bookingForm?.addEventListener('change', (e) => {
+      if(e.target?.name === 'selected_plan'){
+        userPlanTouched = true;
+      }
+      // Recompute recommendation when relevant answers change
+      if(['sport_focus','primary_goal','experience','weekly_sessions','event_date','main_challenge','age_group'].includes(e.target?.name)){
+        updateRecommendation();
+      }
+      if(bookingStep === 3){
+        renderSummary();
+      }
+
+      // NEW: enable/disable Next/Submit + hint
+      updateActionState();
+
+      // NEW: guide users through Step 1 (after selecting Sport -> scroll to Goal)
+      if(bookingStep === 0 && e.target?.name === 'sport_focus'){
+        const goal = $('#booking-goal-block');
+        goal?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+
+    // NEW: also update state on typing (text/email fields)
+    bookingForm?.addEventListener('input', () => {
+      updateActionState();
+      if(bookingStep === 3){
+        renderSummary();
+      }
+    });
+
+    function valRadio(name){
+      return bookingForm?.querySelector(`input[name="${name}"]:checked`)?.value || '';
+    }
+    function val(name){
+      const el = bookingForm?.querySelector(`[name="${name}"]`);
+      return el ? (el.value || '').trim() : '';
+    }
+
+    function daysUntil(dateStr){
+      if(!dateStr) return null;
+      const d = new Date(dateStr + 'T00:00:00');
+      if(Number.isNaN(d.getTime())) return null;
+      const now = new Date();
+      const diff = (d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
+      return diff;
+    }
+
+    function computeRecommendation(){
+      const focus = valRadio('sport_focus');
+      if(focus === 'Adventure Camps'){
+        return {
+          plan: 'Adventure Camps Anfrage',
+          price: 'auf Anfrage',
+          bullets: [
+            'Mehrtagesevent in den Bergen – Technik & Team.',
+            'Termin, Ort und Umfang individuell abstimmen.'
+          ],
+          subtitle: 'Camps werden individuell geplant.'
+        };
+      }
+      if(focus === 'Schule / Projekt'){
+        return {
+          plan: 'Schule / Projekt Anfrage',
+          price: 'auf Anfrage',
+          bullets: [
+            'Sportwochen / Projekttage – sichere Basics.',
+            'Ablauf und Gruppengröße individuell planbar.'
+          ],
+          subtitle: 'Für Schulen & Projekte.'
+        };
+      }
+
+      let score = 0;
+
+      const exp = valRadio('experience');
+      score += exp === 'Anfänger' ? 1 : exp === 'Fortgeschritten' ? 2 : exp ? 3 : 0;
+
+      const ws = valRadio('weekly_sessions');
+      score += ws.includes('2') ? 1 : ws.includes('4') ? 2 : ws ? 3 : 0;
+
+      const goal = valRadio('primary_goal');
+      if(goal === 'Wettkampf vorbereiten') score += 1;
+      if(goal === 'Leistung steigern') score += 1;
+
+      const challenge = valRadio('main_challenge');
+      if(challenge === 'Planung / Struktur') score += 1;
+
+      const until = daysUntil(val('event_date'));
+      if(until !== null && until >= 0 && until <= 60) score += 1;
+
+      let plan = 'Einsteiger';
+      if(score >= 7) plan = 'Pro Athlete';
+      else if(score >= 4) plan = 'Fortgeschritten';
+      else plan = 'Einsteiger';
+
+      if(plan === 'Einsteiger'){
+        return {
+          plan,
+          price: 'ab €89/Monat',
+          bullets: [
+            'Basis‑Trainingsplan + klare Struktur.',
+            'Analyse & Tests für einen sauberen Start.'
+          ],
+          subtitle: 'Ideal, wenn du gerade aufbaust oder (wieder) einsteigst.'
+        };
+      }
+      if(plan === 'Fortgeschritten'){
+        return {
+          plan,
+          price: 'ab €129/Monat',
+          bullets: [
+            'Unlimitierter Kontakt & schnelle Anpassungen.',
+            'Optimal bei regelmäßigen Einheiten und klaren Zielen.'
+          ],
+          subtitle: 'Empfohlen, wenn du schon trainierst und gezielt optimieren willst.'
+        };
+      }
+      return {
+        plan: 'Pro Athlete',
+        price: 'ab €169',
+        bullets: [
+          'Full‑Service Coaching + Wettkampfsupport.',
+          'Regelmäßige Calls & Detail‑Feinschliff.'
+        ],
+        subtitle: 'Für ambitionierte Athlet:innen mit hoher Belastung/Detailbedarf.'
+      };
+    }
+
+    function updateRecommendation(){
+      if(!bookingForm) return;
+
+      const rec = computeRecommendation();
+
+      if(bookingRecommendedPlan) bookingRecommendedPlan.value = rec.plan;
+
+      if(recTitle) recTitle.textContent = rec.plan;
+      if(recSubtitle) recSubtitle.textContent = rec.subtitle || 'Basierend auf deinen Angaben.';
+      if(recPrice) recPrice.textContent = rec.price || '';
+
+      if(recBullets){
+        recBullets.innerHTML = '';
+        (rec.bullets || []).slice(0, 4).forEach(t => {
+          const li = document.createElement('li');
+          li.className = 'flex items-start gap-3';
+          li.innerHTML = `<i class="ph-fill ph-check-circle text-brand-red text-xl leading-none"></i> ${t}`;
+          recBullets.appendChild(li);
+        });
+      }
+
+      // Auto-select recommended plan unless user explicitly chose a plan (or arrived via a plan CTA)
+      if(!userPlanTouched){
+        const radio = bookingForm.querySelector(`input[name="selected_plan"][value="${esc(rec.plan)}"]`);
+        if(radio) radio.checked = true;
+      }
+
+      // Keep action-state up-to-date if recommendation auto-selects
+      updateActionState();
+    }
+
+    function formatPreferredSlot(){
+      const d = val('preferred_date');
+      const t = val('preferred_time');
+      if(!d && !t) return '';
+      if(d && t) return `${d} ${t}`;
+      if(d) return d;
+      return t;
+    }
+
+    function renderSummary(){
+      if(!bookingSummary) return;
+
+      const focus = valRadio('sport_focus');
+      const goal = valRadio('primary_goal');
+      const exp = valRadio('experience');
+      const ws = valRadio('weekly_sessions');
+      const age = val('age_group');
+      const chal = valRadio('main_challenge');
+      const rec = val('recommended_plan') || bookingRecommendedPlan?.value || '';
+      const sel = valRadio('selected_plan');
+      const channel = val('preferred_channel');
+      const slot = formatPreferredSlot();
+
+      const rows = [
+        ['Fokus', focus],
+        ['Ziel', goal],
+        ['Erfahrung', exp],
+        ['Training/Woche', ws],
+        ['Alter', age],
+        ['Engpass', chal],
+        ['Empfohlen', rec],
+        ['Gewählt', sel],
+        ['Kanal', channel],
+        ['Termin', slot || '—']
+      ].filter(([,v]) => v);
+
+      bookingSummary.innerHTML = rows.map(([k,v]) => `
+        <div class="flex items-start justify-between gap-4">
+          <div class="font-heading text-xs font-black uppercase tracking-[0.2em] text-[color:var(--muted)]">${k}</div>
+          <div class="text-right text-sm text-[color:var(--text)]">${v}</div>
+        </div>
+      `).join('');
+    }
+
+    function buildMessage(){
+      const lines = [];
+      lines.push('TPTraining – Schnellstart Check');
+      lines.push('--------------------------------');
+      lines.push(`Seite: ${window.location.href}`);
+      lines.push('');
+
+      const fields = [
+        ['Name', val('name')],
+        ['E-Mail', val('email')],
+        ['Telefon', val('phone')],
+        ['Sport / Fokus', valRadio('sport_focus')],
+        ['Primäres Ziel', valRadio('primary_goal')],
+        ['Wettkampfdatum', val('event_date')],
+        ['Notizen', val('notes')],
+        ['Erfahrung', valRadio('experience')],
+        ['Training pro Woche', valRadio('weekly_sessions')],
+        ['Altersgruppe', val('age_group')],
+        ['Engpass', valRadio('main_challenge')],
+        ['Empfohlenes Paket', bookingRecommendedPlan?.value || val('recommended_plan')],
+        ['Gewähltes Paket', valRadio('selected_plan')],
+        ['Bevorzugter Kanal', val('preferred_channel')],
+        ['Wunschtermin', formatPreferredSlot()],
+        ['Zusätzliche Infos', val('message')]
+      ];
+
+      for(const [k,v] of fields){
+        if(v) lines.push(`${k}: ${v}`);
+      }
+
+      lines.push('');
+      lines.push('— Ende —');
+
+      return lines.join('\n');
+    }
+
+    function buildICS({ title, description, startLocal, minutes = 15 }){
+      // Convert local time to UTC string for broad compatibility
+      const dtStart = new Date(startLocal);
+      if(Number.isNaN(dtStart.getTime())) return null;
+
+      const dtEnd = new Date(dtStart.getTime() + minutes * 60 * 1000);
+
+      const fmt = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const stamp = fmt(new Date());
+
+      const uid = `tptraining-${Math.random().toString(16).slice(2)}@tptraining.at`;
+
+      const safe = (s) => String(s || '')
+        .replace(/\r?\n/g, '\\n')
+        .replace(/,/g, '\\,')
+        .replace(/;/g, '\\;');
+
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//TPTraining//Schnellstart//DE',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${uid}`,
+        `DTSTAMP:${stamp}`,
+        `DTSTART:${fmt(dtStart)}`,
+        `DTEND:${fmt(dtEnd)}`,
+        `SUMMARY:${safe(title)}`,
+        `DESCRIPTION:${safe(description)}`,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      return ics;
+    }
+
+    async function copyToClipboard(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('In die Zwischenablage kopiert.');
+        return true;
+      }catch(err){
+        const ok = window.prompt('Kopieren:', text);
+        if(ok !== null) showToast('Bereit zum Kopieren.');
+        return false;
+      }
+    }
+
+    bookingCopy?.addEventListener('click', () => {
+      if(!lastCompiledMessage) return;
+      copyToClipboard(lastCompiledMessage);
+    });
+
+    bookingForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if(!validateCurrentStep()) return;
+
+      // Ensure recommendation is up-to-date
+      updateRecommendation();
+      renderSummary();
+
+      const message = buildMessage();
+      lastCompiledMessage = message;
+
+      const chosen = valRadio('selected_plan') || bookingRecommendedPlan?.value || 'Anfrage';
+      const subject = `TPTraining Anfrage – ${chosen}`;
+
+      const mailtoHref = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+      if(bookingMailto) bookingMailto.href = mailtoHref;
+
+      // Download TXT
+      cleanupDownloads();
+      txtUrl = URL.createObjectURL(new Blob([message], { type: 'text/plain;charset=utf-8' }));
+      if(bookingDownloadTxt) bookingDownloadTxt.href = txtUrl;
+
+      // Download ICS if preferred slot exists
+      const pd = val('preferred_date');
+      const pt = val('preferred_time');
+      if(pd && pt && bookingDownloadIcs){
+        const startLocal = `${pd}T${pt}:00`;
+        const ics = buildICS({
+          title: 'TPTraining – Erstgespräch',
+          description: message,
+          startLocal,
+          minutes: 15
+        });
+        if(ics){
+          icsUrl = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+          bookingDownloadIcs.href = icsUrl;
+          bookingDownloadIcs.classList.remove('hidden');
+        }
+      }
+
+      // Try backend submission if configured
+      let backendSent = false;
+      const hasBackend = typeof FORMSPREE_ENDPOINT === 'string' && FORMSPREE_ENDPOINT.trim().length > 0;
+
+      if(hasBackend){
+        try{
+          // Enable all controls so FormData includes all steps
+          $$('input, select, textarea', bookingForm).forEach(ctrl => ctrl.disabled = false);
+
+          const fd = new FormData(bookingForm);
+          fd.append('compiled_message', message);
+
+          const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: fd
+          });
+
+          if(res.ok){
+            backendSent = true;
+            showToast('Anfrage gesendet.');
+          }else{
+            showToast('Backend nicht erreichbar – E-Mail wird vorbereitet.');
+          }
+        }catch(err){
+          showToast('Backend nicht erreichbar – E-Mail wird vorbereitet.');
+        }
+      }
+
+      if(!backendSent){
+        // Default: open the mail client with a prepared request
+        window.location.href = mailtoHref;
+        showToast('E-Mail vorbereitet – bitte senden.');
+      }
+
+      // Switch to success view
+      bookingForm.classList.add('hidden');
+      bookingSuccess?.classList.remove('hidden');
+    });
 
     /* ------------------------------
        Bio toggles (smooth expand/collapse)
