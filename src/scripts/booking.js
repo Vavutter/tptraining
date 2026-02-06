@@ -41,6 +41,9 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
   const success = document.getElementById("booking-success");
   const bookingMailto = document.getElementById("booking-mailto");
   const bookingCopy = document.getElementById("booking-copy");
+  const successTitle = document.getElementById("booking-success-title");
+  const successText = document.getElementById("booking-success-text");
+  const errorBox = document.getElementById("booking-error");
   const recoTitle = document.getElementById("booking-reco-title");
   const recoText = document.getElementById("booking-reco-text");
 
@@ -51,6 +54,11 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
   let userPlanTouched = false;
   let lastCompiledMessage = "";
   let lastFocus = null;
+  let isSubmitting = false;
+
+  const defaultSuccessTitle = successTitle ? successTitle.textContent : "";
+  const defaultSuccessText = successText ? successText.textContent : "";
+  const defaultMailtoLabel = bookingMailto ? bookingMailto.textContent : "E-Mail öffnen";
 
   const planMap = new Map();
   programmes.forEach((plan) => {
@@ -69,8 +77,28 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
     document.body.classList.toggle("overflow-hidden", lock);
   }
 
+  function clearError() {
+    if (!errorBox) return;
+    errorBox.textContent = "";
+    errorBox.classList.add("hidden");
+  }
+
+  function showError(message) {
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.classList.remove("hidden");
+  }
+
+  function setSubmitting(active) {
+    isSubmitting = active;
+    if (!submitBtn) return;
+    submitBtn.disabled = active;
+    submitBtn.textContent = active ? "Sende..." : "Anfrage vorbereiten";
+  }
+
   function setStep(index) {
     currentStep = Math.max(0, Math.min(index, steps.length - 1));
+    clearError();
 
     steps.forEach((stepEl, idx) => {
       const active = idx === currentStep;
@@ -263,36 +291,121 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
     return lines.join("\n");
   }
 
-  function showSuccess() {
+  function buildMailto(bodyMessage) {
+    const selectedPlan = getSelectedRadioValue("selected_plan");
+    const selectedPlanMeta = planMap.get(selectedPlan);
+    const subject = `TPTraining Anfrage - ${selectedPlanMeta?.name || "Schnellstart"}`;
+    return `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyMessage)}`;
+  }
+
+  function buildSubmissionPayload() {
+    return {
+      sport_focus: getValue("sport_focus"),
+      experience: getValue("experience"),
+      goal: getValue("goal"),
+      weekly_sessions: getValue("weekly_sessions"),
+      selected_plan: getSelectedRadioValue("selected_plan"),
+      name: getValue("name"),
+      email: getValue("email"),
+      phone: getValue("phone"),
+      preferred_channel: getValue("preferred_channel"),
+      message: getValue("message"),
+      source_url: window.location.href,
+      submitted_at: new Date().toISOString()
+    };
+  }
+
+  function showSuccess({ sent = false, mailto = "" } = {}) {
     if (!success) return;
 
     form.classList.add("hidden");
     success.classList.remove("hidden");
-    if (stepLabel) stepLabel.textContent = "Anfrage bereit";
+    if (stepLabel) stepLabel.textContent = sent ? "Anfrage gesendet" : "Anfrage bereit";
     if (nextBtn) nextBtn.classList.add("hidden");
     if (prevBtn) prevBtn.classList.add("hidden");
     if (submitBtn) submitBtn.classList.add("hidden");
+
+    if (successTitle) {
+      successTitle.textContent = sent
+        ? "Danke - deine Anfrage ist bei uns eingegangen."
+        : defaultSuccessTitle;
+    }
+    if (successText) {
+      successText.textContent = sent
+        ? "Wir melden uns zeitnah mit einer konkreten nächsten Empfehlung."
+        : defaultSuccessText;
+    }
+    if (bookingMailto) {
+      bookingMailto.classList.toggle("hidden", !mailto);
+      bookingMailto.textContent = sent ? "E-Mail Entwurf öffnen" : defaultMailtoLabel;
+      if (mailto) bookingMailto.href = mailto;
+    }
   }
 
-  function prepareSubmission() {
+  async function prepareSubmission() {
     lastCompiledMessage = compileMessage();
+    const fallbackMailto = buildMailto(lastCompiledMessage);
+    const payload = buildSubmissionPayload();
+    clearError();
 
-    const selectedPlan = getSelectedRadioValue("selected_plan");
-    const selectedPlanMeta = planMap.get(selectedPlan);
-    const subject = `TPTraining Anfrage - ${selectedPlanMeta?.name || "Schnellstart"}`;
-    const mailto = `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lastCompiledMessage)}`;
+    try {
+      setSubmitting(true);
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...payload,
+          compiled_message: lastCompiledMessage
+        })
+      });
 
-    if (bookingMailto) bookingMailto.href = mailto;
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (error) {
+        data = {};
+      }
 
-    showSuccess();
+      const resolvedMailto = data.mailto || fallbackMailto;
+      if (bookingMailto) bookingMailto.href = resolvedMailto;
+
+      if (!response.ok) {
+        showError(
+          data.error ||
+            "Anfrage konnte nicht direkt gesendet werden. Nutze bitte den E-Mail-Entwurf."
+        );
+        showSuccess({ sent: false, mailto: resolvedMailto });
+        return;
+      }
+
+      const deliveryCount = Array.isArray(data.delivery) ? data.delivery.length : 0;
+      showSuccess({ sent: deliveryCount > 0, mailto: resolvedMailto });
+    } catch (error) {
+      if (bookingMailto) bookingMailto.href = fallbackMailto;
+      showError("Verbindung fehlgeschlagen. Nutze bitte den E-Mail-Entwurf als Fallback.");
+      showSuccess({ sent: false, mailto: fallbackMailto });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function resetToStart() {
     form.reset();
     userPlanTouched = false;
+    clearError();
+    setSubmitting(false);
     setStep(0);
     form.classList.remove("hidden");
     success?.classList.add("hidden");
+    if (successTitle) successTitle.textContent = defaultSuccessTitle;
+    if (successText) successText.textContent = defaultSuccessText;
+    if (bookingMailto) {
+      bookingMailto.classList.remove("hidden");
+      bookingMailto.textContent = defaultMailtoLabel;
+      bookingMailto.href = "#";
+    }
   }
 
   function openBooking({ plan = "", sport = "" } = {}) {
@@ -359,7 +472,13 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
     }
   });
 
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+
   form.addEventListener("change", (event) => {
+    clearError();
+
     if (event.target && event.target.name === "selected_plan") {
       userPlanTouched = true;
     }
@@ -377,6 +496,8 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
   });
 
   form.addEventListener("input", () => {
+    clearError();
+
     if (currentStep === steps.length - 1) {
       renderSummary();
     }
@@ -391,9 +512,10 @@ export function initBooking({ businessEmail = "tp.training@gmx.net", programmes 
     setStep(currentStep - 1);
   });
 
-  submitBtn?.addEventListener("click", () => {
+  submitBtn?.addEventListener("click", async () => {
+    if (isSubmitting) return;
     if (!validateStep()) return;
-    prepareSubmission();
+    await prepareSubmission();
   });
 
   bookingCopy?.addEventListener("click", async () => {

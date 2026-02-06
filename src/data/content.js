@@ -1,3 +1,10 @@
+import heroMarco from "../../MarcoSlideshow.webp";
+import heroTrail from "../../cen.webp";
+import heroRoad from "../../cropped.webp";
+import schoolImage from "../../schul.webp";
+import coachMarco from "../../tf.webp";
+import coachBenjamin from "../../benj2.webp";
+
 export const content = {
   brand: {
     name: "TPTraining",
@@ -18,15 +25,15 @@ export const content = {
     },
     media: [
       {
-        src: "/MarcoSlideshow.jpeg",
+        src: heroMarco,
         alt: "Athlet auf Bergstraße"
       },
       {
-        src: "/cen.jpg",
+        src: heroTrail,
         alt: "Mountainbike Training auf Trail"
       },
       {
-        src: "/cropped.jpg",
+        src: heroRoad,
         alt: "Rennrad Training im Tal"
       }
     ],
@@ -51,19 +58,19 @@ export const content = {
       tag: "Ausdauer",
       title: "Triathlon Coaching",
       text: "Schwimmen, Bike und Lauf als ein smartes System mit klarer Progression.",
-      image: "/cropped.jpg"
+      image: heroRoad
     },
     {
       tag: "Trail",
       title: "MTB Skills",
       text: "Technik, Sicherheit und Speed auf Trails mit strukturierter Session-Logik.",
-      image: "/cen.jpg"
+      image: heroTrail
     },
     {
       tag: "Nachwuchs",
       title: "Schule / Projekt",
       text: "Sportwochen und Projekttage mit altersgerechtem Aufbau und Spaßfaktor.",
-      image: "/schul.png"
+      image: schoolImage
     }
   ],
   method: [
@@ -124,7 +131,7 @@ export const content = {
       id: "marco",
       name: "Marco Tiefenbacher",
       role: "Co-Founder & Triathlon Coach",
-      image: "/tf.png",
+      image: coachMarco,
       highlights: [
         "Trainingsperiodisierung und Leistungstests",
         "Bike-Fitting und datenbasierte Trainingsplanung",
@@ -141,7 +148,7 @@ export const content = {
       id: "benjamin",
       name: "Benjamin Pletzer",
       role: "Co-Founder & MTB Specialist",
-      image: "/benj2.jpg",
+      image: coachBenjamin,
       highlights: [
         "Trail-Skills und Nachwuchsförderung",
         "Techniktraining für Kinder und Erwachsene",

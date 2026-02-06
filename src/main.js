@@ -3,6 +3,7 @@ import "./styles/base.css";
 import "./styles/components.css";
 import { content } from "./data/content";
 import { initBooking } from "./scripts/booking";
+import brandLogo from "../tptraining.png";
 import {
   initHeroMotion,
   initPhaseThreeMotion,
@@ -296,13 +297,15 @@ function renderBookingModal(items) {
 
         <section class="booking-success hidden" id="booking-success">
           <p class="booking-reco-kicker">Anfrage bereit</p>
-          <h4>Danke - dein Check ist vorbereitet.</h4>
-          <p>Wir haben deine Angaben aufbereitet. Du kannst die Anfrage jetzt direkt senden oder den Text kopieren.</p>
+          <h4 id="booking-success-title">Danke - dein Check ist vorbereitet.</h4>
+          <p id="booking-success-text">Wir haben deine Angaben aufbereitet. Du kannst die Anfrage jetzt direkt senden oder den Text kopieren.</p>
           <div class="booking-success-actions">
             <a class="btn btn-primary" id="booking-mailto" href="#">E-Mail öffnen</a>
             <button type="button" class="btn btn-secondary" id="booking-copy">Text kopieren</button>
           </div>
         </section>
+
+        <p class="booking-error hidden" id="booking-error" role="status" aria-live="polite"></p>
 
         <footer class="booking-footer">
           <p class="booking-step-label" id="booking-step-label">Schritt 1 / 4</p>
@@ -325,7 +328,7 @@ function render() {
 
     <header class="site-header">
       <a class="brand" href="#hero" aria-label="Startseite">
-        <img src="/tptraining.png" alt="TPTraining" />
+        <img src="${brandLogo}" alt="TPTraining" />
         <div>
           <strong>${content.brand.name}</strong>
           <span>${content.brand.strap}</span>
