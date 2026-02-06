@@ -1,0 +1,23 @@
+:root {
+  --font-display: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+
+  --bg: #070d11;
+  --bg-soft: #0d151c;
+  --bg-surface: rgba(14, 22, 30, 0.72);
+  --bg-surface-strong: rgba(13, 21, 28, 0.9);
+  --text: #ecf3fa;
+  --text-soft: rgba(236, 243, 250, 0.72);
+  --line: rgba(236, 243, 250, 0.16);
+  --brand: #f23847;
+  --brand-soft: rgba(242, 56, 71, 0.24);
+  --glow-a: rgba(242, 56, 71, 0.42);
+  --glow-b: rgba(94, 200, 255, 0.2);
+  --shadow-deep: 0 36px 110px -60px rgba(0, 0, 0, 0.8);
+  --shadow-soft: 0 16px 52px -38px rgba(0, 0, 0, 0.65);
+  --radius-xl: 30px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+
+  --max-width: 1220px;
+}
